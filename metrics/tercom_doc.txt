@@ -1,0 +1,51 @@
+TERCOM
+
+NAME
+		tercom
+
+SYNOPSIS
+		java -jar tercom.x.x.jar -r reference_file -h hypothesis_file [-n output_file_name -o output_format] [ options... ]
+
+DESCRIPTION
+		Performs TER calculation for document image tranlation and document text translation
+
+		-r reference_file
+		
+		-h hypothesis_file
+
+		-n output_file_name
+
+		-o output_format
+			There are sum, xml, ???
+
+		-N 
+			Normalize (???)
+
+		-s 
+			Case sensitive ON
+
+		-P
+			No punctuation
+
+		-a alter_reference_file
+
+		-b beam_width
+
+		-S trans_span_prefix
+
+		-d max_shift_distance
+
+		-M match_cost
+		
+		-D delete_cost
+		
+		-B substitute_cost
+		
+		-I insert_cost
+		
+		-T shift_cost
+
+EXAMPLE
+	This is the command performed by OpenHart
+
+	java -jar tercom.x.x.jar -s -N -r reference_file -a reference_file -h hypothesis_file -n output -o sum
