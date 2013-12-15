@@ -47,9 +47,8 @@
 \section{Context}
 \subsection{OpenHart}
 \begin{frame}
-	\frametitle{Context}
-	\framesubtitle{OpenHart}
-	\begin{block}{Description}
+	\frametitle{OpenHart}
+	\begin{block}{OpenHart}
 	\begin{itemize}
 		\item OpenHart is competitive exam set up by the National Institute of Standards and Technology
 		\item Teams of developers are evaluated on their performance in handwriting documents transcription and translation
@@ -60,33 +59,24 @@
 \end{frame}
 \subsection{QGAR}
 \begin{frame}
-   \frametitle{Context}
-   \framesubtitle{Working environment}
-   \begin{block}{The QGAR team}
+   \frametitle{ QGAR }
+   \begin{block}{QGAR}
    \begin{itemize}
 	   \item QGAR is a research team of the laboratory “Loria”
 	   \item They are working in the area of graphics recognition and document analysis
+	   \item Implementation the OpenHart evaluation system on DAE platform
+	   \item DAE website and Taverna workbench
 	\end{itemize}
 	\end{block}
-\begin{block}{Project goal}
-\begin{itemize}
-     \item Implementation the OpenHart evaluation system on DAE platform
-     \item DAE website and Taverna workbench
-\end{itemize}
-\end{block}
 \end{frame}
 
 \subsection{What we have to do}
 
 \begin{frame}
-\frametitle{Context}
-   \framesubtitle{ What we have to do}
+   \frametitle{ What we have to do}
 	\begin{block}{Proof of concept}
 	Proof of concept: OpenHart implementation on the DAE platform using web services
 	\end{block}
-\begin{center}
-\includegraphics[scale=0.33]{schema.png}
-\end{center}
 \end{frame}
 			    
 
@@ -97,15 +87,13 @@
 
 \frametitle{Our work}
 \framesubtitle{DAE Analysis}
-
 \begin{block}{The goal}
 Create and link two simple web-services : 
 \begin{itemize}
 \item Generate a list of random images URL in DAE
-\item For each URL, download and rotate the image
+\item For each, download and rotate the image
 \end{itemize}
 \end{block}
-
 \begin{block}{Attempts to communicate with DAE}
 \begin{itemize}
 \item Use pre-generated URL to send a request
@@ -113,76 +101,41 @@ Create and link two simple web-services :
 \item Simply execute web-services with Taverna
 \end{itemize}
 \end{block}
-
 \end{frame}
-
 \subsection{OpenHart Analysis}
 \begin{frame}
-\frametitle{Our work}
+\frametitle{Our Work}
 \framesubtitle{OpenHart Analysis}
-
 \begin{block}{The goal}
 Modeling the OpenHart evaluation process with Taverna
 \end{block}
-
 \begin{block}{Tasks}
 \begin{itemize}
 \item Create a simple model of OpenHart's pipeline
 \item Web services specifications
-\item Understand and document metrics(evaluation tools) for the algorithms' evaluation
-\item Stude an OpenHart participant's algorithm to test the OpenHart pipeline
+\item Understand and document metrics for the algorithms' evaluation
+\item Try to understand the algorithm of a participant
 \end{itemize}
 \end{block}
-
 \end{frame}
-
 \subsection{Problems encountered}
 \begin{frame}
 \frametitle{Our work}
-\framesubtitle{Problems encountered}
-
+\framesubtitle{Problems encoutenred}
 \begin{block}{DAE communication protocols}
 \begin{itemize}
 \item Difficult to use different tools
 \item Insufficient communication
 \end{itemize}
 \end{block}
-
 \begin{block}{Difficult to understand how the OpenHart pipeline works}
 \begin{itemize}
 \item Few documentation
 \item Complicated makefile
 \end{itemize}
 \end{block}
-
 \end{frame}
-
 \section{Upcoming work}
-\subsection{What we are going to do}
-
-\begin{frame}
-\frametitle{Upcoming work}
-\framesubtitle{What we are going to do}
-\begin{block}{Implement OpenHart in DAE}
-\begin{itemize}
-    \item Implement ability to run algorithms on DAE.
-    \item Implement ability to run evaluation tools on algorithms.
-\end{itemize}
-\end{block}
-
-\begin{block}{Performances analysis}
-    \begin{itemize}
-    \item Find possible errors in the implementation.
-    \item Suggest some improvements.
-    \item Correct errors.
-    \item Write a manual of possible improvements.
-    \end{itemize}
-\end{block}
-
-\begin{block}{Documentation}
-Keep documenting the code
-\end{block}
-\end{frame}
 \subsection{Planned work}
 \begin{frame}
 \frametitle{Upcoming work}
@@ -191,20 +144,47 @@ The timetable has changed
   \begin{figure}
   \begin{center}
     \includegraphics[width=10cm]{planning.png}
-    \newline
-    Timetable comparison
+	\newline
+	Timetable comparison
   \end{center}
   \end{figure}
+\end{frame}
+
+\subsection{What we are going to do}
+
+\begin{frame}
+\frametitle{Upcoming work}
+\framesubtitle{What we are going to do}
+\begin{block}{Implement OpenHart in DAE}
+\begin{itemize}
+	\item Implement algorithms running
+	\item Implement metrics
+\end{itemize}
+\end{block}
+
+\begin{block}{Optimization}
+	\begin{itemize}
+	\item Write an optimizations manual
+	\item Optimize!
+	\end{itemize}
+\end{block}
+
+\begin{block}{Documentation}
+Keep documenting the code
+\end{block}
 \end{frame}
 
 \section{Conclusion}
 \begin{frame}
   \begin{block}{Conclusion}
-    \begin{itemize}
-        \item Specifications and learning phases have been completed
-        \item Starting implementation
-        \item  We would like to thanks Bart Lamiroy and Jean-François Scheid for their help.
-     \end{itemize}
+    %\begin{itemize}
+   Even if we haven’t finished the project, we have already learned a lot about project management and organization.
+
+   We would like to thanks Bart Lamiroy and Jean-François Scheid for their help.
+	%\end{itemize}
   \end{block}
+  \begin{figure}
+    \includegraphics[width=4cm]{loria}
+  \end{figure}
 \end{frame}
 \end{document}

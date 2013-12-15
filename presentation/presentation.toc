@@ -1,0 +1,13 @@
+\beamer@endinputifotherversion {3.10pt}
+\beamer@sectionintoc {1}{Context}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{OpenHart}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{QGAR}{4}{0}{1}
+\beamer@subsectionintoc {1}{3}{What we have to do}{5}{0}{1}
+\beamer@sectionintoc {2}{Project Progress}{6}{0}{2}
+\beamer@subsectionintoc {2}{1}{DAE Analysis}{6}{0}{2}
+\beamer@subsectionintoc {2}{2}{OpenHart Analysis}{7}{0}{2}
+\beamer@subsectionintoc {2}{3}{Problems encountered}{8}{0}{2}
+\beamer@sectionintoc {3}{Upcoming work}{9}{0}{3}
+\beamer@subsectionintoc {3}{1}{What we are going to do}{9}{0}{3}
+\beamer@subsectionintoc {3}{2}{Planned work}{10}{0}{3}
+\beamer@sectionintoc {4}{Conclusion}{11}{0}{4}
