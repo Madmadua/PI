@@ -1,3 +1,23 @@
+Les phases de spécification et d'analyse étant désormais terminées, nous sommes maintenant en mesure de passer à la phase d'implémentation du pipeline OpenHart sur la plateforme DAE.
+
 \section{Implémentation du pipeline}
+\subsection{Algorithmes de transcription et de traduction}
+Le pipeline OpenHart offre le choix entre trois sortes de tests:
+\begin{itemize}
+    \item DIR: Teste le programme de transcription uniquement.
+    \item DIT: Teste le programme de traduction uniquement.
+    \item DTT: Teste les programmes de transcription puis de traduction à la chaîne.
+\end{itemize}
+
+La suite de notre travail consiste donc à l'implémentation de deux web-services chaînables offrant la possibilité à l'utilisateur de tester soit son programme de transcription, soit son programme de traduction, soit l'un à la suite de l'autre. 
+
+Par manque de programmes de transcription et de traduction à notre disposition, nous devrons probablement écrire de petits programmes simulant la traduction et la transcription de documents. 
+
+
+\subsection{Métriques}
+
+Le pipeline OpenHart utilise un ensemble de métriques qui seront implantés à leur tour sur DAE sous forme de web-services. Certains n'évaluent que la transcription, d'autres la traduction. Les webservices chargés d'évaluer la transcription peuvent donc être lancés en parallèle des webservices chargés de lancer la traduction de cette transcription.
 \section{Tests à réaliser}
+\subsection{Recherche d'éventuelles erreurs}
+\subsection{Suggestions d'amélioration}
 \section{Produit final}
