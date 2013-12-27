@@ -1,0 +1,26 @@
+\documentclass{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{graphicx}
+
+\begin{document}
+
+    \input{titlepage.tex}
+
+    \tableofcontents
+    
+    \chapter*{Introduction}
+    \addcontentsline{toc}{chapter}{Introduction}
+
+    \chapter{Contexte}
+
+    \chapter{Travail réalisé}
+
+    \chapter{Travail à venir}
+        \input{upcoming.tex}
+
+    \chapter*{Conclusion}
+    \addcontentsline{toc}{chapter}{Conclusion}
+
+\end{document}
