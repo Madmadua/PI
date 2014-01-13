@@ -1,0 +1,28 @@
+MT evaluation scorer began on 2014 Jan 13 at 15:05:37
+command line:  bin/mteval-v13a.pl -r /var/www/openhart/mteval/mteval/1389621937/ref.sgml -s /var/www/openhart/mteval/mteval/1389621937/ref.src -t /var/www/openhart/mteval/mteval/1389621937/hyp.sgml -c -d 2 -b
+  Evaluation of Arabic-to-English translation using:
+    src set "MADCAT09" (1 docs, 3 segs)
+    ref set "MADCAT09" (1 refs)
+    tst set "MADCAT09" (1 systems)
+
+  BLEU score using 4-grams = 0.9677 for system "MADCAT" on segment 1 of document "AAW_ARB_20070121.0096_8_LDC0108" (56 words)
+  BLEU score using 4-grams = 1.0000 for system "MADCAT" on segment 2 of document "AAW_ARB_20070121.0096_8_LDC0108" (16 words)
+  BLEU score using 4-grams = 0.9765 for system "MADCAT" on segment 3 of document "AAW_ARB_20070121.0096_8_LDC0108" (44 words)
+BLEU score using   4-grams = 0.9752 for system "MADCAT" on document "AAW_ARB_20070121.0096_8_LDC0108" (3 segments, 116 words)
+
+BLEU score = 0.9752 for system "MADCAT"
+
+# ------------------------------------------------------------------------
+
+Individual N-gram scoring
+        1-gram   2-gram   3-gram   4-gram   5-gram   6-gram   7-gram   8-gram   9-gram
+        ------   ------   ------   ------   ------   ------   ------   ------   ------
+ BLEU:  0.9828   0.9735   0.9727   0.9720   0.9712   0.9703   0.9694   0.9684   0.9674  "MADCAT"
+
+# ------------------------------------------------------------------------
+Cumulative N-gram scoring
+        1-gram   2-gram   3-gram   4-gram   5-gram   6-gram   7-gram   8-gram   9-gram
+        ------   ------   ------   ------   ------   ------   ------   ------   ------
+
+ BLEU:  0.9828   0.9781   0.9763   0.9752   0.9744   0.9737   0.9731   0.9725   0.9719  "MADCAT"
+MT evaluation scorer ended on 2014 Jan 13 at 15:05:37
