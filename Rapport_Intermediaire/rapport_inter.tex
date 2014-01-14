@@ -1,8 +1,9 @@
-\documentclass{report}
+\documentclass[12pt]{report}
 
 \usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
 \usepackage{graphicx}
+\usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
 
 \begin{document}
 
@@ -12,6 +13,7 @@
     
     \chapter*{Introduction}
     \addcontentsline{toc}{chapter}{Introduction}
+	\input{introduction.tex}
 
     \chapter{Contexte}
 
@@ -22,5 +24,6 @@
 
     \chapter*{Conclusion}
     \addcontentsline{toc}{chapter}{Conclusion}
+	\input{conclusion.tex}
 
 \end{document}
