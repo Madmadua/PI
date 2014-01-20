@@ -1,0 +1,131 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>align2html.pl - Script that generate an HTML representation of the alignments issued from asclite.</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body style="background-color: white">
+
+
+<!-- INDEX BEGIN -->
+<div name="index">
+<p><a name="__index__"></a></p>
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#usage">USAGE</a></li>
+	<li><a href="#options">OPTIONS</a></li>
+	<li><a href="#bugs">BUGS</a></li>
+	<li><a href="#notes">NOTES</a></li>
+	<li><a href="#authors">AUTHORS</a></li>
+	<li><a href="#copyright">COPYRIGHT</a></li>
+	<li><a href="#disclaimer">DISCLAIMER</a></li>
+</ul>
+
+<hr name="index" />
+</div>
+<!-- INDEX END -->
+
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>align2html.pl - Script that generate an HTML representation of the alignments issued from asclite.</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+        align2html.pl -i alignfile -o outputdir [ -m mapfile ]</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>The script is taking in input the sdterr output from asclite Alignment Output) (launched with the option -f 6 or -f 7). Using the alignment output, it recreates the graphs of the segments and generates a graphical representation of the multi-dimension alignment. It also generates basic statistical information (Correct, Insertion, ...) regarding the overlap and Segment Group information.
+Using the -m option will add the information of the mapped speaker in every Segment Group representaion file.</p>
+<p>
+</p>
+<hr />
+<h1><a name="usage">USAGE</a></h1>
+<p>Examples:</p>
+<pre>
+        align2html.pl -a align.csv -o output_directory
+        align2html.pl -a align.csv -o output_directory -m map_file</pre>
+<p>
+</p>
+<hr />
+<h1><a name="options">OPTIONS</a></h1>
+<dl>
+<dt><strong><a name="required_file_arguments" class="item"><strong>Required file arguments:</strong></a></strong></dt>
+
+<dl>
+<dt><strong><a name="a_alignfile_alignfile" class="item"><strong>-a</strong>, <strong>--alignfile &lt;alignfile</strong>&gt;</a></strong></dt>
+
+<dd>
+<p>The Alignment file from asclite.</p>
+</dd>
+<dt><strong><a name="o_output_outputdir" class="item"><strong>-o</strong>, <strong>--output &lt;outputdir</strong>&gt;</a></strong></dt>
+
+<dd>
+<p>The output directory where the files will be generated.</p>
+</dd>
+</dl>
+</dd>
+<dt><strong><a name="options" class="item"><strong>Options:</strong></a></strong></dt>
+
+<dl>
+<dt><strong><a name="m_mapfile_mapfile" class="item"><strong>-m</strong>,<strong>--mapfile &lt;mapfile</strong>&gt;</a></strong></dt>
+
+<dd>
+<p>The map file allowing to display the speaker mapping information used during the alignment. Use the same mapfile used when asclite was lunched.</p>
+</dd>
+</dl>
+</dd>
+<dt><strong><a name="other_options" class="item"><strong>Other options:</strong></a></strong></dt>
+
+<dl>
+<dt><strong><a name="h_help" class="item"><strong>-h</strong>, <strong>--help</strong></a></strong></dt>
+
+<dd>
+<p>Display the help.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>
+</p>
+<hr />
+<h1><a name="bugs">BUGS</a></h1>
+<p>No known bugs.</p>
+<p>
+</p>
+<hr />
+<h1><a name="notes">NOTES</a></h1>
+<p>
+</p>
+<hr />
+<h1><a name="authors">AUTHORS</a></h1>
+<dl>
+<dt><strong><a name="jerome_ajot_jerome_ajot_nist_gov" class="item">Jerome Ajot &lt;<a href="mailto:jerome.ajot@nist.gov">jerome.ajot@nist.gov</a>&gt;</a></strong></dt>
+
+</dl>
+<p>
+</p>
+<hr />
+<h1><a name="copyright">COPYRIGHT</a></h1>
+<p>NIST Public Domain</p>
+<p>
+</p>
+<hr />
+<h1><a name="disclaimer">DISCLAIMER</a></h1>
+<p>This software was developed at the National Institute of Standards and Technology by employees of the Federal Government in the course of their official duties.  Pursuant to Title 17 Section 105 of the United States Code this software is not subject to copyright protection within the United States and is in the public domain. This software is an experimental system. NIST assumes no responsibility whatsoever for its use by any party.</p>
+<p>THIS SOFTWARE IS PROVIDED &quot;AS IS.&quot; With regard to this software, NIST MAKES NO EXPRESS OR IMPLIED WARRANTY AS TO ANY MATTER WHATSOEVER, INCLUDING MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE.</p>
+
+</body>
+
+</html>
