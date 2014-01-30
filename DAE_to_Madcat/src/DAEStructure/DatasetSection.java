@@ -2,7 +2,7 @@ package DAEStructure;
 import java.util.ArrayList;
 
 
-public class DatasetContent {
+public class DatasetSection {
 	
 	private int id;
 	private String name;
@@ -10,7 +10,7 @@ public class DatasetContent {
 	
 	private ArrayList<PageElementZone> zones;
 
-	public DatasetContent(int id, String name, String purpose,
+	public DatasetSection(int id, String name, String purpose,
 			ArrayList<PageElementZone> zones) {
 		super();
 		this.id = id;
@@ -19,7 +19,7 @@ public class DatasetContent {
 		this.zones = zones;
 	}
 	
-	public DatasetContent(){
+	public DatasetSection(){
 		super();
 	}
 

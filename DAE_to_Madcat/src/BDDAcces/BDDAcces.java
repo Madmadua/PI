@@ -3,7 +3,7 @@ package BDDAcces;
 import java.sql.*;
 
 import DAEStructure.Dataset;
-import DAEStructure.DatasetContent;
+import DAEStructure.DatasetSection;
 import Exception.MyBDDException;
 
 
@@ -57,7 +57,7 @@ public class BDDAcces {
 		
 		// 1 creer dataset et dataset containt
 		Dataset dataset = new Dataset(); 
-		dataset.setContent(new DatasetContent());
+		dataset.setContent(new DatasetSection());
 		
 		// 2 requette sql pour recuperer dataset
 		try{

@@ -9,7 +9,9 @@ public class Dataset {
 	private String purpose;
 	
 	private ArrayList<PageImage> images;
-	private DatasetContent content;
+	private DatasetSection content;
+	private PageElementPropertyValue writer;
+	
 
 	public Dataset(int id, String name, String purpose, ArrayList<PageImage> images) {
 		super();
@@ -55,12 +57,20 @@ public class Dataset {
 		this.images = images;
 	}
 
-	public DatasetContent getContent() {
+	public DatasetSection getContent() {
 		return content;
 	}
 
-	public void setContent(DatasetContent content) {
+	public void setContent(DatasetSection content) {
 		this.content = content;
+	}
+
+	public PageElementPropertyValue getWriter() {
+		return writer;
+	}
+
+	public void setWriter(PageElementPropertyValue writer) {
+		this.writer = writer;
 	}
 	
 	

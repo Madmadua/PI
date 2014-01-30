@@ -11,6 +11,8 @@ public class PageElementPropertyValue {
 		this.valueType = valueType;
 		this.value = value;
 	}
+	
+	public PageElementPropertyValue(){}
 
 	public int getId() {
 		return id;
