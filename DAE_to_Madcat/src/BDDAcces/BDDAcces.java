@@ -100,6 +100,17 @@ public class BDDAcces {
 		return dataset;
 		
 	}
+	
+	public ResultSet executeQuery(String query) throws SQLException{
+		Statement state;
+		state = conn.createStatement();
+        ResultSet result = state.executeQuery(query);
+        
+		
+	return result;
+		
+		
+	}
 
 
 	public void close() {

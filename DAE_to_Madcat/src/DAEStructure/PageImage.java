@@ -8,6 +8,7 @@ public class PageImage {
 	private String path;
 	private int width;
 	private int height;
+	private int colordepth;
 
 	public PageImage(int id, int vdpi, int hdpi, int skew, String path,
 			int width, int height) {

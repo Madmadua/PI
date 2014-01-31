@@ -1,85 +1,57 @@
 package parser;
 
 import java.io.File;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import BDDAcces.BDDAcces;
 import DAEStructure.Dataset;
 import DAEStructure.PageElementPropertyValue;
+import DAEStructure.PageElementZone;
+import DAEStructure.PageImage;
 
 
 
 public class MadcatHandler extends DefaultHandler{
-	private File daeOutput;
-	private Dataset doc;
+	private StringBuffer buffer;
+	private String segmentId;
 	
 	
 	public MadcatHandler(File daeOutput){
 		super();
-		this.daeOutput = daeOutput;
-		
 		
 	}
 	
 	public void startElement(String uri, String localName,
 			String qName, Attributes attributes) throws SAXException{
-				if(qName.equals("doc")){
-					String id = attributes.getValue("id");
-					String src = attributes.getValue("src");
-					String typeName= attributes.getValue("type");
-					
-					doc = new Dataset();
-					doc.setName(id);
-					doc.setPurpose(typeName);
-					
-					
-				}
 				
-				if(qName.equals("writer")){
-					PageElementPropertyValue writer = new PageElementPropertyValue();
-					
-					
+				if(qName.equals("segment")){
+					segmentId = attributes.getValue("id");
 				}
-				if(qName.equals("page")){
-					
-					String id = attributes.getValue("id");
-					int dpi = Integer.parseInt(attributes.getValue("dpi"));
-					String colordepth = attributes.getValue("colordepth");
-					int width = Integer.parseInt(attributes.getValue("width"));
-					int height = Integer.parseInt(attributes.getValue("height"));
-					
+				if(qName.equals("transcription")){
+					BDDAcces bdd = new BDDAcces();
+					String query = "" +
+							"";
+					try {
+						bdd.executeQuery(query);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
-				if(qName.equals("zone")){
-					String id = attributes.getValue("id");
-					String type = attributes.getValue("type");
-					
-					
-				}
-				if(qName.equals("polygon")){
-					
-					
-				}
-				if(qName.equals("point")){
-					String x = attributes.getValue("x");
-					String y = attributes.getValue("y");
-					
-					
-				}
-				if(qName.equals("token-image")){
-					String id = attributes.getValue("id");
-					
-					
-				}
-				if(qName.equals("content")){
-					
-					
-					
 				}
 				
 				
+	}
+	
+	public void characters(char[] ch,int start, int length)
+			throws SAXException{
+		String lecture = new String(ch,start,length);
+		if(buffer != null) buffer.append(lecture);       
 	}
 	
 	

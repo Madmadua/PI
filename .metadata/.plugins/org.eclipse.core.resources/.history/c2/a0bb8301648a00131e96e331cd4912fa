@@ -1,0 +1,30 @@
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
+
+import parser.Parser;
+import BDDAcces.BDDAcces;
+import DAEStructure.Dataset;
+import Exception.MyBDDException;
+
+
+public class Main {
+
+	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
+		
+		/*BDDAcces acces = new BDDAcces();
+		try {
+			Dataset dataset = acces.getDataset(650796, 650796);
+		} catch (MyBDDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	*/
+		Parser parser = new Parser("test.xml","sortie.xml");
+		parser.parse();
+	}
+
+}

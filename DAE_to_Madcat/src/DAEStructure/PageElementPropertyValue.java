@@ -2,7 +2,7 @@ package DAEStructure;
 public class PageElementPropertyValue {
 	
 	private int id;
-	private int valueType;
+	private String valueType;
 	private String value;
 	
 	public PageElementPropertyValue(int id, int valueType, String value) {
@@ -22,11 +22,11 @@ public class PageElementPropertyValue {
 		this.id = id;
 	}
 
-	public int getValueType() {
+	public String getValueType() {
 		return valueType;
 	}
 
-	public void setValueType(int valueType) {
+	public void setValueType(String valueType) {
 		this.valueType = valueType;
 	}
 

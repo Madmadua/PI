@@ -1,3 +1,10 @@
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
+
+import parser.Parser;
 import BDDAcces.BDDAcces;
 import DAEStructure.Dataset;
 import Exception.MyBDDException;
@@ -5,7 +12,7 @@ import Exception.MyBDDException;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
 		
 		BDDAcces acces = new BDDAcces();
 		try {
@@ -15,7 +22,8 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-
+	
+		
 	}
 
 }
