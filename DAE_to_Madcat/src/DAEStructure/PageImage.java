@@ -1,4 +1,7 @@
 package DAEStructure;
+
+import java.util.ArrayList;
+
 public class PageImage {
 	
 	private int id;
@@ -9,9 +12,27 @@ public class PageImage {
 	private int width;
 	private int height;
 	private int colordepth;
+	
+	public int getColordepth() {
+		return colordepth;
+	}
+
+	public void setColordepth(int colordepth) {
+		this.colordepth = colordepth;
+	}
+
+	public ArrayList<PageElementSegment> getSegments() {
+		return segments;
+	}
+
+	public void setSegments(ArrayList<PageElementSegment> segments) {
+		this.segments = segments;
+	}
+
+	private ArrayList<PageElementSegment> segments;
 
 	public PageImage(int id, int vdpi, int hdpi, int skew, String path,
-			int width, int height) {
+			int width, int height, ArrayList<PageElementSegment> segments) {
 		super();
 		this.id = id;
 		this.vdpi = vdpi;
@@ -20,6 +41,7 @@ public class PageImage {
 		this.path = path;
 		this.width = width;
 		this.height = height;
+		this.segments = segments;
 	}
 	
 	public PageImage(){

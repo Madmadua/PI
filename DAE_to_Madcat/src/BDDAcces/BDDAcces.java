@@ -1,9 +1,11 @@
 package BDDAcces;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 import DAEStructure.Dataset;
 import DAEStructure.DatasetSection;
+import DAEStructure.PageImage;
 import Exception.MyBDDException;
 
 
@@ -44,9 +46,9 @@ public class BDDAcces {
 
 	public Dataset getDataset(int id, int id_containt) throws MyBDDException {
 		// Fonction pour recuperer toutes les info de la base de donné pour construire l'arbre
-		// 1 creer dataset et dataset containt
+		// 1 creer dataset
 		// 2 requette sql pour recuperer dataset
-		// 3 requette sql pour recuperer dataset_containt
+		// 3 rien
 		// 4 requette sql pour recuperer les Page_Image à ajouter à dataset
 		// 5 requette sql pour recuperer les Page_Element_zone assocée à dataset_containt
 		// 6 boucle pour chaque Page_Element_Zone
@@ -93,9 +95,77 @@ public class BDDAcces {
 			}
 		}
 		
-		//System.out.println(dataset.getId());
-		//System.out.println(dataset.getName());
-		//System.out.println(dataset.getPurpose());
+		// 3 requette sql pour recuperer dataset_containt
+		
+				
+		// 4 requette sql pour recuperer les Page_Image à ajouter à dataset
+		try{
+			Statement state;
+			state = conn.createStatement();
+		    ResultSet result = state.executeQuery(
+		   		"SELECT PAGE_IMAGE_UNDERLYING.ID, " +
+		   		"PAGE_IMAGE_UNDERLYING.VDPI, " +
+		   		"PAGE_IMAGE_UNDERLYING.HDPI, " +
+		   		"PAGE_IMAGE_UNDERLYING.SKEW, " +
+		   		"PAGE_IMAGE_UNDERLYING.PATH, " +
+		   		"PAGE_IMAGE_UNDERLYING.WIDTH, " +
+		   		"PAGE_IMAGE_UNDERLYING.HEIGHT " +
+		   		"FROM INCLUDES_PAGE_IMAGE_UNDERLYING, PAGE_IMAGE_UNDERLYING " +
+		   		"WHERE INCLUDES_PAGE_IMAGE_UNDERLYING.DATASET_ID = " + String.valueOf(id) +
+		   		" AND INCLUDES_PAGE_IMAGE_UNDERLYING.PAGE_IMAGE_ID = PAGE_IMAGE_UNDERLYING.ID"
+		   		);
+			        
+		    ResultSetMetaData resultMeta = result.getMetaData();
+			        
+			ArrayList<PageImage> images = new ArrayList<PageImage>();
+			        
+			while(result.next()){
+				    	
+			   	if(resultMeta.getColumnCount() != 7){
+			   		throw new MyBDDException("Erreur BDDAcces/getDataset/4 nombre de collones.");
+	        	}
+			        	
+			   	int pageId = Integer.valueOf(result.getObject(1).toString());
+			    int vdpi = 0;
+			    int hdpi = 0;
+			   	int skew = 0;
+			  	String path = result.getObject(5).toString();
+			   	int width = Integer.valueOf(result.getObject(6).toString());
+		      	int height = Integer.valueOf(result.getObject(7).toString());
+			        	
+		      	if(result.getObject(2).toString() != "null"){
+			        		
+		       	}
+			        	
+		      	image = new
+			        	
+			        	
+		        for(int i = 1; i <= resultMeta.getColumnCount(); i++){
+				        		
+		        	if(result.getObject(i) == null){
+				    	System.out.print("\t null \t |");
+				    }else{
+				    	System.out.print("\t" + result.getObject(i).toString() + "\t |");
+			    	}
+			    }
+				        	
+			}
+			         
+			        
+
+			        
+
+			    
+			        result.close();
+			        state.close();
+			        
+				}catch (Exception e) {
+					if(e instanceof MyBDDException){
+						throw new MyBDDException(((MyBDDException) e).getDescription());
+					}else{
+						e.printStackTrace();
+					}
+				}
 		
 		return dataset;
 		

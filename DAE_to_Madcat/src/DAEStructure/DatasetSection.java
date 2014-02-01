@@ -7,16 +7,12 @@ public class DatasetSection {
 	private int id;
 	private String name;
 	private String purpose;
-	
-	private ArrayList<PageElementZone> zones;
 
-	public DatasetSection(int id, String name, String purpose,
-			ArrayList<PageElementZone> zones) {
+	public DatasetSection(int id, String name, String purpose) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.purpose = purpose;
-		this.zones = zones;
 	}
 	
 	public DatasetSection(){
@@ -45,14 +41,6 @@ public class DatasetSection {
 
 	public void setPurpose(String purpose) {
 		this.purpose = purpose;
-	}
-
-	public ArrayList<PageElementZone> getZones() {
-		return zones;
-	}
-
-	public void setZones(ArrayList<PageElementZone> zones) {
-		this.zones = zones;
 	}
 	
 	

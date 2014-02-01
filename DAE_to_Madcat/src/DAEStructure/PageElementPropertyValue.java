@@ -5,7 +5,7 @@ public class PageElementPropertyValue {
 	private String valueType;
 	private String value;
 	
-	public PageElementPropertyValue(int id, int valueType, String value) {
+	public PageElementPropertyValue(int id, String valueType, String value) {
 		super();
 		this.id = id;
 		this.valueType = valueType;
