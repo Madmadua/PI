@@ -4,7 +4,10 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import DAEStructure.Dataset;
-import DAEStructure.DatasetSection;
+import DAEStructure.PageElementPropertyValue;
+import DAEStructure.PageElementSegment;
+import DAEStructure.PageElementToken;
+import DAEStructure.PageElementZone;
 import DAEStructure.PageImage;
 import Exception.MyBDDException;
 
@@ -15,6 +18,9 @@ public class BDDAcces {
 	private String user = "dae";
 	private String passwd = "dae";
 	private Connection conn = null;
+	
+	private int transcriptionNum = 1;
+	private int traductionNum = 2;
 	
 	public BDDAcces() {
 		super();
@@ -48,18 +54,20 @@ public class BDDAcces {
 		// Fonction pour recuperer toutes les info de la base de donné pour construire l'arbre
 		// 1 creer dataset
 		// 2 requette sql pour recuperer dataset
-		// 3 rien
-		// 4 requette sql pour recuperer les Page_Image à ajouter à dataset
-		// 5 requette sql pour recuperer les Page_Element_zone assocée à dataset_containt
-		// 6 boucle pour chaque Page_Element_Zone
-		/// 6.1 requette sql pour recuperer les Page_Element_Property_Value de la zone
-		/// 6.2 requette sql pour recuperer les Page_Element_Token associe a la zone
-		/// 6.3 boucle sur Page_Element_Token
-		//// 6.3.1 requette sql pour recuperer les Page_Element_Property_Value associe au token
+		// 3 requette sql pour recuperer les Page_Image à ajouter à dataset
+		// 4 boucle sur les Page_Image
+		/// 4.1 recuperer les PE segments 
+		/// 4.2 boucle sur les PE segments
+		//// 4.2.1 recuperer traduction et transcription du PE segment
+		//// 4.2.2 recuperer les PE zones
+		//// 4.2.3 boucle sur les PE zones
+		///// 4.2.3.1 recuperer traduction et transcription du PE zone
+		///// 4.2.3.2 recuperer les PE tokens
+		///// 4.2.3.3 boucle sur les PE tokens
+		////// 4.2.3.3.1 recuperer tradaction et transcription du PE token
 		
-		// 1 creer dataset et dataset containt
-		Dataset dataset = new Dataset(); 
-		dataset.setContent(new DatasetSection());
+		// 1 creer dataset
+		Dataset dataset = new Dataset();
 		
 		// 2 requette sql pour recuperer dataset
 		try{
@@ -95,10 +103,8 @@ public class BDDAcces {
 			}
 		}
 		
-		// 3 requette sql pour recuperer dataset_containt
-		
-				
-		// 4 requette sql pour recuperer les Page_Image à ajouter à dataset
+		// 3 requette sql pour recuperer les Page_Image à ajouter à dataset
+		ArrayList<PageImage> images = new ArrayList<PageImage>();
 		try{
 			Statement state;
 			state = conn.createStatement();
@@ -117,12 +123,10 @@ public class BDDAcces {
 			        
 		    ResultSetMetaData resultMeta = result.getMetaData();
 			        
-			ArrayList<PageImage> images = new ArrayList<PageImage>();
-			        
 			while(result.next()){
 				    	
 			   	if(resultMeta.getColumnCount() != 7){
-			   		throw new MyBDDException("Erreur BDDAcces/getDataset/4 nombre de collones.");
+			   		throw new MyBDDException("Erreur BDDAcces/getDataset/3 nombre de collones.");
 	        	}
 			        	
 			   	int pageId = Integer.valueOf(result.getObject(1).toString());
@@ -132,33 +136,110 @@ public class BDDAcces {
 			  	String path = result.getObject(5).toString();
 			   	int width = Integer.valueOf(result.getObject(6).toString());
 		      	int height = Integer.valueOf(result.getObject(7).toString());
-			        	
+		      	ArrayList<PageElementSegment> segments = new ArrayList<PageElementSegment>();
+		      	
 		      	if(result.getObject(2).toString() != "null"){
-			        		
+		      		vdpi = Integer.valueOf(result.getObject(2).toString());
+		       	}
+		      	if(result.getObject(3).toString() != "null"){
+		      		hdpi = Integer.valueOf(result.getObject(3).toString());
+		       	}
+		      	if(result.getObject(4).toString() != "null"){
+		      		skew = Integer.valueOf(result.getObject(4).toString());
 		       	}
 			        	
-		      	image = new
-			        	
-			        	
-		        for(int i = 1; i <= resultMeta.getColumnCount(); i++){
-				        		
-		        	if(result.getObject(i) == null){
-				    	System.out.print("\t null \t |");
-				    }else{
-				    	System.out.print("\t" + result.getObject(i).toString() + "\t |");
-			    	}
-			    }
-				        	
+		      	PageImage image = new PageImage(pageId, vdpi, hdpi, skew, path, width, height, segments);
+		      	images.add(image);
 			}
-			         
+			
+			result.close();
+			state.close();
 			        
-
-			        
-
+		}catch (Exception e) {
+			if(e instanceof MyBDDException){
+				throw new MyBDDException(((MyBDDException) e).getDescription());
+			}else{
+				e.printStackTrace();
+			}
+		}
+		
+		// 4 boucle sur les Page_Image
+		for(PageImage image: images){
+			
+			/// 4.1 recuperer les PE segments
+			try{
+				Statement state;
+				state = conn.createStatement();
+			    ResultSet result = state.executeQuery(
+			   		"SELECT PAGE_ELEMENT_UNDERLYING.ID, " +
+			   		"PAGE_ELEMENT_UNDERLYING.BOUNDARY, " +
+			   		"FROM CONTAINS_PAGE_ELEMENT, PAGE_ELEMENT_UNDERLYING " +
+			   		"WHERE CONTAINS_PAGE_ELEMENT.PAGE_IMAGE_ID = " + String.valueOf(image.getId()) +
+			   		" AND CONTAINS_PAGE_ELEMENT.PAGE_ELEMENT_ID = PAGE_ELEMENT_UNDERLYING.ID"
+			   		);
+				        
+			    ResultSetMetaData resultMeta = result.getMetaData();
 			    
-			        result.close();
-			        state.close();
-			        
+				while(result.next()){
+					
+				   	if(resultMeta.getColumnCount() != 2){
+				   		throw new MyBDDException("Erreur BDDAcces/getDataset/4.1 nombre de collones.");
+				   	}
+					
+				   	int elementId = Integer.valueOf(result.getObject(1).toString());
+				   	String boundary = result.getObject(2).toString();
+					ArrayList<PageElementZone> zones = new ArrayList<PageElementZone>();
+					PageElementPropertyValue transcription = null;
+					PageElementPropertyValue traduction = null;
+					
+					PageElementSegment segment = new PageElementSegment(elementId, boundary, zones, transcription, traduction);
+					image.getSegments().add(segment);
+				}
+
+			}catch (Exception e) {
+				if(e instanceof MyBDDException){
+					throw new MyBDDException(((MyBDDException) e).getDescription());
+				}else{
+					e.printStackTrace();
+				}
+			}
+			
+			/// 4.2 boucle sur les PE segments
+			for(PageElementSegment segment: image.getSegments()){
+				
+				//// 4.2.1 recuperer traduction et transcription du PE segment
+				try{
+					Statement state;
+					state = conn.createStatement();
+				    ResultSet result = state.executeQuery(
+				   		"SELECT PAGE_ELEMENT_P_VAL_UNDERLYING.ID, " +
+				   		"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE_TYPE, " +
+				   		"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE, " +
+				   		"FROM PAGE_ELEMENT_P_VAL_UNDERLYING, HAS_VALUE " +
+				   		"WHERE HAS_VALUE.PAGE_ELEMENT_ID = " + String.valueOf(segment.getId()) +
+				   		" AND CPAGE_ELEMENT_P_VAL_UNDERLYING.ID = HAS_VALUE.PAGE_ELEMENT_PROPERTY_VALUE_ID"
+				   		);
+					        
+				    ResultSetMetaData resultMeta = result.getMetaData();
+				    
+					while(result.next()){
+						
+					   	if(resultMeta.getColumnCount() != 3){
+					   		throw new MyBDDException("Erreur BDDAcces/getDataset/4.2.1 nombre de collones.");
+					   	}
+					   	
+					   	int pvId = Integer.valueOf(result.getObject(1).toString());
+					   	int valueType = Integer.valueOf(result.getObject(2).toString());
+					   	String value = result.getObject(1).toString();
+					   	
+					   	if(valueType == this.traductionNum){
+					   		segment.setTraduction(new PageElementPropertyValue(pvId, "traduction", value));
+					   	}
+					   	if(valueType == this.transcriptionNum){
+					   		segment.setTraduction(new PageElementPropertyValue(pvId, "transcription", value));
+					   	}
+					}
+
 				}catch (Exception e) {
 					if(e instanceof MyBDDException){
 						throw new MyBDDException(((MyBDDException) e).getDescription());
@@ -166,9 +247,188 @@ public class BDDAcces {
 						e.printStackTrace();
 					}
 				}
+				
+				//// 4.2.2 recuperer les PE zones
+				try{
+					Statement state;
+					state = conn.createStatement();
+				    ResultSet result = state.executeQuery(
+				   		"SELECT PAGE_ELEMENT_UNDERLYING.ID, " +
+				   		"PAGE_ELEMENT_UNDERLYING.BOUNDARY, " +
+				   		"FROM ASSOCIATE_PAGE_ELEMENT, PAGE_ELEMENT_UNDERLYING " +
+				   		"WHERE ASSOCIATE_PAGE_ELEMENT.PAGE_ELEMENT_ID = " + String.valueOf(segment.getId()) +
+				   		" AND ASSOCIATE_PAGE_ELEMENT.ASSOCIATE_PAGE_ELEMENT_ID = PAGE_ELEMENT_UNDERLYING.ID"
+				   		);
+					        
+				    ResultSetMetaData resultMeta = result.getMetaData();
+				    
+					while(result.next()){
+						
+					   	if(resultMeta.getColumnCount() != 2){
+					   		throw new MyBDDException("Erreur BDDAcces/getDataset/4.2.2 nombre de collones.");
+					   	}
+						
+					   	int elementId = Integer.valueOf(result.getObject(1).toString());
+					   	String boundary = result.getObject(2).toString();
+						ArrayList<PageElementToken> tokens = new ArrayList<PageElementToken>();
+						PageElementPropertyValue transcription = null;
+						PageElementPropertyValue traduction = null;
+						
+						PageElementZone zone = new PageElementZone(elementId, boundary, tokens, transcription, traduction);
+						segment.getZones().add(zone);
+					}
+
+				}catch (Exception e) {
+					if(e instanceof MyBDDException){
+						throw new MyBDDException(((MyBDDException) e).getDescription());
+					}else{
+						e.printStackTrace();
+					}
+				}
+				
+				//// 4.2.3 boucle sur les PE zones
+				for(PageElementZone zone : segment.getZones()){
+					
+					///// 4.2.3.1 recuperer traduction et transcription du PE zone
+					try{
+						Statement state;
+						state = conn.createStatement();
+					    ResultSet result = state.executeQuery(
+					   		"SELECT PAGE_ELEMENT_P_VAL_UNDERLYING.ID, " +
+					   		"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE_TYPE, " +
+					   		"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE, " +
+					   		"FROM PAGE_ELEMENT_P_VAL_UNDERLYING, HAS_VALUE " +
+					   		"WHERE HAS_VALUE.PAGE_ELEMENT_ID = " + String.valueOf(zone.getId()) +
+					   		" AND CPAGE_ELEMENT_P_VAL_UNDERLYING.ID = HAS_VALUE.PAGE_ELEMENT_PROPERTY_VALUE_ID"
+					   		);
+						        
+					    ResultSetMetaData resultMeta = result.getMetaData();
+					    
+						while(result.next()){
+							
+						   	if(resultMeta.getColumnCount() != 3){
+						   		throw new MyBDDException("Erreur BDDAcces/getDataset/4.2.3.1 nombre de collones.");
+						   	}
+						   	
+						   	int pvId = Integer.valueOf(result.getObject(1).toString());
+						   	int valueType = Integer.valueOf(result.getObject(2).toString());
+						   	String value = result.getObject(1).toString();
+						   	
+						   	if(valueType == this.traductionNum){
+						   		zone.setTraduction(new PageElementPropertyValue(pvId, "traduction", value));
+						   	}
+						   	if(valueType == this.transcriptionNum){
+						   		zone.setTraduction(new PageElementPropertyValue(pvId, "transcription", value));
+						   	}
+						}
+
+					}catch (Exception e) {
+						if(e instanceof MyBDDException){
+							throw new MyBDDException(((MyBDDException) e).getDescription());
+						}else{
+							e.printStackTrace();
+						}
+					}
+					
+					///// 4.2.3.2 recuperer les PE tokens
+					try{
+						Statement state;
+						state = conn.createStatement();
+					    ResultSet result = state.executeQuery(
+					   		"SELECT PAGE_ELEMENT_UNDERLYING.ID, " +
+					   		"PAGE_ELEMENT_UNDERLYING.NUMBER_OF_PIXELS, " +
+					   		"PAGE_ELEMENT_UNDERLYING.TOPLEFTX, " +	
+					   		"PAGE_ELEMENT_UNDERLYING.TOPLEFTY, " +
+					   		"PAGE_ELEMENT_UNDERLYING.WIDTH, " +	
+					   		"PAGE_ELEMENT_UNDERLYING.HEIGHT, " +	
+					   		"FROM ASSOCIATE_PAGE_ELEMENT, PAGE_ELEMENT_UNDERLYING " +
+					   		"WHERE ASSOCIATE_PAGE_ELEMENT.PAGE_ELEMENT_ID = " + String.valueOf(zone.getId()) +
+					   		" AND ASSOCIATE_PAGE_ELEMENT.ASSOCIATE_PAGE_ELEMENT_ID = PAGE_ELEMENT_UNDERLYING.ID"
+					   		);
+						        
+					    ResultSetMetaData resultMeta = result.getMetaData();
+					    
+						while(result.next()){
+							
+						   	if(resultMeta.getColumnCount() != 6){
+						   		throw new MyBDDException("Erreur BDDAcces/getDataset/4.2.3.2 nombre de collones.");
+						   	}
+							
+						   	int tokenId = Integer.valueOf(result.getObject(1).toString());
+						   	int pixels = Integer.valueOf(result.getObject(2).toString());
+						   	int topLeftX = Integer.valueOf(result.getObject(3).toString());
+						   	int topLeftY = Integer.valueOf(result.getObject(4).toString());
+						   	int width = Integer.valueOf(result.getObject(5).toString());
+						   	int height = Integer.valueOf(result.getObject(6).toString());
+							PageElementPropertyValue transcription = null;
+							PageElementPropertyValue traduction = null;
+							
+							PageElementToken token = new PageElementToken(tokenId, pixels, topLeftX, topLeftY, width, height, transcription, traduction);
+							zone.getMots().add(token);
+						}
+
+					}catch (Exception e) {
+						if(e instanceof MyBDDException){
+							throw new MyBDDException(((MyBDDException) e).getDescription());
+						}else{
+							e.printStackTrace();
+						}
+					}
+					
+					///// 4.2.3.3 boucle sur les PE tokens
+					for(PageElementToken token : zone.getMots()){
+						
+						////// 4.2.3.3.1 recuperer tradaction et transcription du PE token
+						try{
+							Statement state;
+							state = conn.createStatement();
+						    ResultSet result = state.executeQuery(
+						   		"SELECT PAGE_ELEMENT_P_VAL_UNDERLYING.ID, " +
+						   		"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE_TYPE, " +
+						   		"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE, " +
+						   		"FROM PAGE_ELEMENT_P_VAL_UNDERLYING, HAS_VALUE " +
+						   		"WHERE HAS_VALUE.PAGE_ELEMENT_ID = " + String.valueOf(token.getId()) +
+						   		" AND CPAGE_ELEMENT_P_VAL_UNDERLYING.ID = HAS_VALUE.PAGE_ELEMENT_PROPERTY_VALUE_ID"
+						   		);
+							        
+						    ResultSetMetaData resultMeta = result.getMetaData();
+						    
+							while(result.next()){
+								
+							   	if(resultMeta.getColumnCount() != 3){
+							   		throw new MyBDDException("Erreur BDDAcces/getDataset/4.2.3.3.1 nombre de collones.");
+							   	}
+							   	
+							   	int pvId = Integer.valueOf(result.getObject(1).toString());
+							   	int valueType = Integer.valueOf(result.getObject(2).toString());
+							   	String value = result.getObject(1).toString();
+							   	
+							   	if(valueType == this.traductionNum){
+							   		token.setTraduction(new PageElementPropertyValue(pvId, "traduction", value));
+							   	}
+							   	if(valueType == this.transcriptionNum){
+							   		token.setTraduction(new PageElementPropertyValue(pvId, "transcription", value));
+							   	}
+							}
+
+						}catch (Exception e) {
+							if(e instanceof MyBDDException){
+								throw new MyBDDException(((MyBDDException) e).getDescription());
+							}else{
+								e.printStackTrace();
+							}
+							
+						}
+						
+					}
+					
+				}
+				
+			}
+			
+		}
 		
-		return dataset;
-		
+		return dataset;	
 	}
 	
 	public ResultSet executeQuery(String query) throws SQLException{
@@ -176,17 +436,11 @@ public class BDDAcces {
 		state = conn.createStatement();
         ResultSet result = state.executeQuery(query);
         
-		
 	return result;
-		
-		
 	}
 
 
 	public void close() {
 		
 	}
-	
-	
-
 }

@@ -12,19 +12,18 @@ public class PageElementZone {
 	private PageElementPropertyValue transcription;
 	private PageElementPropertyValue traduction;
 	
-	public PageElementZone(int id, int number_of_pixels, int topLeftX,
-			int topLeftY, int width, int height,
+	public PageElementZone(int id, String boundary,
 			ArrayList<PageElementToken> mots,
 			PageElementPropertyValue transcription,
 			PageElementPropertyValue traduction) {
 		super();
 		this.id = id;
-		
+		this.boundary = boundary;
 		this.mots = mots;
 		this.transcription = transcription;
 		this.traduction = traduction;
 	}
-	
+
 	public PageElementZone(){
 		super();
 	}

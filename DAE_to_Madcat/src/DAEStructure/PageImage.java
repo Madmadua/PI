@@ -13,22 +13,6 @@ public class PageImage {
 	private int height;
 	private int colordepth;
 	
-	public int getColordepth() {
-		return colordepth;
-	}
-
-	public void setColordepth(int colordepth) {
-		this.colordepth = colordepth;
-	}
-
-	public ArrayList<PageElementSegment> getSegments() {
-		return segments;
-	}
-
-	public void setSegments(ArrayList<PageElementSegment> segments) {
-		this.segments = segments;
-	}
-
 	private ArrayList<PageElementSegment> segments;
 
 	public PageImage(int id, int vdpi, int hdpi, int skew, String path,
@@ -46,6 +30,22 @@ public class PageImage {
 	
 	public PageImage(){
 		super();
+	}
+	
+	public int getColordepth() {
+		return colordepth;
+	}
+
+	public void setColordepth(int colordepth) {
+		this.colordepth = colordepth;
+	}
+
+	public ArrayList<PageElementSegment> getSegments() {
+		return segments;
+	}
+
+	public void setSegments(ArrayList<PageElementSegment> segments) {
+		this.segments = segments;
 	}
 
 	public int getId() {
