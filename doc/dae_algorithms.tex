@@ -1,0 +1,34 @@
+\documentclass[12pt]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{graphicx}
+\usepackage {hyperref}
+\usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\begin{document}
+    \begin{center}
+        \Huge{Ajouter un algorithme sur la plateforme DAE}
+        \HRule
+    \end{center}
+
+    Ce document décrit la manipulation à effectuer pour ajouter un algorithme sur un DAE local.\\
+    \\
+    \begin{enumerate}
+        \item La première chose à faire est de rédiger un web-service permettant l'accès à l'algorithme. Un tutorial est dédié à ceci: \url{http://sourceforge.net/apps/mediawiki/daeplatform/index.php?title=Web\_Service\_Tutorial}. Le fichier de description SOAP doit être nommé sous la forme nom\_version.php (ex : meteor\_1.4.php). 
+        \item Il faut ensuite insérer l'algorithme dans la table ALGORITHMS de la base de données. Il faut préciser le nom, la version, une brève description, le chemin (absolu ou relatif partant de /var/www/wsdl/ ou l'url). L'ID est généré automatiquement.
+        \item Il faut ensuite insérer la variable \$algoOracleID dans le fichier php du web-service et mettre sa valeur à celle de l'ID de l'agorithme.
+        \item Il faut ensuite insérer les entrées/sorties du webservice dans la table DATA de la base de données. Le nom doit correspondre exactement à la clé du tableau inputT/outputT du fichier php. Il faut préciser un brève desciption, le rang et l'obligation de présence de la variable. L'ID est généré automatiquement.
+        \item Il faut ensuite associer les entrées/sorties à l'algorithme en associant l'ID de l'algorithme aux ID des entrées/sorties dans les tables ALGORITHM\_INPUT et ALGORITHM\_OUTPUT.
+        \item Si le type de données utilisé n'est pas dans la table DATATYPE, il faut ensuite l'ajouter. Il faut préciser un ID, un nom et un type.
+        \item Il faut ensuite associer les entrées sorties à leurs types (via leurs ID) dans la table TYPE\_OF.
+        \item Pour que DAE prenne en compte l'algorithme nouvellement ajouté, il faut décharger le module Algorithms de la section DAE Services puis le recharger. Il faut ensuite redémarrer le serveur Apache.
+        \item L'algorithme est normalement listé sur la page dae-demo/localDAE/services/soap. Il est désormais possible d'importer le service dans Taverna et de l'éxécuter.
+        
+    \end{enumerate}
+    
+\end{document}
+
+
