@@ -482,4 +482,34 @@ public class BDDAcces {
 	public void close() {
 		
 	}
+	
+	public String insertDataItem(String name,String flag) throws SQLException{
+		String id  = null;
+		
+		String query = "INSERT INTO DAE.DATA_ITEM_UNDERLYING (DESCRIPTION, FLAG) VALUES (?,?)";
+		String queryId = "SELECT seq_data_item.currval from dual";
+		
+		conn.setAutoCommit(false);
+		System.out.println(query);
+		CallableStatement state;
+		state = conn.prepareCall(query);
+		state.setObject(1, name);
+		state.setObject(2, flag);
+		
+		
+		int affectedRows = state.executeUpdate();
+		if(affectedRows == 0){
+			throw new SQLException("Creating data item failed");
+		}
+		Statement currvalStatement = conn.createStatement();
+		ResultSet result = currvalStatement.executeQuery(queryId);
+        
+		if(result.next()){
+			System.out.println(result.getInt(1));
+		}
+		
+        
+        conn.commit();
+		return id;
+	}
 }
