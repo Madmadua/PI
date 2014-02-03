@@ -10,6 +10,7 @@ import DAEStructure.PageElementToken;
 import DAEStructure.PageElementZone;
 import DAEStructure.PageImage;
 import Exception.MyBDDException;
+import Log.Log;
 
 
 public class BDDAcces {
@@ -66,8 +67,11 @@ public class BDDAcces {
 		///// 4.2.3.3 boucle sur les PE tokens
 		////// 4.2.3.3.1 recuperer tradaction et transcription du PE token
 		
+		Log log = new Log();
+		
 		// 1 creer dataset
 		Dataset dataset = new Dataset();
+		
 		
 		// 2 requette sql pour recuperer dataset
 		try{
@@ -84,6 +88,8 @@ public class BDDAcces {
 	        	dataset.setId(id);
 	        	dataset.setName(result.getObject(2).toString());
 	        	dataset.setPurpose(result.getObject(3).toString());
+	        	
+	        	log.logInfo("Dataset importé (ID:" + id + ", name:" + result.getObject(2).toString() + ", purpose:" + result.getObject(2).toString() + ")");
 	        }else{
 	        	throw new MyBDDException("Erreur BDDAcces/getDataset/2 pas de dataset avec l'id " + id);
 	        }
@@ -149,6 +155,14 @@ public class BDDAcces {
 		       	}
 			        	
 		      	PageImage image = new PageImage(pageId, vdpi, hdpi, skew, path, width, height, segments);
+		      	log.logInfo("PageImage importée (ID:" + 
+		      	            	pageId + ", vdpi:" +
+		      	            	vdpi + ", hdpi:" +
+		      	            	hdpi + ", skew:" +
+		      	            	skew + ", path:" +
+		      	            	path + ", width:" +
+		      	            	width + ", height:" +
+		      	            	height + ")");
 		      	images.add(image);
 			}
 			
@@ -193,6 +207,9 @@ public class BDDAcces {
 					PageElementPropertyValue traduction = null;
 					
 					PageElementSegment segment = new PageElementSegment(elementId, boundary, zones, transcription, traduction);
+					log.logInfo("PageElementSegment associé à PageImage:" + image.getId() + " importé (ID:" +
+									elementId + ", boudary:" +
+							        boundary + ")");
 					image.getSegments().add(segment);
 				}
 
@@ -234,9 +251,13 @@ public class BDDAcces {
 					   	
 					   	if(valueType == this.traductionNum){
 					   		segment.setTraduction(new PageElementPropertyValue(pvId, "traduction", value));
+					   		log.logInfo("Traduction du PESegment:" + segment.getId() + " importé (ID:" +
+					   						pvId + ", value:" + value +")");
 					   	}
 					   	if(valueType == this.transcriptionNum){
 					   		segment.setTraduction(new PageElementPropertyValue(pvId, "transcription", value));
+					   		log.logInfo("Transcription du PESegment:" + segment.getId() + " importé (ID:" +
+			   								pvId + ", value:" + value +")");
 					   	}
 					}
 
@@ -275,6 +296,9 @@ public class BDDAcces {
 						PageElementPropertyValue traduction = null;
 						
 						PageElementZone zone = new PageElementZone(elementId, boundary, tokens, transcription, traduction);
+						log.logInfo("PageElementZone associé à PageElementSegment:" + segment.getId() + " importé (ID:" +
+								elementId + ", boundary:" +
+						        boundary + ")");
 						segment.getZones().add(zone);
 					}
 
@@ -316,9 +340,13 @@ public class BDDAcces {
 						   	
 						   	if(valueType == this.traductionNum){
 						   		zone.setTraduction(new PageElementPropertyValue(pvId, "traduction", value));
+						   		log.logInfo("Traduction du PEZone:" + zone.getId() + " importé (ID:" +
+				   						pvId + ", value:" + value +")");
 						   	}
 						   	if(valueType == this.transcriptionNum){
 						   		zone.setTraduction(new PageElementPropertyValue(pvId, "transcription", value));
+						   		log.logInfo("Transcription du PEZone:" + zone.getId() + " importé (ID:" +
+				   						pvId + ", value:" + value +")");
 						   	}
 						}
 
@@ -364,6 +392,13 @@ public class BDDAcces {
 							PageElementPropertyValue traduction = null;
 							
 							PageElementToken token = new PageElementToken(tokenId, pixels, topLeftX, topLeftY, width, height, transcription, traduction);
+							log.logInfo("PageElementToken associé a PageElementZone:" + zone.getId() + " importé (ID:" + 
+											tokenId + ", pixels:" +
+											pixels + ", topLeftX:" +
+											topLeftX + ", topLeftY:" +
+											topLeftY + ", width:" +
+											width + ", height:" +
+											height + ")");
 							zone.getMots().add(token);
 						}
 
@@ -405,9 +440,13 @@ public class BDDAcces {
 							   	
 							   	if(valueType == this.traductionNum){
 							   		token.setTraduction(new PageElementPropertyValue(pvId, "traduction", value));
+							   		log.logInfo("Traduction du PEToken:" + token.getId() + " importé (ID:" +
+					   						pvId + ", value:" + value +")");
 							   	}
 							   	if(valueType == this.transcriptionNum){
 							   		token.setTraduction(new PageElementPropertyValue(pvId, "transcription", value));
+							   		log.logInfo("Traduction du PEToken:" + token.getId() + " importé (ID:" +
+					   						pvId + ", value:" + value +")");
 							   	}
 							}
 
