@@ -5,7 +5,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import parser.Parser;
-import BDDAcces.BDDAcces;
+import BDDAccess.BDDAccess;
 import DAEStructure.Dataset;
 import Exception.MyBDDException;
 import Log.Log;

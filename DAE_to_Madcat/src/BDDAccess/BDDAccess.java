@@ -1,4 +1,4 @@
-package BDDAcces;
+package BDDAccess;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import Exception.MyBDDException;
 import Log.Log;
 
 
-public class BDDAcces {
+public class BDDAccess {
 	
 	private String url = "jdbc:oracle:thin:@localhost:1521:Demo";
 	private String user = "dae";
@@ -23,7 +23,7 @@ public class BDDAcces {
 	private int transcriptionNum = 1;
 	private int traductionNum = 2;
 	
-	public BDDAcces() {
+	public BDDAccess() {
 		super();
 		
 		try{
@@ -474,23 +474,23 @@ public class BDDAcces {
 		Statement state;
 		state = conn.createStatement();
         ResultSet result = state.executeQuery(query);
+        state.close();
         
 	return result;
 	}
 
 
-	public void close() {
-		
+	public void close() throws SQLException {
+		conn.close();
 	}
 	
-	public String insertDataItem(String name,String flag) throws SQLException{
-		String id  = null;
+	public int insertDataItem(String name,String flag) throws SQLException{
+		int id = 0;
 		
 		String query = "INSERT INTO DAE.DATA_ITEM_UNDERLYING (DESCRIPTION, FLAG) VALUES (?,?)";
 		String queryId = "SELECT seq_data_item.currval from dual";
 		
 		conn.setAutoCommit(false);
-		System.out.println(query);
 		CallableStatement state;
 		state = conn.prepareCall(query);
 		state.setObject(1, name);
@@ -505,11 +505,44 @@ public class BDDAcces {
 		ResultSet result = currvalStatement.executeQuery(queryId);
         
 		if(result.next()){
-			System.out.println(result.getInt(1));
+			id = result.getInt(1);
 		}
 		
         
         conn.commit();
+        conn.setAutoCommit(true);
 		return id;
+	}
+	
+	public void insert(String query,ArrayList<Object> collumns) throws SQLException{
+		CallableStatement state;
+		state = conn.prepareCall(query);
+		for(int i=0;i<collumns.size();i++){
+			System.out.println(collumns.get(i).toString());
+			state.setObject(i+1, collumns.get(i));
+		}
+		
+		state.execute();
+		//state.close();
+		
+	}
+	
+	public void insertImageDataItem(int id) throws SQLException{
+		ArrayList<Object> collumns = new ArrayList<Object>();
+		String query = "INSERT INTO DAE.IMAGE_DATA_ITEM (ID) VALUES (?)";
+		collumns.add(id);
+		insert(query,collumns);
+	}
+	
+	public void insertLogicalImageDataItem(int id) throws SQLException{
+		ArrayList<Object> collumns = new ArrayList<Object>();
+		String query = "INSERT INTO DAE.LOGICAL_IMAGE_DATA_ITEM (ID) VALUES (?)";
+		collumns.add(id);
+		insert(query,collumns);
+	}
+	
+	public void deleteDataItem(int id) throws SQLException{
+		String query = "DELETE FROM DAE.DATA_ITEM_UNDERLYING WHERE ID=" + id ;
+		this.executeQuery(query);
 	}
 }

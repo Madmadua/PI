@@ -1,5 +1,8 @@
 package DAEStructure;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import BDDAccess.BDDAccess;
 
 
 public class Dataset {
@@ -73,6 +76,16 @@ public class Dataset {
 		this.writer = writer;
 	}
 	
-	
+	public void insert(BDDAccess bdd) throws SQLException{
+	 
+	String query = "INSERT INTO DAE.DATASET_UNDERLYING (ID,NAME) VALUES (?,?)";
+		ArrayList<Object> collumns = new ArrayList<Object>();
+		
+		collumns.add(this.id);
+		collumns.add(this.name);
+		
+		bdd.insert(query, collumns);
+		
+	}
 
 }

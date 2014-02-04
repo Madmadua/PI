@@ -9,7 +9,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import BDDAcces.BDDAcces;
+import BDDAccess.BDDAccess;
 import DAEStructure.Dataset;
 import DAEStructure.PageElementPropertyValue;
 import DAEStructure.PageElementZone;
@@ -34,7 +34,7 @@ public class MadcatHandler extends DefaultHandler{
 					segmentId = attributes.getValue("id");
 				}
 				if(qName.equals("transcription")){
-					BDDAcces bdd = new BDDAcces();
+					BDDAccess bdd = new BDDAccess();
 					String query = "" +
 							"";
 					try {
