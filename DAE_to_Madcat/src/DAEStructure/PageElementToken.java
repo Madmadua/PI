@@ -1,8 +1,14 @@
 package DAEStructure;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import BDDAccess.BDDAccess;
+
 public class PageElementToken {
 	
 	private int id;
+	private String name;
 	private int number_of_pixels;
 	private int topLeftX;
 	private int topLeftY;
@@ -95,6 +101,32 @@ public class PageElementToken {
 		this.traduction = traduction;
 	}
 	
-	
+	public void insert(BDDAccess bdd, PageElementZone zone) throws SQLException{
+		this.id = bdd.insertDataItem(name, "page_element");
+		bdd.insertImageDataItem(id);
+		bdd.insertPhysicalImageDataItem(id);
+		
+		String query = "INSERT INTO DAE.PAGE_ELEMENT_UNDERLYING (ID,TOPLEFTX,TOPLEFTY,WIDTH,HEIGHT) VALUES (?,?,?,?,?)";
+		ArrayList<Object> collumns = new ArrayList<Object>();
+
+		collumns.add(this.id);
+		collumns.add(this.topLeftX);
+		collumns.add(this.topLeftY);
+		collumns.add(this.width);
+		collumns.add(this.height);
+		
+		//collumns.add(this.boundary);
+		
+		bdd.insert(query, collumns);
+		
+		query = "INSERT INTO DAE.ASSOCIATE_PAGE_ELEMENT (PAGE_ELEMENT_ID,ASSOCIATING_PAGE_ELEMENT_ID) VALUES (?,?)";
+		collumns = new ArrayList<Object>();
+
+		collumns.add(zone.getId());
+		collumns.add(this.id);
+		
+		bdd.insert(query, collumns);
+		
+	}
 
 }

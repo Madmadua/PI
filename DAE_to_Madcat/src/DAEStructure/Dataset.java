@@ -6,15 +6,15 @@ import BDDAccess.BDDAccess;
 
 
 public class Dataset {
-	
+
 	private int id;
 	private String name;
 	private String purpose;
-	
+
 	private ArrayList<PageImage> images;
 	private DatasetSection content;
 	private PageElementPropertyValue writer;
-	
+
 
 	public Dataset(int id, String name, String purpose, ArrayList<PageImage> images) {
 		super();
@@ -23,7 +23,7 @@ public class Dataset {
 		this.purpose = purpose;
 		this.images = images;
 	}
-	
+
 	public Dataset(){
 		super();
 	}
@@ -75,17 +75,24 @@ public class Dataset {
 	public void setWriter(PageElementPropertyValue writer) {
 		this.writer = writer;
 	}
-	
+
 	public void insert(BDDAccess bdd) throws SQLException{
-	 
-	String query = "INSERT INTO DAE.DATASET_UNDERLYING (ID,NAME) VALUES (?,?)";
-		ArrayList<Object> collumns = new ArrayList<Object>();
+		int id = bdd.insertDataItem("OpenHart Document", "dataset");
 		
+		bdd.insertImageDataItem(id);
+		bdd.insertLogicalImageDataItem(id);
+
+		this.setId(id);
+		
+		
+		String query = "INSERT INTO DAE.DATASET_UNDERLYING (ID,NAME) VALUES (?,?)";
+		ArrayList<Object> collumns = new ArrayList<Object>();
+
 		collumns.add(this.id);
 		collumns.add(this.name);
-		
+
 		bdd.insert(query, collumns);
-		
+
 	}
 
 }

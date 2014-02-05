@@ -540,6 +540,12 @@ public class BDDAccess {
 		collumns.add(id);
 		insert(query,collumns);
 	}
+	public void insertPhysicalImageDataItem(int id) throws SQLException{
+		ArrayList<Object> collumns = new ArrayList<Object>();
+		String query = "INSERT INTO DAE.PHYSICAL_IMAGE_DATA_ITEM (ID) VALUES (?)";
+		collumns.add(id);
+		insert(query,collumns);
+	}
 	
 	public void deleteDataItem(int id) throws SQLException{
 		String query = "DELETE FROM DAE.DATA_ITEM_UNDERLYING WHERE ID=" + id ;

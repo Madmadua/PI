@@ -1,10 +1,14 @@
 package DAEStructure;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import BDDAccess.BDDAccess;
 
 public class PageImage {
 	
 	private int id;
+	private String name;
 	private int vdpi;
 	private int hdpi;
 	private int skew;
@@ -25,6 +29,7 @@ public class PageImage {
 		this.path = path;
 		this.width = width;
 		this.height = height;
+		
 		this.segments = segments;
 	}
 	
@@ -104,6 +109,40 @@ public class PageImage {
 		this.height = height;
 	}
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void insert(BDDAccess bdd,Dataset dataset) throws SQLException{
+		this.id = bdd.insertDataItem(name, "page_image");
+		bdd.insertImageDataItem(id);
+		bdd.insertPhysicalImageDataItem(id);
+		
+		String query = "INSERT INTO DAE.PAGE_IMAGE_UNDERLYING (ID,VDPI,HDPI,PATH,WIDTH,HEIGHT) VALUES (?,?,?,?,?,?)";
+		ArrayList<Object> collumns = new ArrayList<Object>();
+
+		collumns.add(this.id);
+		collumns.add(this.vdpi);
+		collumns.add(this.hdpi);
+		collumns.add(this.path);
+		collumns.add(this.width);
+		collumns.add(this.height);
+
+		bdd.insert(query, collumns);
+		
+		query = "INSERT INTO DAE.INCLUDES_PAGE_IMAGE (DATASET_ID,PAGE_IMAGE_ID) VALUES (?,?)";
+		collumns = new ArrayList<Object>();
+
+		collumns.add(dataset.getId());
+		collumns.add(this.id);
+		
+		bdd.insert(query, collumns);
+	}
+
 	
 	
 }
