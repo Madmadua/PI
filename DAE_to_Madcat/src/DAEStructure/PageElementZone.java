@@ -27,6 +27,14 @@ public class PageElementZone {
 	public PageElementZone(){
 		super();
 	}
+	
+	public String getBoundary() {
+		return boundary;
+	}
+
+	public void setBoundary(String boundary) {
+		this.boundary = boundary;
+	}
 
 	public int getId() {
 		return id;
@@ -35,8 +43,6 @@ public class PageElementZone {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	
 
 	public ArrayList<PageElementToken> getMots() {
 		return mots;

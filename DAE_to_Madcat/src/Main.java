@@ -8,6 +8,8 @@ import parser.Parser;
 import BDDAccess.BDDAccess;
 import DAEStructure.Dataset;
 import Exception.MyBDDException;
+import Exception.MyGeneratorException;
+import GenerationMadcat.MadcatGenerator;
 import Log.Log;
 
 
@@ -23,10 +25,12 @@ public class Main {
 			e.printStackTrace();
 		}*/
 		
-		Log log = new Log();
+		/*Log log = new Log();
 		log.logError("coucou");
 		log.logWarn("encore coucou");
-		log.logInfo("ca fait beaucoup de coucou");
+		log.logInfo("ca fait beaucoup de coucou");*/
+		
+		
 		
 	
 		
