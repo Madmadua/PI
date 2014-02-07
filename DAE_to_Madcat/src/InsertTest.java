@@ -2,7 +2,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import BDDAccess.BDDAccess;
+import Constants.DataTypeProperty;
 import DAEStructure.Dataset;
+import DAEStructure.PageElementPropertyValue;
 import DAEStructure.PageElementSegment;
 import DAEStructure.PageElementToken;
 import DAEStructure.PageElementZone;
@@ -18,7 +20,7 @@ public class InsertTest {
 	public static void main(String[] args) throws SQLException {
 		BDDAccess bdd = new BDDAccess();
 		
-		Dataset dataset = new Dataset();
+		/*Dataset dataset = new Dataset();
 		dataset.setName("OpenHart Document");
 		dataset.setId(650839);
 		//dataset.insert(bdd);
@@ -53,8 +55,17 @@ public class InsertTest {
 		token.setTopLeftX(3500);
 		token.setTopLeftY(1000);
 		
-		token.insert(bdd,zone);
+		//token.insert(bdd,zone);
+		token.setId(650853);
 		
+		PageElementPropertyValue pepv = new PageElementPropertyValue();
+		pepv.setName("translation result");
+		pepv.setValue("If we forget all these details, there is one fact with significance being that the U.S. Secretary of State Condoleezza Rice arrived in Ramallah and declared that it was her wish that Hamas not remain in power, and that Syria should not be included in discussions of the Palestinian issue.");
+		pepv.setValueTypeId(DataTypeProperty.TRANSLATION);
+		
+		pepv.insertWithPageElement(bdd, token);
+	*/	
+		System.out.println(bdd.insertContributor(650839, "Julien Bidolet"));
 		bdd.close();
 	}
 
