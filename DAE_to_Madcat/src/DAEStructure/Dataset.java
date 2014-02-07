@@ -1,4 +1,5 @@
 package DAEStructure;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -76,23 +77,29 @@ public class Dataset {
 		this.writer = writer;
 	}
 
-	public void insert(BDDAccess bdd) throws SQLException{
-		int id = bdd.insertDataItem("OpenHart Document", "dataset");
+	public boolean insert(BDDAccess bdd) throws SQLException{
 		
-		bdd.insertImageDataItem(id);
-		bdd.insertLogicalImageDataItem(id);
-
-		this.setId(id);
+		String query = "SELECT DAE.DATA_ITEM_UNDERLYING.ID FROM DAE.DATA_ITEM_UNDERLYING WHERE DAE.DATA_ITEM_UNDERLYING.DESCRIPTION = '" + name + "'";
+		ResultSet result = bdd.executeQuery(query);
 		
-		
-		String query = "INSERT INTO DAE.DATASET_UNDERLYING (ID,NAME) VALUES (?,?)";
-		ArrayList<Object> collumns = new ArrayList<Object>();
+		if(!result.next()){
+			id = bdd.insertDataItem(this.name, "dataset");
 
-		collumns.add(this.id);
-		collumns.add(this.name);
+			bdd.insertImageDataItem(id);
+			bdd.insertLogicalImageDataItem(id);
 
-		bdd.insert(query, collumns);
+			query = "INSERT INTO DAE.DATASET_UNDERLYING (ID,NAME) VALUES (?,?)";
+			ArrayList<Object> collumns = new ArrayList<Object>();
 
+			collumns.add(this.id);
+			collumns.add(this.name);
+
+			bdd.insert(query, collumns);
+			return true;
+		}
+		id = result.getInt(1);
+		System.err.println("Dataset " + name + " already exists");
+		return false;
 	}
 
 }

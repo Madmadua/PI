@@ -1,48 +1,41 @@
 package parser;
 
-import java.io.File;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
+
+
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import BDDAccess.BDDAccess;
-import DAEStructure.Dataset;
-import DAEStructure.PageElementPropertyValue;
-import DAEStructure.PageElementZone;
-import DAEStructure.PageImage;
-
-
 
 public class MadcatHandler extends DefaultHandler{
 	private StringBuffer buffer;
 	private String segmentId;
+	private MadcatToDae dae;
 	
+	private String path;
 	
-	public MadcatHandler(File daeOutput){
+	public MadcatHandler(){
 		super();
+		dae = new MadcatToDae();
 		
 	}
 	
 	public void startElement(String uri, String localName,
 			String qName, Attributes attributes) throws SAXException{
 				
-				if(qName.equals("segment")){
-					segmentId = attributes.getValue("id");
+				if(qName.equals("doc")){
+					dae.insertDoc(attributes);
+					
 				}
-				if(qName.equals("transcription")){
-					BDDAccess bdd = new BDDAccess();
-					String query = "" +
-							"";
-					try {
-						bdd.executeQuery(query);
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+				if(qName.equals("writer")){
+					dae.insertWriter(attributes);
+				}
+				if(qName.equals("page")){
+					dae.insertPage(attributes);
+				}
+				if(qName.equals("zone")){
+					
 				}
 				
 				

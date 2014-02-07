@@ -474,7 +474,6 @@ public class BDDAccess {
 	public ResultSet executeQuery(String query) throws SQLException{
 		Statement state;
 		state = conn.createStatement();
-		System.out.println(query);
 		ResultSet result = state.executeQuery(query);
 		
 
@@ -521,7 +520,6 @@ public class BDDAccess {
 		CallableStatement state;
 		state = conn.prepareCall(query);
 		for(int i=0;i<collumns.size();i++){
-			System.out.println(collumns.get(i).toString());
 			state.setObject(i+1, collumns.get(i));
 		}
 

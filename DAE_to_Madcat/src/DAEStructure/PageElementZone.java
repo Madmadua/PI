@@ -1,4 +1,5 @@
 package DAEStructure;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -82,27 +83,35 @@ public class PageElementZone {
 		this.name = name;
 	}
 	
-	public void insert(BDDAccess bdd, PageElementSegment segment) throws SQLException{
-		this.id = bdd.insertDataItem(name, "page_element");
-		bdd.insertImageDataItem(id);
-		bdd.insertPhysicalImageDataItem(id);
+	public boolean insert(BDDAccess bdd, PageElementSegment segment) throws SQLException{
+		String query = "SELECT DAE.DATA_ITEM_UNDERLYING.ID FROM DAE.DATA_ITEM_UNDERLYING WHERE DAE.DATA_ITEM_UNDERLYING.DESCRIPTION = '" + name + "'";
+		ResultSet result = bdd.executeQuery(query);
 		
-		String query = "INSERT INTO DAE.PAGE_ELEMENT_UNDERLYING (ID) VALUES (?)";
-		ArrayList<Object> collumns = new ArrayList<Object>();
+		if(!result.next()){
+			this.id = bdd.insertDataItem(name, "page_element");
+			bdd.insertImageDataItem(id);
+			bdd.insertPhysicalImageDataItem(id);
 
-		collumns.add(this.id);
-		//collumns.add(this.boundary);
-		
-		bdd.insert(query, collumns);
-		
-		query = "INSERT INTO DAE.ASSOCIATE_PAGE_ELEMENT (PAGE_ELEMENT_ID,ASSOCIATING_PAGE_ELEMENT_ID) VALUES (?,?)";
-		collumns = new ArrayList<Object>();
+			query = "INSERT INTO DAE.PAGE_ELEMENT_UNDERLYING (ID) VALUES (?)";
+			ArrayList<Object> collumns = new ArrayList<Object>();
 
-		collumns.add(segment.getId());
-		collumns.add(this.id);
-		
-		bdd.insert(query, collumns);
-		
+			collumns.add(this.id);
+			//collumns.add(this.boundary);
+
+			bdd.insert(query, collumns);
+
+			query = "INSERT INTO DAE.ASSOCIATE_PAGE_ELEMENT (PAGE_ELEMENT_ID,ASSOCIATING_PAGE_ELEMENT_ID) VALUES (?,?)";
+			collumns = new ArrayList<Object>();
+
+			collumns.add(segment.getId());
+			collumns.add(this.id);
+
+			bdd.insert(query, collumns);
+			return true;
+		}
+		id = result.getInt(1);
+		System.err.println("Page Element " + name + " already exists");
+		return false;
 	}
 
 }

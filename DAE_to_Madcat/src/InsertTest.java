@@ -1,5 +1,16 @@
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
+import parser.MadcatHandler;
 
 import BDDAccess.BDDAccess;
 import Constants.DataTypeProperty;
@@ -16,57 +27,19 @@ public class InsertTest {
 	/**
 	 * @param args
 	 * @throws SQLException 
+	 * @throws SAXException 
+	 * @throws ParserConfigurationException 
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws SQLException {
-		BDDAccess bdd = new BDDAccess();
+	public static void main(String[] args) throws SQLException, ParserConfigurationException, SAXException, IOException {
 		
-		/*Dataset dataset = new Dataset();
-		dataset.setName("OpenHart Document");
-		dataset.setId(650839);
-		//dataset.insert(bdd);
-		
-		PageImage image = new PageImage();
-		String path = "/dae/database/Demo-generated/AAW_ARB_20070121.0096_8_LDC0108.tif";
-		
-		image.setHdpi(600);
-		image.setVdpi(600);
-		image.setPath(path);
-		image.setHeight(6600);
-		image.setWidth(5100);
-		
-		//image.insert(bdd, dataset);
-		image.setId(650842);
-		
-		PageElementSegment segment = new PageElementSegment();
-		segment.setBoundary("(3987;916),(3794,916)");
-		segment.setName("S1");
-		
-		segment.insert(bdd, image);
-		
-		PageElementZone zone = new PageElementZone();
-		zone.setBoundary("(3987;916),(3794,916)");
-		zone.setName("Z1");
-		//zone.insert(bdd,segment);
-		zone.setId(650849);
-		
-		PageElementToken token = new PageElementToken();
-		token.setHeight(500);
-		token.setWidth(500);
-		token.setTopLeftX(3500);
-		token.setTopLeftY(1000);
-		
-		//token.insert(bdd,zone);
-		token.setId(650853);
-		
-		PageElementPropertyValue pepv = new PageElementPropertyValue();
-		pepv.setName("translation result");
-		pepv.setValue("If we forget all these details, there is one fact with significance being that the U.S. Secretary of State Condoleezza Rice arrived in Ramallah and declared that it was her wish that Hamas not remain in power, and that Syria should not be included in discussions of the Palestinian issue.");
-		pepv.setValueTypeId(DataTypeProperty.TRANSLATION);
-		
-		pepv.insertWithPageElement(bdd, token);
-	*/	
-		System.out.println(bdd.insertContributor(650839, "Julien Bidolet"));
-		bdd.close();
+		SAXParserFactory fabrique = SAXParserFactory.newInstance();
+		SAXParser parseur = fabrique.newSAXParser();
+
+		File fichier = new File("reference_files/in.madcat.xml");
+		DefaultHandler gestionnaire = new MadcatHandler();
+		parseur.parse(fichier, gestionnaire);
+	
 	}
 
 }

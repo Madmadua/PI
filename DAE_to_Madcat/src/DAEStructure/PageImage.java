@@ -1,5 +1,6 @@
 package DAEStructure;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -117,30 +118,41 @@ public class PageImage {
 		this.name = name;
 	}
 	
-	public void insert(BDDAccess bdd,Dataset dataset) throws SQLException{
-		this.id = bdd.insertDataItem(name, "page_image");
-		bdd.insertImageDataItem(id);
-		bdd.insertPhysicalImageDataItem(id);
+	public boolean insert(BDDAccess bdd,Dataset dataset) throws SQLException{
+		String query = "SELECT DAE.DATA_ITEM_UNDERLYING.ID FROM DAE.DATA_ITEM_UNDERLYING WHERE DAE.DATA_ITEM_UNDERLYING.DESCRIPTION = '" + name + "'";
+		ResultSet result = bdd.executeQuery(query);
 		
-		String query = "INSERT INTO DAE.PAGE_IMAGE_UNDERLYING (ID,VDPI,HDPI,PATH,WIDTH,HEIGHT) VALUES (?,?,?,?,?,?)";
-		ArrayList<Object> collumns = new ArrayList<Object>();
+		if(!result.next()){
+			this.id = bdd.insertDataItem(name, "page_image");
+			bdd.insertImageDataItem(id);
+			bdd.insertPhysicalImageDataItem(id);
 
-		collumns.add(this.id);
-		collumns.add(this.vdpi);
-		collumns.add(this.hdpi);
-		collumns.add(this.path);
-		collumns.add(this.width);
-		collumns.add(this.height);
+			query = "INSERT INTO DAE.PAGE_IMAGE_UNDERLYING (ID,VDPI,HDPI,PATH,WIDTH,HEIGHT) VALUES (?,?,?,?,?,?)";
+			ArrayList<Object> collumns = new ArrayList<Object>();
 
-		bdd.insert(query, collumns);
-		
-		query = "INSERT INTO DAE.INCLUDES_PAGE_IMAGE (DATASET_ID,PAGE_IMAGE_ID) VALUES (?,?)";
-		collumns = new ArrayList<Object>();
+			collumns.add(this.id);
+			collumns.add(this.vdpi);
+			collumns.add(this.hdpi);
+			collumns.add(this.path);
+			collumns.add(this.width);
+			collumns.add(this.height);
 
-		collumns.add(dataset.getId());
-		collumns.add(this.id);
-		
-		bdd.insert(query, collumns);
+			bdd.insert(query, collumns);
+
+			query = "INSERT INTO DAE.INCLUDES_PAGE_IMAGE (DATASET_ID,PAGE_IMAGE_ID) VALUES (?,?)";
+			collumns = new ArrayList<Object>();
+
+			collumns.add(dataset.getId());
+			collumns.add(this.id);
+
+			bdd.insert(query, collumns);
+			
+			
+			return true;
+		}
+		id = result.getInt(1);
+		System.err.println("Page Image " + name + " already exists");
+		return false;
 	}
 
 	

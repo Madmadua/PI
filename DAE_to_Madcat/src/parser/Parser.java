@@ -26,7 +26,7 @@ public class Parser {
 	public void parse() throws ParserConfigurationException, SAXException, IOException{
 		SAXParserFactory factory = SAXParserFactory.newInstance();
 		SAXParser parser = factory.newSAXParser();
-		DefaultHandler dh = new MadcatHandler(madcatInput);
+		DefaultHandler dh = new MadcatHandler();
 		parser.parse(madcatInput, dh);
 		
 	}
