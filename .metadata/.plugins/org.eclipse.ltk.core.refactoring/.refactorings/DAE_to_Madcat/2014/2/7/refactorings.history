@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;transcription&apos; in &apos;parser.MadcatToDae.insertTranslation(...)&apos; to &apos;translation&apos;&#x0A;- Original project: &apos;DAE_to_Madcat&apos;&#x0A;- Original element: &apos;parser.MadcatToDae.insertTranslation(String).transcription&apos;&#x0A;- Renamed element: &apos;transcription&apos;&#x0A;- Update references to refactored element" description="Rename local variable &apos;transcription&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;parser{MadcatToDae.java[MadcatToDae~insertTranslation~QString;@transcription!5651!5722!5676!5688!QPageElementPropertyValue;!0!false" name="translation" references="true" stamp="1391974666187" version="1.0"/>
+</session>

@@ -101,6 +101,13 @@ public class PageElementToken {
 	public void setTraduction(PageElementPropertyValue traduction) {
 		this.traduction = traduction;
 	}
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 	
 	public boolean insert(BDDAccess bdd, PageElementZone zone) throws SQLException{
 		String query = "SELECT DAE.DATA_ITEM_UNDERLYING.ID FROM DAE.DATA_ITEM_UNDERLYING WHERE DAE.DATA_ITEM_UNDERLYING.DESCRIPTION = '" + name + "'";
@@ -137,5 +144,7 @@ public class PageElementToken {
 		System.err.println("Page Element " + name + " already exists");
 		return false;
 	}
+
+	
 
 }

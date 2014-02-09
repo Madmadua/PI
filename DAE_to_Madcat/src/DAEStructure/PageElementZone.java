@@ -12,6 +12,7 @@ public class PageElementZone {
 	
 	private String boundary;
 	private String name;
+	private String type;
 	
 	private ArrayList<PageElementToken> mots;
 	private PageElementPropertyValue transcription;
@@ -113,5 +114,14 @@ public class PageElementZone {
 		System.err.println("Page Element " + name + " already exists");
 		return false;
 	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 
 }
