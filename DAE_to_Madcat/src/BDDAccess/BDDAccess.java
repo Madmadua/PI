@@ -489,25 +489,30 @@ public class BDDAccess {
 		int id = 0;
 
 
-		String query = "INSERT INTO DAE.DATA_ITEM_UNDERLYING (DESCRIPTION, FLAG) VALUES (?,?)";
-		String queryId = "SELECT seq_data_item.currval from dual";
+		String query = "INSERT INTO DAE.DATA_ITEM_UNDERLYING (ID,DESCRIPTION, FLAG) VALUES (?,?,?)";
+		String queryId = "SELECT seq_data_item.nextval from dual";
 
 		conn.setAutoCommit(false);
-		CallableStatement state;
-		state = conn.prepareCall(query);
-		state.setObject(1, name);
-		state.setObject(2, flag);
-
-
-		int affectedRows = state.executeUpdate();
-		if(affectedRows == 0){
-			throw new SQLException("Creating data item failed");
-		}
-		Statement currvalStatement = conn.createStatement();
-		ResultSet result = currvalStatement.executeQuery(queryId);
+		
+		Statement nextValStatement = conn.createStatement();
+		ResultSet result = nextValStatement.executeQuery(queryId);
 
 		if(result.next()){
 			id = result.getInt(1);
+		}
+
+		CallableStatement state;
+		state = conn.prepareCall(query);
+		state.setObject(1, id);
+		state.setObject(2, name);
+		state.setObject(3, flag);
+
+
+		int affectedRows = state.executeUpdate();
+		
+	
+		if(affectedRows == 0){
+			throw new SQLException("Creating data item failed");
 		}
 
 
@@ -563,7 +568,7 @@ public class BDDAccess {
 
 			conn.setAutoCommit(false);
 
-			String queryId = "SELECT seq_data_item.nextval from dual";
+			String queryId = "SELECT seq_contributor.nextval from dual";
 			Statement nextValStatement = conn.createStatement();
 			result = nextValStatement.executeQuery(queryId);
 
