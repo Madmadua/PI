@@ -120,8 +120,7 @@ public class MadcatToDae {
 			Point point = new Point();
 			point.setLocation(x, y);
 			rectangle.add(point);
-			
-			
+			System.out.println(point);
 		}
 	}
 	
@@ -138,7 +137,6 @@ public class MadcatToDae {
 	}
 	
 	public void prepareToken(Attributes attributes){
-		inToken = true;
 		String id = attributes.getValue("id");
 		rectangle = new Rectangle();
 		
@@ -153,8 +151,6 @@ public class MadcatToDae {
 		token.setTopLeftY(rectangle.y);
 		
 		tokens.put(token.getName(), token);
-		
-		inToken = false;
 		
 	}
 	
