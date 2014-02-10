@@ -120,8 +120,6 @@ public class MadcatToDae {
 			Point point = new Point();
 			point.setLocation(x, y);
 			rectangle.add(point);
-			
-			
 		}
 	}
 	
@@ -138,7 +136,6 @@ public class MadcatToDae {
 	}
 	
 	public void prepareToken(Attributes attributes){
-		inToken = true;
 		String id = attributes.getValue("id");
 		rectangle = new Rectangle();
 		
@@ -153,9 +150,7 @@ public class MadcatToDae {
 		token.setTopLeftY(rectangle.y);
 		
 		tokens.put(token.getName(), token);
-		
-		inToken = false;
-		
+		System.out.println(rectangle.toString());
 	}
 	
 	public void insertSegment(Attributes attributes){
@@ -197,6 +192,7 @@ public class MadcatToDae {
 	}
 	
 	public void insertTranscription(String phrase){
+		System.out.println(phrase);
 		PageElementPropertyValue transcription = new PageElementPropertyValue();
 		transcription.setName(segment.getName() + "transcription");
 		transcription.setValue(phrase);
