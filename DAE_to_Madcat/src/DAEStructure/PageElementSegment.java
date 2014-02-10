@@ -1,11 +1,16 @@
 package DAEStructure;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import BDDAccess.BDDAccess;
 
 public class PageElementSegment {
 	private int id;
 	
 	private String boundary;
+	private String name;
 	
 	private ArrayList<PageElementZone> zones;
 	private PageElementPropertyValue transcription;
@@ -67,6 +72,44 @@ public class PageElementSegment {
 	public void setTraduction(PageElementPropertyValue traduction) {
 		this.traduction = traduction;
 	}
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 	
+	public boolean insert(BDDAccess bdd, PageImage image) throws SQLException{
+		String query = "SELECT DAE.DATA_ITEM_UNDERLYING.ID FROM DAE.DATA_ITEM_UNDERLYING WHERE DAE.DATA_ITEM_UNDERLYING.DESCRIPTION = '" + name + "'";
+		ResultSet result = bdd.executeQuery(query);
+		
+		if(!result.next()){
+			this.id = bdd.insertDataItem(name, "page_element");
+			bdd.insertImageDataItem(id);
+			bdd.insertPhysicalImageDataItem(id);
+
+			query = "INSERT INTO DAE.PAGE_ELEMENT_UNDERLYING (ID) VALUES (?)";
+			ArrayList<Object> collumns = new ArrayList<Object>();
+
+			collumns.add(this.id);
+			//collumns.add(this.boundary);
+
+			bdd.insert(query, collumns);
+
+			query = "INSERT INTO DAE.CONTAINS_PAGE_ELEMENT (PAGE_ELEMENT_ID,PAGE_IMAGE_ID) VALUES (?,?)";
+			collumns = new ArrayList<Object>();
+
+			collumns.add(this.id);
+			collumns.add(image.getId());
+
+			bdd.insert(query, collumns);
+			return true;
+		}
+		id = result.getInt(1);
+		System.err.println("Page Element " + name + " already exists");
+		return false;
+	}
+
 	
 }

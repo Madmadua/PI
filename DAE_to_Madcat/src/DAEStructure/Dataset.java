@@ -1,4 +1,5 @@
 package DAEStructure;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -6,15 +7,15 @@ import BDDAccess.BDDAccess;
 
 
 public class Dataset {
-	
+
 	private int id;
 	private String name;
 	private String purpose;
-	
+
 	private ArrayList<PageImage> images;
 	private DatasetSection content;
 	private PageElementPropertyValue writer;
-	
+
 
 	public Dataset(int id, String name, String purpose, ArrayList<PageImage> images) {
 		super();
@@ -23,7 +24,7 @@ public class Dataset {
 		this.purpose = purpose;
 		this.images = images;
 	}
-	
+
 	public Dataset(){
 		super();
 	}
@@ -75,17 +76,30 @@ public class Dataset {
 	public void setWriter(PageElementPropertyValue writer) {
 		this.writer = writer;
 	}
-	
-	public void insert(BDDAccess bdd) throws SQLException{
-	 
-	String query = "INSERT INTO DAE.DATASET_UNDERLYING (ID,NAME) VALUES (?,?)";
-		ArrayList<Object> collumns = new ArrayList<Object>();
+
+	public boolean insert(BDDAccess bdd) throws SQLException{
 		
-		collumns.add(this.id);
-		collumns.add(this.name);
+		String query = "SELECT DAE.DATA_ITEM_UNDERLYING.ID FROM DAE.DATA_ITEM_UNDERLYING WHERE DAE.DATA_ITEM_UNDERLYING.DESCRIPTION = '" + name + "'";
+		ResultSet result = bdd.executeQuery(query);
 		
-		bdd.insert(query, collumns);
-		
+		if(!result.next()){
+			id = bdd.insertDataItem(this.name, "dataset");
+
+			bdd.insertImageDataItem(id);
+			bdd.insertLogicalImageDataItem(id);
+
+			query = "INSERT INTO DAE.DATASET_UNDERLYING (ID,NAME) VALUES (?,?)";
+			ArrayList<Object> collumns = new ArrayList<Object>();
+
+			collumns.add(this.id);
+			collumns.add(this.name);
+
+			bdd.insert(query, collumns);
+			return true;
+		}
+		id = result.getInt(1);
+		System.err.println("Dataset " + name + " already exists");
+		return false;
 	}
 
 }
