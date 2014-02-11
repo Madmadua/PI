@@ -8,5 +8,6 @@ public class DataTypeProperty {
 	public static int COLORDEPTH = 13;
 	public static int TYPE = 14;
 	public static int BOUNDARY = 15;
+	public static int SOURCE = 16;
 	
 }

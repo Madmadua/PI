@@ -20,7 +20,7 @@ public class BDDAccess {
 	private String user = "dae";
 	private String passwd = "dae";
 	private Connection conn = null;
-
+	private Statement state;
 
 
 
@@ -472,7 +472,7 @@ public class BDDAccess {
 	}
 
 	public ResultSet executeQuery(String query) throws SQLException{
-		Statement state;
+		
 		state = conn.createStatement();
 		ResultSet result = state.executeQuery(query);
 		
@@ -500,7 +500,6 @@ public class BDDAccess {
 		if(result.next()){
 			id = result.getInt(1);
 		}
-
 		CallableStatement state;
 		state = conn.prepareCall(query);
 		state.setObject(1, id);
@@ -518,6 +517,7 @@ public class BDDAccess {
 
 		conn.commit();
 		conn.setAutoCommit(true);
+		
 		return id;
 	}
 
@@ -527,9 +527,9 @@ public class BDDAccess {
 		for(int i=0;i<collumns.size();i++){
 			state.setObject(i+1, collumns.get(i));
 		}
-
+		
 		state.execute();
-		//state.close();
+		
 
 	}
 
@@ -602,5 +602,8 @@ public class BDDAccess {
 		return false;
 	}
 
+	public void closeStatement() throws SQLException{
+		state.close();
+	}
 
 }

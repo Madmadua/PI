@@ -146,12 +146,12 @@ public class PageImage {
 			collumns.add(this.id);
 
 			bdd.insert(query, collumns);
-			
-			
+			bdd.closeStatement();
 			return true;
 		}
 		id = result.getInt(1);
 		System.err.println("Page Image " + name + " already exists");
+		bdd.closeStatement();
 		return false;
 	}
 

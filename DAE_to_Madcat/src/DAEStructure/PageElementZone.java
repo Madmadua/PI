@@ -108,10 +108,12 @@ public class PageElementZone {
 			collumns.add(this.id);
 
 			bdd.insert(query, collumns);
+			bdd.closeStatement();
 			return true;
 		}
 		id = result.getInt(1);
 		System.err.println("Page Element " + name + " already exists");
+		bdd.closeStatement();
 		return false;
 	}
 

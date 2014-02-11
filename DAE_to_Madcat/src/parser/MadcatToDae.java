@@ -25,15 +25,17 @@ public class MadcatToDae {
 	private PageElementZone zone;
 	private boolean inToken = false;
 	private String boundary = "";
-	private HashMap tokens;
+	private HashMap tokensImages;
 	private PageElementToken token = new PageElementToken();
 	private Rectangle rectangle;
 	private PageElementSegment segment = new PageElementSegment();
+	private ArrayList<PageElementToken> tokens= new ArrayList<PageElementToken>();
+	
 	
 	public MadcatToDae(){
 		bdd = new BDDAccess();
 		zones = new HashMap();
-		tokens = new HashMap();
+		tokensImages = new HashMap();
 	}
 	
 	public void insertDoc(Attributes attributes){
@@ -82,7 +84,7 @@ public class MadcatToDae {
 		int height = Integer.parseInt(attributes.getValue("height"));
 		
 		image = new PageImage();
-		image.setName("Dataset " + dataset.getName() + "" + id);
+		image.setName("Dataset " + dataset.getName() + " " + id);
 		image.setHdpi(dpi);
 		image.setVdpi(dpi);
 		image.setWidth(width);
@@ -104,7 +106,7 @@ public class MadcatToDae {
 		String type = attributes.getValue("type");
 		
 		zone = new PageElementZone();
-		zone.setName("Dataset " + dataset.getName() + "" + id);
+		zone.setName("Dataset " + dataset.getName() + " " + id);
 		zone.setType(type);
 		
 	}
@@ -130,29 +132,32 @@ public class MadcatToDae {
 		// remove last ";" in boundary
 		int index = boundary.lastIndexOf(';');
 		boundary = boundary.substring(0, index);
-		System.out.println(boundary);
-		
 		
 		zone.setBoundary(boundary);
-		zones.put(zone.getName(), zone);
+		if(tokensImages.isEmpty()){
+			zones.put(zone.getName(), zone);
+		}
 	}
 	
-	public void prepareToken(Attributes attributes){
+	public void prepareTokenImage(Attributes attributes){
 		inToken = true;
 		String id = attributes.getValue("id");
 		rectangle = new Rectangle();
 		
 		token = new PageElementToken();
-		token.setName("Dataset " + dataset.getName() + "" + id);
+		token.setName("Dataset " + dataset.getName() + " " + id);
 	}
 	
-	public void endToken(){
+	public void endTokenImage(){
 		token.setHeight(rectangle.height);
 		token.setWidth(rectangle.width);
 		token.setTopLeftX(rectangle.x);
 		token.setTopLeftY(rectangle.y);
 		
-		tokens.put(token.getName(), token);
+		
+		token.setParent(zone);
+		
+		tokensImages.put(token.getName(), token);
 		
 		inToken = false;
 		
@@ -162,7 +167,7 @@ public class MadcatToDae {
 		String id = attributes.getValue("id");
 		
 		segment = new PageElementSegment();
-		segment.setName("Dataset " + dataset.getName() + "" + id);
+		segment.setName("Dataset " + dataset.getName() + " " + id);
 		
 		try {
 			segment.insert(bdd, image);
@@ -173,7 +178,7 @@ public class MadcatToDae {
 	}
 	
 	public void insertZone(String name){
-		zone = (PageElementZone) zones.get("Dataset " + dataset.getName() + "" + name);
+		zone = (PageElementZone) zones.get("Dataset " + dataset.getName() + " " + name);
 		PageElementPropertyValue type = new PageElementPropertyValue();
 		
 		type.setName(zone.getName() + " type");
@@ -198,7 +203,7 @@ public class MadcatToDae {
 	
 	public void insertTranscription(String phrase){
 		PageElementPropertyValue transcription = new PageElementPropertyValue();
-		transcription.setName(segment.getName() + "transcription");
+		transcription.setName(segment.getName() + " transcription");
 		transcription.setValue(phrase);
 		transcription.setValueTypeId(DataTypeProperty.TRANSCRIPTION);
 		try {
@@ -211,7 +216,7 @@ public class MadcatToDae {
 	
 	public void insertTranslation(String phrase){
 		PageElementPropertyValue translation = new PageElementPropertyValue();
-		translation.setName(segment.getName() + "translation");
+		translation.setName(segment.getName() + " translation");
 		translation.setValue(phrase);
 		translation.setValueTypeId(DataTypeProperty.TRANSCRIPTION);
 		try {
@@ -221,6 +226,32 @@ public class MadcatToDae {
 			e.printStackTrace();
 		}
 	}
+	
+	public void prepareToken(Attributes attributes){
+		String ref = attributes.getValue("ref_id");
+		token = (PageElementToken) tokensImages.get("Dataset " + dataset.getName() + " " + ref);
+		
+	}
+	public void endToken(String source){
+		PageElementPropertyValue sourcePV = new PageElementPropertyValue();
+		zone = token.getParent();
+		
+		sourcePV.setName(segment.getName() + " transcription");
+		sourcePV.setValue(source);
+		sourcePV.setValueTypeId(DataTypeProperty.SOURCE);
+		
+		try {
+			zone.insert(bdd, segment);
+			token.insert(bdd, zone);
+			sourcePV.insertWithPageElement(bdd, token.getId());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 	public void close() throws SQLException{
 		bdd.close();
 	}
