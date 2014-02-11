@@ -24,6 +24,11 @@ public class BDDAccess {
 
 
 
+	public Connection getConn() {
+		return conn;
+	}
+
+
 	public BDDAccess() {
 		super();
 
