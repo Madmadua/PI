@@ -2,6 +2,7 @@ package parser;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +28,7 @@ public class MadcatToDae {
 	private String boundary = "";
 	private HashMap tokensImages;
 	private PageElementToken token = new PageElementToken();
-	private Rectangle rectangle;
+	private ArrayList<Point> points;
 	private PageElementSegment segment = new PageElementSegment();
 	private ArrayList<PageElementToken> tokens= new ArrayList<PageElementToken>();
 	
@@ -36,6 +37,7 @@ public class MadcatToDae {
 		bdd = new BDDAccess();
 		zones = new HashMap();
 		tokensImages = new HashMap();
+		
 	}
 	
 	public void insertDoc(Attributes attributes){
@@ -121,8 +123,7 @@ public class MadcatToDae {
 		if(inToken){
 			Point point = new Point();
 			point.setLocation(x, y);
-			rectangle.add(point);
-			
+			points.add(point);
 			
 		}
 	}
@@ -142,17 +143,39 @@ public class MadcatToDae {
 	public void prepareTokenImage(Attributes attributes){
 		inToken = true;
 		String id = attributes.getValue("id");
-		rectangle = new Rectangle();
+		points = new ArrayList<Point>();
+		
 		
 		token = new PageElementToken();
 		token.setName("Dataset " + dataset.getName() + " " + id);
 	}
 	
 	public void endTokenImage(){
-		token.setHeight(rectangle.height);
-		token.setWidth(rectangle.width);
-		token.setTopLeftX(rectangle.x);
-		token.setTopLeftY(rectangle.y);
+		Point topLeft = new Point();
+		Point botRight = new Point();
+		
+		topLeft = points.get(0);
+		botRight = points.get(0);
+		for(int i=1;i<points.size();i++){
+			Point p = points.get(i);
+			if(p.x<=topLeft.x && p.y>=topLeft.y){
+				topLeft = p;
+			}
+			else if(p.x>=botRight.x && p.y<=botRight.y){
+				botRight = p;
+			}
+			
+		}
+		int height = topLeft.y - botRight.y;
+		int width = botRight.x - topLeft.x;
+		token.setHeight(height);
+		token.setWidth(width);
+		token.setTopLeftX(topLeft.x);
+		token.setTopLeftY(topLeft.y);
+		
+		Point p = new Point(3988,916);
+		
+		
 		
 		
 		token.setParent(zone);
