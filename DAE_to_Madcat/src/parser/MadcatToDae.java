@@ -31,7 +31,7 @@ public class MadcatToDae {
 	private ArrayList<Point> points;
 	private PageElementSegment segment = new PageElementSegment();
 	private ArrayList<PageElementToken> tokens= new ArrayList<PageElementToken>();
-	
+	private String src;
 	
 	public MadcatToDae(){
 		bdd = new BDDAccess();
@@ -42,7 +42,7 @@ public class MadcatToDae {
 	
 	public void insertDoc(Attributes attributes){
 		String id = attributes.getValue("id");
-		String src = attributes.getValue("src");
+		src = attributes.getValue("src");
 		String nbPages = attributes.getValue("nbpages");
 		String type = attributes.getValue("type");
 		
@@ -91,6 +91,8 @@ public class MadcatToDae {
 		image.setVdpi(dpi);
 		image.setWidth(width);
 		image.setHeight(height);
+		image.setPath(src);
+		
 		/* Ne peut pas être mis dans DAE pour le moment
 		image.setColordepth(colordepth); 
 		*/

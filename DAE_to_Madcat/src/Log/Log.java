@@ -15,7 +15,7 @@ public class Log {
 	}
 	
 	public void logError(String error){
-		try {
+		/*try {
 			Date maDate = new Date();
 			String aEcrire = "[" + maDate.toString() + " : Error ] ";
 			aEcrire = aEcrire + error + "\n";
@@ -28,11 +28,11 @@ public class Log {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 	
 	public void logWarn(String warn){
-		try {
+		/*try {
 			Date maDate = new Date();
 			String aEcrire = "[" + maDate.toString() + " : Warn ] ";
 			aEcrire = aEcrire + warn + "\n";
@@ -45,11 +45,11 @@ public class Log {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 	
 	public void logInfo(String info){
-		
+	/*
 		try {
 			Date maDate = new Date();
 			String aEcrire = "[" + maDate.toString() + " : Info ] ";
@@ -64,7 +64,7 @@ public class Log {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+	*/	
 	}
 
 }

@@ -93,7 +93,7 @@ public class BDDAccess {
 			if(result.next()){
 				dataset.setId(id);
 				dataset.setName(result.getObject(2).toString());
-				dataset.setPurpose(result.getObject(3).toString());
+				//dataset.setPurpose(result.getObject(3).toString());
 
 				log.logInfo("Dataset importé (ID:" + id + ", name:" + result.getObject(2).toString() + ", purpose:" + result.getObject(2).toString() + ")");
 			}else{
@@ -156,9 +156,9 @@ public class BDDAccess {
 				if(result.getObject(3).toString() != "null"){
 					hdpi = Integer.valueOf(result.getObject(3).toString());
 				}
-				if(result.getObject(4).toString() != "null"){
+				/*if(result.getObject(4).toString() != "null"){
 					skew = Integer.valueOf(result.getObject(4).toString());
-				}
+				}*/
 
 				PageImage image = new PageImage(pageId, vdpi, hdpi, skew, path, width, height, segments);
 				log.logInfo("PageImage importée (ID:" + 
@@ -192,7 +192,7 @@ public class BDDAccess {
 				state = conn.createStatement();
 				ResultSet result = state.executeQuery(
 						"SELECT PAGE_ELEMENT_UNDERLYING.ID, " +
-								"PAGE_ELEMENT_UNDERLYING.BOUNDARY, " +
+								"PAGE_ELEMENT_UNDERLYING.BOUNDARY " +
 								"FROM CONTAINS_PAGE_ELEMENT, PAGE_ELEMENT_UNDERLYING " +
 								"WHERE CONTAINS_PAGE_ELEMENT.PAGE_IMAGE_ID = " + String.valueOf(image.getId()) +
 								" AND CONTAINS_PAGE_ELEMENT.PAGE_ELEMENT_ID = PAGE_ELEMENT_UNDERLYING.ID"
@@ -216,7 +216,10 @@ public class BDDAccess {
 					log.logInfo("PageElementSegment associé à PageImage:" + image.getId() + " importé (ID:" +
 							elementId + ", boudary:" +
 							boundary + ")");
-					image.getSegments().add(segment);
+					System.out.println("seg id : "+segment.getId());
+					ArrayList<PageElementSegment> seg = image.getSegments();
+					seg.add(segment);
+					image.setSegments(seg);
 				}
 
 			}catch (Exception e) {
@@ -228,7 +231,8 @@ public class BDDAccess {
 			}
 
 			/// 4.2 boucle sur les PE segments
-			for(PageElementSegment segment: image.getSegments()){
+			ArrayList<PageElementSegment> segments = image.getSegments();
+			for(PageElementSegment segment: segments){
 
 				//// 4.2.1 recuperer traduction et transcription du PE segment
 				try{
@@ -237,7 +241,7 @@ public class BDDAccess {
 					ResultSet result = state.executeQuery(
 							"SELECT PAGE_ELEMENT_P_VAL_UNDERLYING.ID, " +
 									"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE_TYPE, " +
-									"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE, " +
+									"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE " +
 									"FROM PAGE_ELEMENT_P_VAL_UNDERLYING, HAS_VALUE " +
 									"WHERE HAS_VALUE.PAGE_ELEMENT_ID = " + String.valueOf(segment.getId()) +
 									" AND CPAGE_ELEMENT_P_VAL_UNDERLYING.ID = HAS_VALUE.PAGE_ELEMENT_PROPERTY_VALUE_ID"
@@ -281,7 +285,7 @@ public class BDDAccess {
 					state = conn.createStatement();
 					ResultSet result = state.executeQuery(
 							"SELECT PAGE_ELEMENT_UNDERLYING.ID, " +
-									"PAGE_ELEMENT_UNDERLYING.BOUNDARY, " +
+									"PAGE_ELEMENT_UNDERLYING.BOUNDARY " +
 									"FROM ASSOCIATE_PAGE_ELEMENT, PAGE_ELEMENT_UNDERLYING " +
 									"WHERE ASSOCIATE_PAGE_ELEMENT.PAGE_ELEMENT_ID = " + String.valueOf(segment.getId()) +
 									" AND ASSOCIATE_PAGE_ELEMENT.ASSOCIATE_PAGE_ELEMENT_ID = PAGE_ELEMENT_UNDERLYING.ID"
@@ -305,7 +309,9 @@ public class BDDAccess {
 						log.logInfo("PageElementZone associé à PageElementSegment:" + segment.getId() + " importé (ID:" +
 								elementId + ", boundary:" +
 								boundary + ")");
-						segment.getZones().add(zone);
+						ArrayList<PageElementZone> zones = segment.getZones();
+						zones.add(zone);
+						segment.setZones(zones);
 					}
 
 				}catch (Exception e) {
@@ -317,7 +323,8 @@ public class BDDAccess {
 				}
 
 				//// 4.2.3 boucle sur les PE zones
-				for(PageElementZone zone : segment.getZones()){
+				ArrayList<PageElementZone> zones = segment.getZones();
+				for(PageElementZone zone : zones){
 
 					///// 4.2.3.1 recuperer traduction et transcription du PE zone
 					try{
@@ -326,7 +333,7 @@ public class BDDAccess {
 						ResultSet result = state.executeQuery(
 								"SELECT PAGE_ELEMENT_P_VAL_UNDERLYING.ID, " +
 										"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE_TYPE, " +
-										"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE, " +
+										"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE " +
 										"FROM PAGE_ELEMENT_P_VAL_UNDERLYING, HAS_VALUE " +
 										"WHERE HAS_VALUE.PAGE_ELEMENT_ID = " + String.valueOf(zone.getId()) +
 										" AND CPAGE_ELEMENT_P_VAL_UNDERLYING.ID = HAS_VALUE.PAGE_ELEMENT_PROPERTY_VALUE_ID"
@@ -374,7 +381,7 @@ public class BDDAccess {
 										"PAGE_ELEMENT_UNDERLYING.TOPLEFTX, " +	
 										"PAGE_ELEMENT_UNDERLYING.TOPLEFTY, " +
 										"PAGE_ELEMENT_UNDERLYING.WIDTH, " +	
-										"PAGE_ELEMENT_UNDERLYING.HEIGHT, " +	
+										"PAGE_ELEMENT_UNDERLYING.HEIGHT " +	
 										"FROM ASSOCIATE_PAGE_ELEMENT, PAGE_ELEMENT_UNDERLYING " +
 										"WHERE ASSOCIATE_PAGE_ELEMENT.PAGE_ELEMENT_ID = " + String.valueOf(zone.getId()) +
 										" AND ASSOCIATE_PAGE_ELEMENT.ASSOCIATE_PAGE_ELEMENT_ID = PAGE_ELEMENT_UNDERLYING.ID"
@@ -405,7 +412,9 @@ public class BDDAccess {
 									topLeftY + ", width:" +
 									width + ", height:" +
 									height + ")");
-							zone.getMots().add(token);
+							ArrayList<PageElementToken> tokens = zone.getMots();
+							tokens.add(token);
+							zone.setMots(tokens);
 						}
 
 					}catch (Exception e) {
@@ -417,7 +426,8 @@ public class BDDAccess {
 					}
 
 					///// 4.2.3.3 boucle sur les PE tokens
-					for(PageElementToken token : zone.getMots()){
+					ArrayList<PageElementToken> tokens = zone.getMots();
+					for(PageElementToken token : tokens){
 
 						////// 4.2.3.3.1 recuperer tradaction et transcription du PE token
 						try{
@@ -426,7 +436,7 @@ public class BDDAccess {
 							ResultSet result = state.executeQuery(
 									"SELECT PAGE_ELEMENT_P_VAL_UNDERLYING.ID, " +
 											"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE_TYPE, " +
-											"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE, " +
+											"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE " +
 											"FROM PAGE_ELEMENT_P_VAL_UNDERLYING, HAS_VALUE " +
 											"WHERE HAS_VALUE.PAGE_ELEMENT_ID = " + String.valueOf(token.getId()) +
 											" AND CPAGE_ELEMENT_P_VAL_UNDERLYING.ID = HAS_VALUE.PAGE_ELEMENT_PROPERTY_VALUE_ID"
@@ -466,12 +476,22 @@ public class BDDAccess {
 						}
 
 					}
+					for(PageElementToken p : tokens){
+						System.out.println(p.getId());
+					}
+					zone.setMots(tokens);
 
 				}
+				segment.setZones(zones);
 
 			}
+			for(PageElementSegment p : segments){
+				System.out.println("seg : "+p.getId());
+			}
+			image.setSegments(segments);
 
 		}
+		dataset.setImages(images);
 
 		return dataset;	
 	}
