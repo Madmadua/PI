@@ -18,6 +18,9 @@ public class PageElementToken {
 	
 	private PageElementPropertyValue transcription;
 	private PageElementPropertyValue traduction;
+	private PageElementPropertyValue source;
+	
+	private PageElementZone parent;
 	
 	public PageElementToken(int id, int number_of_pixels, int topLeftX,
 			int topLeftY, int width, int height,
@@ -109,6 +112,23 @@ public class PageElementToken {
 		this.name = name;
 	}
 	
+	public PageElementPropertyValue getSource() {
+		return source;
+	}
+
+	public void setSource(PageElementPropertyValue source) {
+		this.source = source;
+	}
+	
+	public PageElementZone getParent() {
+		return parent;
+	}
+
+	public void setParent(PageElementZone parent) {
+		this.parent = parent;
+	}
+
+	
 	public boolean insert(BDDAccess bdd, PageElementZone zone) throws SQLException{
 		String query = "SELECT DAE.DATA_ITEM_UNDERLYING.ID FROM DAE.DATA_ITEM_UNDERLYING WHERE DAE.DATA_ITEM_UNDERLYING.DESCRIPTION = '" + name + "'";
 		ResultSet result = bdd.executeQuery(query);
@@ -138,12 +158,17 @@ public class PageElementToken {
 			collumns.add(this.id);
 
 			bdd.insert(query, collumns);
+			bdd.closeStatement();
 			return true;
 		}
 		id = result.getInt(1);
 		System.err.println("Page Element " + name + " already exists");
+		bdd.closeStatement();
 		return false;
 	}
+
+	
+	
 
 	
 

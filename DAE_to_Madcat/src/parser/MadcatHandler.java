@@ -44,7 +44,7 @@ public class MadcatHandler extends DefaultHandler{
 					dae.addPoint(attributes);
 				}
 				if(qName.equals("token-image")){
-					dae.prepareToken(attributes);
+					dae.prepareTokenImage(attributes);
 				}
 				if(qName.equals("segment")){
 					dae.insertSegment(attributes);
@@ -58,6 +58,10 @@ public class MadcatHandler extends DefaultHandler{
 				if(qName.equals("translation")){
 					buffer = new StringBuffer();
 				}
+				if(qName.equals("token")){
+					dae.prepareToken(attributes);
+					buffer = new StringBuffer();
+				}
 				
 				
 	}
@@ -68,7 +72,7 @@ public class MadcatHandler extends DefaultHandler{
 					dae.endZone();
 				}
 				if(qName.equals("token-image")){
-					dae.endToken();
+					dae.endTokenImage();
 				}
 				if(qName.equals("zone_ref")){
 					dae.insertZone(buffer.toString());
@@ -80,6 +84,10 @@ public class MadcatHandler extends DefaultHandler{
 				}
 				if(qName.equals("translation")){
 					dae.insertTranslation(buffer.toString());
+					buffer = null;
+				}
+				if(qName.equals("token")){
+					dae.endToken(buffer.toString());
 					buffer = null;
 				}
 				

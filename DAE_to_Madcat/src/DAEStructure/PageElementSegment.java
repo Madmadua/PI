@@ -104,10 +104,13 @@ public class PageElementSegment {
 			collumns.add(image.getId());
 
 			bdd.insert(query, collumns);
+			bdd.closeStatement();
 			return true;
 		}
 		id = result.getInt(1);
+		System.out.println(id); 
 		System.err.println("Page Element " + name + " already exists");
+		bdd.closeStatement();
 		return false;
 	}
 

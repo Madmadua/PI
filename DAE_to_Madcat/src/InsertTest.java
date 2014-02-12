@@ -35,8 +35,14 @@ public class InsertTest {
 		
 		SAXParserFactory fabrique = SAXParserFactory.newInstance();
 		SAXParser parseur = fabrique.newSAXParser();
+		
+		if(args.length!=1)
+		{
+			System.err.println("Error: you have to specify an input MADCAT file");
+			System.exit(-1);
+		}
 
-		File fichier = new File("reference_files/out.madcat.xml");
+		File fichier = new File(args[0]);
 		DefaultHandler gestionnaire = new MadcatHandler();
 		parseur.parse(fichier, gestionnaire);
 	
