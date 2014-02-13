@@ -92,8 +92,6 @@ public class MadcatGenerator {
 					
 					ArrayList<Point> points = this.genererPoints(zone.getBoundary());
 					
-					System.out.println(points);
-					
 					Element polygon = new Element("polygon");
 					eZone.addContent(polygon);
 					for(Point point : points){
@@ -102,6 +100,7 @@ public class MadcatGenerator {
 						Attribute x = new Attribute("x", String.valueOf(point.getX()));
 						polyPoint.setAttribute(y);
 						polyPoint.setAttribute(x);
+						polygon.addContent(polyPoint);
 					}
 					
 					if(isRef){
@@ -124,22 +123,22 @@ public class MadcatGenerator {
 							Element tPoint2 = new Element("point");
 							Attribute tPoint2Y = new Attribute("y", String.valueOf(token.getTopLeftY()-token.getHeight()));
 							Attribute tPoint2X = new Attribute("x", String.valueOf(token.getTopLeftX()+token.getWidth()));
-							tPointOne.setAttribute(tPoint2Y);
-							tPointOne.setAttribute(tPoint2X);
+							tPoint2.setAttribute(tPoint2Y);
+							tPoint2.setAttribute(tPoint2X);
 							tokenPolygon.addContent(tPoint2);
 							
 							Element tPoint3 = new Element("point");
 							Attribute tPoint3Y = new Attribute("y", String.valueOf(token.getTopLeftY()));
 							Attribute tPoint3X = new Attribute("x", String.valueOf(token.getTopLeftX()+token.getWidth()));
-							tPointOne.setAttribute(tPoint3Y);
-							tPointOne.setAttribute(tPoint3X);
+							tPoint3.setAttribute(tPoint3Y);
+							tPoint3.setAttribute(tPoint3X);
 							tokenPolygon.addContent(tPoint3);
 							
 							Element tPoint4 = new Element("point");
 							Attribute tPoint4Y = new Attribute("y", String.valueOf(token.getTopLeftY()));
 							Attribute tPoint4X = new Attribute("x", String.valueOf(token.getTopLeftX()));
-							tPointOne.setAttribute(tPoint4Y);
-							tPointOne.setAttribute(tPoint4X);
+							tPoint4.setAttribute(tPoint4Y);
+							tPoint4.setAttribute(tPoint4X);
 							tokenPolygon.addContent(tPoint4);
 						}
 					}
