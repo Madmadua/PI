@@ -92,6 +92,8 @@ public class MadcatGenerator {
 					
 					ArrayList<Point> points = this.genererPoints(zone.getBoundary());
 					
+					System.out.println(points);
+					
 					Element polygon = new Element("polygon");
 					eZone.addContent(polygon);
 					for(Point point : points){
@@ -144,9 +146,64 @@ public class MadcatGenerator {
 				}
 			}
 		}
+		
+		Element content = new Element("content");
+		doc.addContent(content);
+		
+		Element section = new Element("section");
+		Attribute secType = new Attribute("type", "tokenization");
+		Attribute secId = new Attribute("id", "sec0001");
+		section.setAttribute(secType);
+		section.setAttribute(secId);
+		content.addContent(section);
+		
+		for(PageImage imageC : dataset.getImages()){
+			for(PageElementSegment segmentC : imageC.getSegments()){
+				Element seg = new Element("segment");
+				Attribute segId = new Attribute("id",String.valueOf(segmentC.getId()));
+				seg.setAttribute(segId);
+				section.addContent(seg);
+				
+				for(PageElementZone zoneC : segmentC.getZones()){
+					Element zone_ref = new Element("zone_ref");
+					zone_ref.addContent(String.valueOf(zoneC.getId()));
+					seg.addContent(zone_ref);
+				}
+				
+				if(isRef){
+					for(PageElementZone zoneC : segmentC.getZones()){
+						for(PageElementToken token : zoneC.getMots()){
+							Element tokenE = new Element("token");
+							Attribute status = new Attribute("status","");
+							Attribute ref_id = new Attribute("ref_id", String.valueOf(token.getId()));
+							tokenE.setAttribute(status);
+							tokenE.setAttribute(ref_id);
+							seg.addContent(tokenE);
+							
+							Element source = new Element("source");
+							source.addContent(token.getTranscription().getValue());
+							tokenE.addContent(source);
+						}
+					}
+				}
+				
+				if(isRef || isDTT){
+					Element transcription = new Element("transcription");
+					transcription.addContent(segmentC.getTranscription().getValue());
+					seg.addContent(transcription);
+				}
+				
+				if(isRef){
+					Element translation = new Element("translation");
+					translation.addContent(segmentC.getTraduction().getValue());
+					seg.addContent(translation);
+				}
+				
+			}
+		}
 	}
 	
-	static void affiche(){
+	public static void affiche(){
 		try{
 			XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
 			sortie.output(document, System.out);
@@ -155,7 +212,7 @@ public class MadcatGenerator {
 		}
 	}
 	
-	static void enregistre(String fichier){
+	public static void enregistre(String fichier){
 		try{
 			XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
 			sortie.output(document, new FileOutputStream(fichier));
@@ -179,7 +236,7 @@ public class MadcatGenerator {
 				points.add(new Point(Integer.valueOf(pointSplit[0]),Integer.valueOf(pointSplit[1])));
 			}
 		}
-		return null;
+		return points;
 	}
 	
 
