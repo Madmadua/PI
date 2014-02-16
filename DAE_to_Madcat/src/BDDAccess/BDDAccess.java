@@ -192,7 +192,6 @@ public class BDDAccess {
 				state = conn.createStatement();
 				ResultSet result = state.executeQuery(
 						"SELECT PAGE_ELEMENT_UNDERLYING.ID, " +
-								"PAGE_ELEMENT_UNDERLYING.BOUNDARY " +
 								"FROM CONTAINS_PAGE_ELEMENT, PAGE_ELEMENT_UNDERLYING " +
 								"WHERE CONTAINS_PAGE_ELEMENT.PAGE_IMAGE_ID = " + String.valueOf(image.getId()) +
 								" AND CONTAINS_PAGE_ELEMENT.PAGE_ELEMENT_ID = PAGE_ELEMENT_UNDERLYING.ID"
@@ -207,7 +206,7 @@ public class BDDAccess {
 					}
 
 					int elementId = Integer.valueOf(result.getObject(1).toString());
-					String boundary = "(100,100)";/*result.getObject(2).toString();*/
+					String boundary = "";
 					ArrayList<PageElementZone> zones = new ArrayList<PageElementZone>();
 					PageElementPropertyValue transcription = null;
 					PageElementPropertyValue traduction = null;
@@ -258,7 +257,10 @@ public class BDDAccess {
 						int pvId = Integer.valueOf(result.getObject(1).toString());
 						int valueType = Integer.valueOf(result.getObject(2).toString());
 						String value = result.getObject(1).toString();
-
+						
+						if(valueType == DataTypeProperty.BOUNDARY){
+							segment.setBoundary(value);
+						}
 						if(valueType == DataTypeProperty.TRANSLATION){
 							segment.setTraduction(new PageElementPropertyValue(pvId, "traduction", value));
 							log.logInfo("Traduction du PESegment:" + segment.getId() + " importé (ID:" +
@@ -285,7 +287,6 @@ public class BDDAccess {
 					state = conn.createStatement();
 					ResultSet result = state.executeQuery(
 							"SELECT PAGE_ELEMENT_UNDERLYING.ID, " +
-									"PAGE_ELEMENT_UNDERLYING.BOUNDARY " +
 									"FROM ASSOCIATE_PAGE_ELEMENT, PAGE_ELEMENT_UNDERLYING " +
 									"WHERE ASSOCIATE_PAGE_ELEMENT.PAGE_ELEMENT_ID = " + String.valueOf(segment.getId()) +
 									" AND ASSOCIATE_PAGE_ELEMENT.ASSOCIATING_PAGE_ELEMENT_ID = PAGE_ELEMENT_UNDERLYING.ID"
@@ -300,7 +301,7 @@ public class BDDAccess {
 						}
 
 						int elementId = Integer.valueOf(result.getObject(1).toString());
-						String boundary = "(100,200)";/*result.getObject(2).toString();*/
+						String boundary = "";
 						ArrayList<PageElementToken> tokens = new ArrayList<PageElementToken>();
 						PageElementPropertyValue transcription = null;
 						PageElementPropertyValue traduction = null;
@@ -351,6 +352,9 @@ public class BDDAccess {
 							int valueType = Integer.valueOf(result.getObject(2).toString());
 							String value = result.getObject(1).toString();
 
+							if(valueType == DataTypeProperty.BOUNDARY){
+								zone.setBoundary(value);
+							}
 							if(valueType == DataTypeProperty.TRANSLATION){
 								zone.setTraduction(new PageElementPropertyValue(pvId, "traduction", value));
 								log.logInfo("Traduction du PEZone:" + zone.getId() + " importé (ID:" +
