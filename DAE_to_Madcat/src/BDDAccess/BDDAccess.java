@@ -207,7 +207,7 @@ public class BDDAccess {
 					}
 
 					int elementId = Integer.valueOf(result.getObject(1).toString());
-					String boundary = result.getObject(2).toString();
+					String boundary = "(100,100)";/*result.getObject(2).toString();*/
 					ArrayList<PageElementZone> zones = new ArrayList<PageElementZone>();
 					PageElementPropertyValue transcription = null;
 					PageElementPropertyValue traduction = null;
@@ -244,7 +244,7 @@ public class BDDAccess {
 									"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE " +
 									"FROM PAGE_ELEMENT_P_VAL_UNDERLYING, HAS_VALUE " +
 									"WHERE HAS_VALUE.PAGE_ELEMENT_ID = " + String.valueOf(segment.getId()) +
-									" AND CPAGE_ELEMENT_P_VAL_UNDERLYING.ID = HAS_VALUE.PAGE_ELEMENT_PROPERTY_VALUE_ID"
+									" AND PAGE_ELEMENT_P_VAL_UNDERLYING.ID = HAS_VALUE.PAGE_ELEMENT_PROPERTY_VALUE_ID"
 							);
 
 					ResultSetMetaData resultMeta = result.getMetaData();
@@ -288,7 +288,7 @@ public class BDDAccess {
 									"PAGE_ELEMENT_UNDERLYING.BOUNDARY " +
 									"FROM ASSOCIATE_PAGE_ELEMENT, PAGE_ELEMENT_UNDERLYING " +
 									"WHERE ASSOCIATE_PAGE_ELEMENT.PAGE_ELEMENT_ID = " + String.valueOf(segment.getId()) +
-									" AND ASSOCIATE_PAGE_ELEMENT.ASSOCIATE_PAGE_ELEMENT_ID = PAGE_ELEMENT_UNDERLYING.ID"
+									" AND ASSOCIATE_PAGE_ELEMENT.ASSOCIATING_PAGE_ELEMENT_ID = PAGE_ELEMENT_UNDERLYING.ID"
 							);
 
 					ResultSetMetaData resultMeta = result.getMetaData();
@@ -300,7 +300,7 @@ public class BDDAccess {
 						}
 
 						int elementId = Integer.valueOf(result.getObject(1).toString());
-						String boundary = result.getObject(2).toString();
+						String boundary = "(100,200)";/*result.getObject(2).toString();*/
 						ArrayList<PageElementToken> tokens = new ArrayList<PageElementToken>();
 						PageElementPropertyValue transcription = null;
 						PageElementPropertyValue traduction = null;
@@ -336,7 +336,7 @@ public class BDDAccess {
 										"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE " +
 										"FROM PAGE_ELEMENT_P_VAL_UNDERLYING, HAS_VALUE " +
 										"WHERE HAS_VALUE.PAGE_ELEMENT_ID = " + String.valueOf(zone.getId()) +
-										" AND CPAGE_ELEMENT_P_VAL_UNDERLYING.ID = HAS_VALUE.PAGE_ELEMENT_PROPERTY_VALUE_ID"
+										" AND PAGE_ELEMENT_P_VAL_UNDERLYING.ID = HAS_VALUE.PAGE_ELEMENT_PROPERTY_VALUE_ID"
 								);
 
 						ResultSetMetaData resultMeta = result.getMetaData();
@@ -384,7 +384,7 @@ public class BDDAccess {
 										"PAGE_ELEMENT_UNDERLYING.HEIGHT " +	
 										"FROM ASSOCIATE_PAGE_ELEMENT, PAGE_ELEMENT_UNDERLYING " +
 										"WHERE ASSOCIATE_PAGE_ELEMENT.PAGE_ELEMENT_ID = " + String.valueOf(zone.getId()) +
-										" AND ASSOCIATE_PAGE_ELEMENT.ASSOCIATE_PAGE_ELEMENT_ID = PAGE_ELEMENT_UNDERLYING.ID"
+										" AND ASSOCIATE_PAGE_ELEMENT.ASSOCIATING_PAGE_ELEMENT_ID = PAGE_ELEMENT_UNDERLYING.ID"
 								);
 
 						ResultSetMetaData resultMeta = result.getMetaData();
