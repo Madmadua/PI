@@ -1,5 +1,8 @@
 package BDDAccess;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -191,7 +194,7 @@ public class BDDAccess {
 				Statement state;
 				state = conn.createStatement();
 				ResultSet result = state.executeQuery(
-						"SELECT PAGE_ELEMENT_UNDERLYING.ID, " +
+						"SELECT PAGE_ELEMENT_UNDERLYING.ID " +
 								"FROM CONTAINS_PAGE_ELEMENT, PAGE_ELEMENT_UNDERLYING " +
 								"WHERE CONTAINS_PAGE_ELEMENT.PAGE_IMAGE_ID = " + String.valueOf(image.getId()) +
 								" AND CONTAINS_PAGE_ELEMENT.PAGE_ELEMENT_ID = PAGE_ELEMENT_UNDERLYING.ID"
@@ -201,7 +204,7 @@ public class BDDAccess {
 
 				while(result.next()){
 
-					if(resultMeta.getColumnCount() != 2){
+					if(resultMeta.getColumnCount() != 1){
 						throw new MyBDDException("Erreur BDDAcces/getDataset/4.1 nombre de collones.");
 					}
 
@@ -256,11 +259,8 @@ public class BDDAccess {
 
 						int pvId = Integer.valueOf(result.getObject(1).toString());
 						int valueType = Integer.valueOf(result.getObject(2).toString());
-						String value = result.getObject(1).toString();
+						String value = this.clobToString((Clob) result.getObject(1));
 						
-						if(valueType == DataTypeProperty.BOUNDARY){
-							segment.setBoundary(value);
-						}
 						if(valueType == DataTypeProperty.TRANSLATION){
 							segment.setTraduction(new PageElementPropertyValue(pvId, "traduction", value));
 							log.logInfo("Traduction du PESegment:" + segment.getId() + " importé (ID:" +
@@ -286,7 +286,7 @@ public class BDDAccess {
 					Statement state;
 					state = conn.createStatement();
 					ResultSet result = state.executeQuery(
-							"SELECT PAGE_ELEMENT_UNDERLYING.ID, " +
+							"SELECT PAGE_ELEMENT_UNDERLYING.ID " +
 									"FROM ASSOCIATE_PAGE_ELEMENT, PAGE_ELEMENT_UNDERLYING " +
 									"WHERE ASSOCIATE_PAGE_ELEMENT.PAGE_ELEMENT_ID = " + String.valueOf(segment.getId()) +
 									" AND ASSOCIATE_PAGE_ELEMENT.ASSOCIATING_PAGE_ELEMENT_ID = PAGE_ELEMENT_UNDERLYING.ID"
@@ -296,7 +296,7 @@ public class BDDAccess {
 
 					while(result.next()){
 
-						if(resultMeta.getColumnCount() != 2){
+						if(resultMeta.getColumnCount() != 1){
 							throw new MyBDDException("Erreur BDDAcces/getDataset/4.2.2 nombre de collones.");
 						}
 
@@ -350,7 +350,7 @@ public class BDDAccess {
 
 							int pvId = Integer.valueOf(result.getObject(1).toString());
 							int valueType = Integer.valueOf(result.getObject(2).toString());
-							String value = result.getObject(1).toString();
+							String value = this.clobToString((Clob) result.getObject(3));
 
 							if(valueType == DataTypeProperty.BOUNDARY){
 								zone.setBoundary(value);
@@ -456,7 +456,7 @@ public class BDDAccess {
 
 								int pvId = Integer.valueOf(result.getObject(1).toString());
 								int valueType = Integer.valueOf(result.getObject(2).toString());
-								String value = result.getObject(1).toString();
+								String value = this.clobToString((Clob) result.getObject(1));
 
 								if(valueType == DataTypeProperty.TRANSLATION){
 									token.setTraduction(new PageElementPropertyValue(pvId, "traduction", value));
@@ -633,6 +633,25 @@ public class BDDAccess {
 
 	public void closeStatement() throws SQLException{
 		state.close();
+	}
+	
+	private String clobToString(Clob data) {
+	    StringBuilder sb = new StringBuilder();
+	    try {
+	        Reader reader = data.getCharacterStream();
+	        BufferedReader br = new BufferedReader(reader);
+
+	        String line;
+	        while(null != (line = br.readLine())) {
+	            sb.append(line);
+	        }
+	        br.close();
+	    } catch (SQLException e) {
+	        // handle this exception
+	    } catch (IOException e) {
+	        // handle this exception
+	    }
+	    return sb.toString();
 	}
 
 }
