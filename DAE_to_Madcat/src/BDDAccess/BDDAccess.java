@@ -593,7 +593,7 @@ public class BDDAccess {
 
 			conn.setAutoCommit(false);
 
-			String queryId = "SELECT seq_contributor.nextval from dual";
+			String queryId = "SELECT seq_person.nextval from dual";
 			Statement nextValStatement = conn.createStatement();
 			result = nextValStatement.executeQuery(queryId);
 
