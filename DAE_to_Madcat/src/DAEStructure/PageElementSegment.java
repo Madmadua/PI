@@ -108,7 +108,6 @@ public class PageElementSegment {
 			return true;
 		}
 		id = result.getInt(1);
-		System.out.println(id); 
 		System.err.println("Page Element " + name + " already exists");
 		bdd.closeStatement();
 		return false;

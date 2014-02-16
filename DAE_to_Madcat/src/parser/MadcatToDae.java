@@ -46,6 +46,7 @@ public class MadcatToDae {
 		String nbPages = attributes.getValue("nbpages");
 		String type = attributes.getValue("type");
 		
+		System.out.println(id);
 		dataset = new Dataset();
 		dataset.setName(id);
 		dataset.setPurpose(type);

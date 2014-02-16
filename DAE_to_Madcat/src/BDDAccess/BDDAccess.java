@@ -38,7 +38,7 @@ public class BDDAccess {
 		try{
 			Class.forName("oracle.jdbc.driver.OracleDriver").newInstance();
 		}catch(Exception e){
-			System.out.println("Where is your Oracle JDBC Driver?");
+			System.err.println("Where is your Oracle JDBC Driver?");
 			e.printStackTrace();
 			return;
 		}
@@ -46,13 +46,13 @@ public class BDDAccess {
 		try{
 			conn = DriverManager.getConnection(url, user, passwd);
 		}catch(Exception e){
-			System.out.println("Connection Failed! Check output console");
+			System.err.println("Connection Failed! Check output console");
 			e.printStackTrace();
 			return;
 		}
 
 		if (conn != null) {
-			System.out.println("Connexion effective !");
+			System.err.println("Connexion effective !");
 		} else {
 			System.out.println("Failed to make connection!");
 			return;
