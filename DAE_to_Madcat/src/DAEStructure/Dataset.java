@@ -95,11 +95,13 @@ public class Dataset {
 			collumns.add(this.name);
 
 			bdd.insert(query, collumns);
+			result.close();
 			bdd.closeStatement();
 			return true;
 		}
 		id = result.getInt(1);
 		System.err.println("Dataset " + name + " already exists");
+		result.close();
 		bdd.closeStatement();
 		return false;
 	}

@@ -89,11 +89,13 @@ public class PageElementPropertyValue {
 			collumns.add(pageElementId);
 
 			bdd.insert(query,collumns);
+			result.close();
 			bdd.closeStatement();
 			return true;
 		}
 		id = result.getInt(1);
 		System.err.println("Page Element Property Value " + name + " already exists");
+		result.close();
 		bdd.closeStatement();
 		return false;
 
@@ -126,10 +128,12 @@ public class PageElementPropertyValue {
 
 			bdd.insert(query,collumns);
 			bdd.closeStatement();
+			result.close();
 			return true;
 		}
 		id = result.getInt(1);
 		System.err.println("Page Element Property Value " + name + " already exists");
+		result.close();
 		bdd.closeStatement();
 		return false;
 	}

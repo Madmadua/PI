@@ -46,7 +46,7 @@ public class MadcatToDae {
 		String nbPages = attributes.getValue("nbpages");
 		String type = attributes.getValue("type");
 		
-		System.out.println(id);
+		
 		dataset = new Dataset();
 		dataset.setName(id);
 		dataset.setPurpose(type);
@@ -59,8 +59,10 @@ public class MadcatToDae {
 		
 		try {
 			if(dataset.insert(bdd)){
+				
 				pepv.insertWithDataset(bdd, dataset.getId());
 			}
+			System.out.println(dataset.getId());
 		} catch (SQLException e) {
 			System.err.println("Fail to insert dataset " + id); 
 			e.printStackTrace();
