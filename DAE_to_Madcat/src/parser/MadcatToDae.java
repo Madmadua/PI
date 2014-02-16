@@ -235,7 +235,6 @@ public class MadcatToDae {
 		transcription.setName(segment.getName() + " transcription");
 		transcription.setValue(phrase);
 		transcription.setValueTypeId(DataTypeProperty.TRANSCRIPTION);
-		System.out.println(segment.getName());
 		try {
 			transcription.insertWithPageElement(bdd, segment.getId());
 		} catch (SQLException e) {
