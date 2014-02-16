@@ -11,11 +11,13 @@ import org.jdom2.*;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
+import BDDAccess.BDDAccess;
 import DAEStructure.Dataset;
 import DAEStructure.PageElementSegment;
 import DAEStructure.PageElementToken;
 import DAEStructure.PageElementZone;
 import DAEStructure.PageImage;
+import Exception.MyBDDException;
 import Exception.MyGeneratorException;
 
 public class MadcatGenerator {
@@ -26,24 +28,70 @@ public class MadcatGenerator {
 	
 	static org.jdom2.Document document = new Document(racine);
 
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		if(args[1].equals("help")){
+			System.out.println("MadcatGenerator [datasetId] [DIR|DTT|REF] [path|afficher]");
+			if(args.length != 4){
+				System.out.println("Mauvais nombre d'arguments, essayez help");
+			}else{
+				BDDAccess access = new BDDAccess();
+				Dataset dataset;
+				try {
+					dataset = access.getDataset(Integer.valueOf(args[1]));
+					MadcatGenerator mg = new MadcatGenerator(dataset);
+					int error = 0;
+					if(args[2].equals("DIR")){
+						mg.generateInputDIR();
+					}else{
+						if(args[2].equals("DTT")){
+							mg.generateInputDTT();
+						}else{
+							if(args[2].equals("REF")){
+								mg.generateInputRef();
+							}else{
+								System.out.println("Il faut specifier DIR|DTT|REF");
+								error = 1;
+							}
+						}
+					}
+					if(args[3].equals("afficher") && error == 0){
+						affiche();
+					}else{
+						if(error != 0){
+							enregistre(args[3]);
+						}
+					}
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
+	}
+	
 	public MadcatGenerator(Dataset dataset) {
 		super();
 		this.dataset = dataset;
 	}
 	
-	public void generateInputDIR(String path) throws MyGeneratorException{
-		generate(path, true, false, false);
+	public void generateInputDIR() throws MyGeneratorException{
+		generate(true, false, false);
 	}
 	
-	public void generateInputDTT(String path) throws MyGeneratorException{
-		generate(path, false, true, false);
+	public void generateInputDTT() throws MyGeneratorException{
+		generate(false, true, false);
 	}
 	
-	public void generateInputRef(String path) throws MyGeneratorException{
-		generate(path, false, false, true);
+	public void generateInputRef() throws MyGeneratorException{
+		generate(false, false, true);
 	}
 	
-	private void generate(String path, boolean isDIR, boolean isDTT, boolean isRef) throws MyGeneratorException{
+	private void generate(boolean isDIR, boolean isDTT, boolean isRef) throws MyGeneratorException{
 		Attribute version = new Attribute("version", "2008.1");
 		racine.setAttribute(version);
 		

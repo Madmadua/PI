@@ -57,7 +57,7 @@ public class BDDAccess {
 	}
 
 
-	public Dataset getDataset(int id, int id_containt) throws MyBDDException {
+	public Dataset getDataset(int id) throws MyBDDException {
 		// Fonction pour recuperer toutes les info de la base de donné pour construire l'arbre
 		// 1 creer dataset
 		// 2 requette sql pour recuperer dataset

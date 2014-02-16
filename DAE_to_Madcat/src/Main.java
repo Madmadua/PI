@@ -56,7 +56,7 @@ public class Main {
 		
 		MadcatGenerator mg = new MadcatGenerator(dataset);
 		try {
-			mg.generateInputDTT("");
+			mg.generateInputDTT();
 			MadcatGenerator.affiche();
 		} catch (MyGeneratorException e) {
 			// TODO Auto-generated catch block
