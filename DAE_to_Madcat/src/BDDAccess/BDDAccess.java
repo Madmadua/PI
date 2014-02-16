@@ -546,7 +546,8 @@ public class BDDAccess {
 
 		conn.commit();
 		conn.setAutoCommit(true);
-		
+		result.close();
+		state.close();
 		return id;
 	}
 
@@ -558,8 +559,7 @@ public class BDDAccess {
 		}
 		
 		state.execute();
-		
-
+		state.close();
 	}
 
 	public void insertImageDataItem(int id) throws SQLException{
@@ -626,6 +626,8 @@ public class BDDAccess {
 			collumns.add(id);
 			collumns.add(dataItemId);
 			this.insert(query, collumns);
+			result.close();
+			state.close();
 			return true;
 		}
 		return false;

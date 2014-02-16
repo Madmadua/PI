@@ -32,6 +32,7 @@ public class MadcatToDae {
 	private PageElementSegment segment = new PageElementSegment();
 	private ArrayList<PageElementToken> tokens= new ArrayList<PageElementToken>();
 	private String src;
+	private String ref;
 	
 	public MadcatToDae(){
 		bdd = new BDDAccess();
@@ -234,6 +235,7 @@ public class MadcatToDae {
 		transcription.setName(segment.getName() + " transcription");
 		transcription.setValue(phrase);
 		transcription.setValueTypeId(DataTypeProperty.TRANSCRIPTION);
+		System.out.println(segment.getName());
 		try {
 			transcription.insertWithPageElement(bdd, segment.getId());
 		} catch (SQLException e) {
@@ -256,7 +258,7 @@ public class MadcatToDae {
 	}
 	
 	public void prepareToken(Attributes attributes){
-		String ref = attributes.getValue("ref_id");
+		ref = attributes.getValue("ref_id");
 		token = (PageElementToken) tokensImages.get("Dataset " + dataset.getName() + " " + ref);
 		
 	}
@@ -264,7 +266,7 @@ public class MadcatToDae {
 		PageElementPropertyValue sourcePV = new PageElementPropertyValue();
 		zone = token.getParent();
 		
-		sourcePV.setName(segment.getName() + " transcription");
+		sourcePV.setName(dataset.getName() + ref);
 		sourcePV.setValue(source);
 		sourcePV.setValueTypeId(DataTypeProperty.SOURCE);
 		
