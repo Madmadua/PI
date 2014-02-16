@@ -37,7 +37,7 @@ public class MadcatGenerator {
 			System.out.println("MadcatGenerator [datasetId] [DIR|DTT|REF] [path|afficher]");
 			error = 1;
 		}
-		if(args[0].equals("help") && error == 0){
+		if(error == 0 && args[0].equals("help")){
 			System.out.println("MadcatGenerator [datasetId] [DIR|DTT|REF] [path|afficher]");
 			error = 1;
 		}
