@@ -12,14 +12,6 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import parser.MadcatHandler;
 
-import BDDAccess.BDDAccess;
-import Constants.DataTypeProperty;
-import DAEStructure.Dataset;
-import DAEStructure.PageElementPropertyValue;
-import DAEStructure.PageElementSegment;
-import DAEStructure.PageElementToken;
-import DAEStructure.PageElementZone;
-import DAEStructure.PageImage;
 
 
 public class InsertTest {

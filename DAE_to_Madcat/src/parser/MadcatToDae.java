@@ -30,7 +30,8 @@ public class MadcatToDae {
 	private PageElementToken token = new PageElementToken();
 	private ArrayList<Point> points;
 	private PageElementSegment segment = new PageElementSegment();
-	private ArrayList<PageElementToken> tokens= new ArrayList<PageElementToken>();
+	private static String path = "/dae/database/openhart/image/";
+	
 	private String src;
 	private String ref;
 	
@@ -43,7 +44,7 @@ public class MadcatToDae {
 	
 	public void insertDoc(Attributes attributes){
 		String id = attributes.getValue("id");
-		src = attributes.getValue("src");
+		src = path + attributes.getValue("src");
 		String nbPages = attributes.getValue("nbpages");
 		String type = attributes.getValue("type");
 		
@@ -220,7 +221,7 @@ public class MadcatToDae {
 		boundaryPV.setValueTypeId(DataTypeProperty.BOUNDARY);
 		
 		try {
-			zone.insert(bdd, segment);
+			zone.insert(bdd, segment,image);
 			type.insertWithPageElement(bdd, zone.getId());
 			boundaryPV.insertWithPageElement(bdd, zone.getId());
 		} catch (SQLException e) {
@@ -234,7 +235,7 @@ public class MadcatToDae {
 		PageElementPropertyValue transcription = new PageElementPropertyValue();
 		transcription.setName(segment.getName() + " transcription");
 		transcription.setValue(phrase);
-		transcription.setValueTypeId(DataTypeProperty.TRANSCRIPTION);
+		transcription.setValueTypeId(DataTypeProperty.TRANSCRIPTION); 
 		try {
 			transcription.insertWithPageElement(bdd, segment.getId());
 		} catch (SQLException e) {
@@ -270,8 +271,8 @@ public class MadcatToDae {
 		sourcePV.setValueTypeId(DataTypeProperty.SOURCE);
 		
 		try {
-			zone.insert(bdd, segment);
-			token.insert(bdd, zone);
+			zone.insert(bdd, segment,image);
+			token.insert(bdd, zone,image);
 			sourcePV.insertWithPageElement(bdd, token.getId());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

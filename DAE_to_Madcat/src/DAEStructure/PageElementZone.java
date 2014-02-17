@@ -83,7 +83,7 @@ public class PageElementZone {
 		this.name = name;
 	}
 	
-	public boolean insert(BDDAccess bdd, PageElementSegment segment) throws SQLException{
+	public boolean insert(BDDAccess bdd, PageElementSegment segment,PageImage image) throws SQLException{
 		String query = "SELECT DAE.DATA_ITEM_UNDERLYING.ID FROM DAE.DATA_ITEM_UNDERLYING WHERE DAE.DATA_ITEM_UNDERLYING.DESCRIPTION = '" + name + "'";
 		ResultSet result = bdd.executeQuery(query);
 		
@@ -107,6 +107,15 @@ public class PageElementZone {
 			collumns.add(this.id);
 
 			bdd.insert(query, collumns);
+			
+			query = "INSERT INTO DAE.CONTAINS_PAGE_ELEMENT (PAGE_ELEMENT_ID,PAGE_IMAGE_ID) VALUES (?,?)";
+			collumns = new ArrayList<Object>();
+
+			collumns.add(this.id);
+			collumns.add(image.getId());
+
+			bdd.insert(query, collumns);
+			
 			result.close();
 			bdd.closeStatement();
 			return true;
