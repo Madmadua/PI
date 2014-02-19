@@ -31,6 +31,7 @@ public class MadcatToDae {
 	private ArrayList<Point> points;
 	private PageElementSegment segment = new PageElementSegment();
 	private static String path = "/dae/database/openhart/image/";
+	private String zoneName;
 	
 	private String src;
 	private String ref;
@@ -111,11 +112,11 @@ public class MadcatToDae {
 	}
 	
 	public void prepareZone(Attributes attributes){
-		String id = attributes.getValue("id");
+		zoneName = attributes.getValue("id");
 		String type = attributes.getValue("type");
 		
 		zone = new PageElementZone();
-		zone.setName("Dataset " + dataset.getName() + " " + id);
+		zone.setName("Dataset " + dataset.getName() + " " + zoneName);
 		zone.setType(type);
 		
 	}
@@ -142,9 +143,9 @@ public class MadcatToDae {
 		boundary = boundary.substring(0, index);
 		
 		zone.setBoundary(boundary);
-		if(tokensImages.isEmpty()){
-			zones.put(zone.getName(), zone);
-		}
+		zones.put(zoneName, zone);
+		
+		
 	}
 	
 	public void prepareTokenImage(Attributes attributes){
@@ -208,8 +209,9 @@ public class MadcatToDae {
 	}
 	
 	public void insertZone(String name){
-		zone = (PageElementZone) zones.get("Dataset " + dataset.getName() + " " + name);
+		zone = (PageElementZone) zones.get(name);
 		PageElementPropertyValue type = new PageElementPropertyValue();
+		
 		
 		type.setName(zone.getName() + " type");
 		type.setValue(zone.getType());
