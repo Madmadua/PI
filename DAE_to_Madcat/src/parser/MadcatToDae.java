@@ -249,7 +249,7 @@ public class MadcatToDae {
 		PageElementPropertyValue translation = new PageElementPropertyValue();
 		translation.setName(segment.getName() + " translation");
 		translation.setValue(phrase);
-		translation.setValueTypeId(DataTypeProperty.TRANSCRIPTION);
+		translation.setValueTypeId(DataTypeProperty.TRANSLATION);
 		try {
 			translation.insertWithPageElement(bdd, segment.getId());
 		} catch (SQLException e) {
@@ -293,11 +293,8 @@ public class MadcatToDae {
 		Point topLeft = points.get(0);
 		Point botRight = points.get(0);
 		
-		
-		
 		for(int i=1;i<points.size();i++){
 			Point p = points.get(i);
-			System.out.println(topLeft.toString());
 			if(p.x<topLeft.x){
 				Point np = new Point(p.x,topLeft.y);
 				topLeft = np;
@@ -315,8 +312,6 @@ public class MadcatToDae {
 			}
 			
 		}
-		System.out.println(topLeft.toString());
-		System.out.println(botRight.toString());
 		int height = botRight.y - topLeft.y;
 		int width = botRight.x - topLeft.x;
 		

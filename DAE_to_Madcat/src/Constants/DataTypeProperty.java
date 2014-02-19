@@ -10,4 +10,8 @@ public class DataTypeProperty {
 	public static int BOUNDARY = 15;
 	public static int SOURCE = 16;
 	
+	public static int SEGMENT = 20;
+	public static int ZONE = 21;
+	public static int TOKEN = 22;
+	
 }

@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import BDDAccess.BDDAccess;
+import Constants.DataTypeProperty;
 
 
 public class PageElementZone {
@@ -168,6 +169,14 @@ public class PageElementZone {
 
 			bdd.insert(query, collumns);
 			
+			query = "INSERT INTO ASSOCIATE_DATATYPE_DATA_ITEM (DATA_ITEM_ID,DATATYPE_ID) VALUES (?,?)";
+			
+			collumns = new ArrayList<Object>();
+			
+			collumns.add(this.id);
+			collumns.add(DataTypeProperty.ZONE);
+			
+			bdd.insert(query, collumns);
 			result.close();
 			bdd.closeStatement();
 			return true;

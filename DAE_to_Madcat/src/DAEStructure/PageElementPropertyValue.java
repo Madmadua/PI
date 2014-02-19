@@ -89,6 +89,14 @@ public class PageElementPropertyValue {
 			collumns.add(pageElementId);
 
 			bdd.insert(query,collumns);
+			
+			query = "INSERT INTO VALUE_OF(PAGE_ELEMENT_PROPERTY_VALUE_ID,DATA_TYPE_PROPERTY_ID) VALUES (?,?) ";
+			collumns = new ArrayList<Object>();
+			collumns.add(this.id);
+			collumns.add(this.valueTypeId);
+			
+			bdd.insert(query, collumns);
+			
 			result.close();
 			bdd.closeStatement();
 			return true;
@@ -125,8 +133,17 @@ public class PageElementPropertyValue {
 			collumns = new ArrayList<Object>();
 			collumns.add(id);
 			collumns.add(datasetId);
+			
 
 			bdd.insert(query,collumns);
+			
+			query = "INSERT INTO VALUE_OF(PAGE_ELEMENT_PROPERTY_VALUE_ID,DATA_TYPE_PROPERTY_ID) VALUES (?,?) ";
+			collumns = new ArrayList<Object>();
+			collumns.add(this.id);
+			collumns.add(this.valueTypeId);
+			
+			bdd.insert(query, collumns);
+			
 			bdd.closeStatement();
 			result.close();
 			return true;
