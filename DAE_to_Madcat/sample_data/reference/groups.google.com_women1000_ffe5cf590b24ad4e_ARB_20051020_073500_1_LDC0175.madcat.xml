@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE madcat SYSTEM "madcat.v1.0.5.dtd">
+<!DOCTYPE madcat SYSTEM "ftp://jaguar.ncsl.nist.gov/madcat/resources/madcat.v1.1.1.dtd">
 <madcat version="2008.1">
 	<doc id="groups.google.com_women1000_ffe5cf590b24ad4e_ARB_20051020_073500_1_LDC0175" src="groups.google.com_women1000_ffe5cf590b24ad4e_ARB_20051020_073500_1_LDC0175.tif" nbpages="1" type="newsgroup">
 		<writer id="LDC0175"/>

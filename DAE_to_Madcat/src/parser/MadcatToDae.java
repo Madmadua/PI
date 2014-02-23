@@ -1,8 +1,6 @@
 package parser;
 
 import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -166,15 +164,15 @@ public class MadcatToDae {
 		botRight = points.get(0);
 		for(int i=1;i<points.size();i++){
 			Point p = points.get(i);
-			if(p.x<=topLeft.x && p.y>=topLeft.y){
+			if(p.x<=topLeft.x && p.y<=topLeft.y){
 				topLeft = p;
 			}
-			else if(p.x>=botRight.x && p.y<=botRight.y){
+			else if(p.x>=botRight.x && p.y>=botRight.y){
 				botRight = p;
 			}
 			
 		}
-		int height = topLeft.y - botRight.y;
+		int height = botRight.y - topLeft.y;
 		int width = botRight.x - topLeft.x;
 		token.setHeight(height);
 		token.setWidth(width);

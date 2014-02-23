@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE madcat SYSTEM "madcat.v1.0.5.dtd">
+<!DOCTYPE madcat SYSTEM "ftp://jaguar.ncsl.nist.gov/madcat/resources/madcat.v1.1.1.dtd">
 <madcat version="2008.1">
 	<doc id="blogspot.com_alfilfilm_20050522172800_ARB_20050522_172800_8_LDC0174" src="blogspot.com_alfilfilm_20050522172800_ARB_20050522_172800_8_LDC0174.tif" nbpages="1" type="weblog">
 		<writer id="LDC0174"/>
