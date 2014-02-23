@@ -148,7 +148,7 @@ public class BDDAccess {
 				int vdpi = 0;
 				int hdpi = 0;
 				int skew = 0;
-				String path = result.getObject(5).toString();
+				String path = "";//result.getObject(5).toString();
 				int width = Integer.valueOf(result.getObject(6).toString());
 				int height = Integer.valueOf(result.getObject(7).toString());
 				ArrayList<PageElementSegment> segments = new ArrayList<PageElementSegment>();
@@ -193,15 +193,18 @@ public class BDDAccess {
 			try{
 				Statement state;
 				state = conn.createStatement();
+				System.out.println("Il est passé par ici!");
 				ResultSet result = state.executeQuery(
 						"SELECT PAGE_ELEMENT_UNDERLYING.ID " +
 								"FROM CONTAINS_PAGE_ELEMENT, PAGE_ELEMENT_UNDERLYING " +
 								"WHERE CONTAINS_PAGE_ELEMENT.PAGE_IMAGE_ID = " + String.valueOf(image.getId()) +
 								" AND CONTAINS_PAGE_ELEMENT.PAGE_ELEMENT_ID = PAGE_ELEMENT_UNDERLYING.ID" +
-								" NOT IN {SELECT PAGE_ELEMENT_UNDERLYING.ID, " +
+								" AND PAGE_ELEMENT_UNDERLYING.ID NOT IN "+
+								" (SELECT PAGE_ELEMENT_UNDERLYING.ID " +
 								" FROM PAGE_ELEMENT_UNDERLYING, ASSOCIATE_PAGE_ELEMENT" +
-								" WHERE PAGE_ELEMENT_UNDERLYING.ID = ASSOCIATE_PAGE_ELEMENT.ASSOCIATING_PAGE_ELEMENT_ID}"
+								" WHERE PAGE_ELEMENT_UNDERLYING.ID = ASSOCIATE_PAGE_ELEMENT.ASSOCIATING_PAGE_ELEMENT_ID)"
 						);
+				System.out.println("Il repassera par là!");
 
 				ResultSetMetaData resultMeta = result.getMetaData();
 

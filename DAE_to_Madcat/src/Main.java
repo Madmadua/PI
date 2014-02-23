@@ -36,7 +36,7 @@ public class Main {
 		log.logWarn("encore coucou");
 		log.logInfo("ca fait beaucoup de coucou");*/
 		
-		PageElementPropertyValue transT = new PageElementPropertyValue(15164735, "transcription", "bla bla bla tok");
+		/*PageElementPropertyValue transT = new PageElementPropertyValue(15164735, "transcription", "bla bla bla tok");
 		PageElementPropertyValue tradT = new PageElementPropertyValue(15186435, "traduction", "bla bla bla trad tok");
 		PageElementToken tok = new PageElementToken(1613516, 5000000, 50, 50, 50, 50, transT, tradT);
 		ArrayList<PageElementToken> toks = new ArrayList<PageElementToken>();
@@ -59,6 +59,14 @@ public class Main {
 			mg.generateInputDTT();
 			MadcatGenerator.affiche();
 		} catch (MyGeneratorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		
+		BDDAccess acces = new BDDAccess();
+		try {
+			Dataset dataset = acces.getDataset(650798);
+		} catch (MyBDDException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
