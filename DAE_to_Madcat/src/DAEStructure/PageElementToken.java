@@ -129,7 +129,7 @@ public class PageElementToken {
 	}
 
 	
-	public boolean insert(BDDAccess bdd, PageElementZone zone) throws SQLException{
+	public boolean insert(BDDAccess bdd, PageElementZone zone,PageImage image) throws SQLException{
 		String query = "SELECT DAE.DATA_ITEM_UNDERLYING.ID FROM DAE.DATA_ITEM_UNDERLYING WHERE DAE.DATA_ITEM_UNDERLYING.DESCRIPTION = '" + name + "'";
 		ResultSet result = bdd.executeQuery(query);
 		
@@ -158,11 +158,21 @@ public class PageElementToken {
 			collumns.add(this.id);
 
 			bdd.insert(query, collumns);
+			result.close();
 			bdd.closeStatement();
+			
+			query = "INSERT INTO DAE.CONTAINS_PAGE_ELEMENT (PAGE_ELEMENT_ID,PAGE_IMAGE_ID) VALUES (?,?)";
+			collumns = new ArrayList<Object>();
+
+			collumns.add(this.id);
+			collumns.add(image.getId());
+
+			bdd.insert(query, collumns);
 			return true;
 		}
 		id = result.getInt(1);
 		System.err.println("Page Element " + name + " already exists");
+		result.close();
 		bdd.closeStatement();
 		return false;
 	}

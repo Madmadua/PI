@@ -1,8 +1,6 @@
 package parser;
 
 import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,8 +28,11 @@ public class MadcatToDae {
 	private PageElementToken token = new PageElementToken();
 	private ArrayList<Point> points;
 	private PageElementSegment segment = new PageElementSegment();
-	private ArrayList<PageElementToken> tokens= new ArrayList<PageElementToken>();
+	private static String path = "/dae/database/openhart/image/";
+	private String zoneName;
+	
 	private String src;
+	private String ref;
 	
 	public MadcatToDae(){
 		bdd = new BDDAccess();
@@ -42,9 +43,10 @@ public class MadcatToDae {
 	
 	public void insertDoc(Attributes attributes){
 		String id = attributes.getValue("id");
-		src = attributes.getValue("src");
+		src = path + attributes.getValue("src");
 		String nbPages = attributes.getValue("nbpages");
 		String type = attributes.getValue("type");
+		
 		
 		dataset = new Dataset();
 		dataset.setName(id);
@@ -58,8 +60,10 @@ public class MadcatToDae {
 		
 		try {
 			if(dataset.insert(bdd)){
+				
 				pepv.insertWithDataset(bdd, dataset.getId());
 			}
+			System.out.println(dataset.getId());
 		} catch (SQLException e) {
 			System.err.println("Fail to insert dataset " + id); 
 			e.printStackTrace();
@@ -106,11 +110,11 @@ public class MadcatToDae {
 	}
 	
 	public void prepareZone(Attributes attributes){
-		String id = attributes.getValue("id");
+		zoneName = attributes.getValue("id");
 		String type = attributes.getValue("type");
 		
 		zone = new PageElementZone();
-		zone.setName("Dataset " + dataset.getName() + " " + id);
+		zone.setName("Dataset " + dataset.getName() + " " + zoneName);
 		zone.setType(type);
 		
 	}
@@ -137,9 +141,9 @@ public class MadcatToDae {
 		boundary = boundary.substring(0, index);
 		
 		zone.setBoundary(boundary);
-		if(tokensImages.isEmpty()){
-			zones.put(zone.getName(), zone);
-		}
+		zones.put(zoneName, zone);
+		
+		
 	}
 	
 	public void prepareTokenImage(Attributes attributes){
@@ -160,15 +164,15 @@ public class MadcatToDae {
 		botRight = points.get(0);
 		for(int i=1;i<points.size();i++){
 			Point p = points.get(i);
-			if(p.x<=topLeft.x && p.y>=topLeft.y){
+			if(p.x<=topLeft.x && p.y<=topLeft.y){
 				topLeft = p;
 			}
-			else if(p.x>=botRight.x && p.y<=botRight.y){
+			else if(p.x>=botRight.x && p.y>=botRight.y){
 				botRight = p;
 			}
 			
 		}
-		int height = topLeft.y - botRight.y;
+		int height = botRight.y - topLeft.y;
 		int width = botRight.x - topLeft.x;
 		token.setHeight(height);
 		token.setWidth(width);
@@ -203,8 +207,9 @@ public class MadcatToDae {
 	}
 	
 	public void insertZone(String name){
-		zone = (PageElementZone) zones.get("Dataset " + dataset.getName() + " " + name);
+		zone = (PageElementZone) zones.get(name);
 		PageElementPropertyValue type = new PageElementPropertyValue();
+		
 		
 		type.setName(zone.getName() + " type");
 		type.setValue(zone.getType());
@@ -216,7 +221,7 @@ public class MadcatToDae {
 		boundaryPV.setValueTypeId(DataTypeProperty.BOUNDARY);
 		
 		try {
-			zone.insert(bdd, segment);
+			zone.insert(bdd, segment,image);
 			type.insertWithPageElement(bdd, zone.getId());
 			boundaryPV.insertWithPageElement(bdd, zone.getId());
 		} catch (SQLException e) {
@@ -230,7 +235,7 @@ public class MadcatToDae {
 		PageElementPropertyValue transcription = new PageElementPropertyValue();
 		transcription.setName(segment.getName() + " transcription");
 		transcription.setValue(phrase);
-		transcription.setValueTypeId(DataTypeProperty.TRANSCRIPTION);
+		transcription.setValueTypeId(DataTypeProperty.TRANSCRIPTION); 
 		try {
 			transcription.insertWithPageElement(bdd, segment.getId());
 		} catch (SQLException e) {
@@ -253,7 +258,7 @@ public class MadcatToDae {
 	}
 	
 	public void prepareToken(Attributes attributes){
-		String ref = attributes.getValue("ref_id");
+		ref = attributes.getValue("ref_id");
 		token = (PageElementToken) tokensImages.get("Dataset " + dataset.getName() + " " + ref);
 		
 	}
@@ -261,13 +266,13 @@ public class MadcatToDae {
 		PageElementPropertyValue sourcePV = new PageElementPropertyValue();
 		zone = token.getParent();
 		
-		sourcePV.setName(segment.getName() + " transcription");
+		sourcePV.setName(dataset.getName() + ref);
 		sourcePV.setValue(source);
 		sourcePV.setValueTypeId(DataTypeProperty.SOURCE);
 		
 		try {
-			zone.insert(bdd, segment);
-			token.insert(bdd, zone);
+			zone.insert(bdd, segment,image);
+			token.insert(bdd, zone,image);
 			sourcePV.insertWithPageElement(bdd, token.getId());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
