@@ -1,6 +1,7 @@
 package parser;
 
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,7 +27,8 @@ public class MadcatToDae {
 	private String boundary = "";
 	private HashMap tokensImages;
 	private PageElementToken token = new PageElementToken();
-	private ArrayList<Point> points;
+	private ArrayList<Point> tokenPoints;
+	private ArrayList<Point> zonePoints;
 	private PageElementSegment segment = new PageElementSegment();
 	private static String path = "/dae/database/openhart/image/";
 	private String zoneName;
@@ -85,7 +87,7 @@ public class MadcatToDae {
 	public void insertPage(Attributes attributes){
 		String id = attributes.getValue("id");
 		int dpi = Integer.parseInt(attributes.getValue("dpi"));
-		int colordepth = Integer.parseInt(attributes.getValue("colordepth"));
+		//int colordepth = Integer.parseInt(attributes.getValue("colordepth"));
 		int width = Integer.parseInt(attributes.getValue("width"));
 		int height = Integer.parseInt(attributes.getValue("height"));
 		
@@ -125,11 +127,14 @@ public class MadcatToDae {
 		
 		if(!inToken){
 			boundary += "(" + x + "," + y + ");";
+			Point point = new Point();
+			point.setLocation(x,y);
+			zonePoints.add(point);
 		}
 		if(inToken){
 			Point point = new Point();
 			point.setLocation(x, y);
-			points.add(point);
+			tokenPoints.add(point);
 			
 		}
 	}
@@ -149,7 +154,7 @@ public class MadcatToDae {
 	public void prepareTokenImage(Attributes attributes){
 		inToken = true;
 		String id = attributes.getValue("id");
-		points = new ArrayList<Point>();
+		tokenPoints = new ArrayList<Point>();
 		
 		
 		token = new PageElementToken();
@@ -157,32 +162,12 @@ public class MadcatToDae {
 	}
 	
 	public void endTokenImage(){
-		Point topLeft = new Point();
-		Point botRight = new Point();
+		Rectangle rect = buildRectangle(tokenPoints);
 		
-		topLeft = points.get(0);
-		botRight = points.get(0);
-		for(int i=1;i<points.size();i++){
-			Point p = points.get(i);
-			if(p.x<=topLeft.x && p.y<=topLeft.y){
-				topLeft = p;
-			}
-			else if(p.x>=botRight.x && p.y>=botRight.y){
-				botRight = p;
-			}
-			
-		}
-		int height = botRight.y - topLeft.y;
-		int width = botRight.x - topLeft.x;
-		token.setHeight(height);
-		token.setWidth(width);
-		token.setTopLeftX(topLeft.x);
-		token.setTopLeftY(topLeft.y);
-		
-		Point p = new Point(3988,916);
-		
-		
-		
+		token.setHeight(rect.height);
+		token.setWidth(rect.width);
+		token.setTopLeftX(rect.x);
+		token.setTopLeftY(rect.y);
 		
 		token.setParent(zone);
 		
@@ -220,6 +205,14 @@ public class MadcatToDae {
 		boundaryPV.setValue(zone.getBoundary());
 		boundaryPV.setValueTypeId(DataTypeProperty.BOUNDARY);
 		
+		Rectangle rect = buildRectangle(zonePoints);
+		
+		zone.setWidth(rect.width);
+		zone.setHeight(rect.height);
+		zone.setTopLeftX(rect.x);
+		zone.setTopLeftY(rect.y);
+			
+			
 		try {
 			zone.insert(bdd, segment,image);
 			type.insertWithPageElement(bdd, zone.getId());
@@ -285,5 +278,33 @@ public class MadcatToDae {
 	public void close() throws SQLException{
 		bdd.close();
 	}
+	
+	public Rectangle buildRectangle(ArrayList<Point> points){
+		Rectangle rect = new Rectangle();
+		
+		Point topLeft = new Point();
+		Point botRight = new Point();
+		
+		topLeft = points.get(0);
+		botRight = points.get(0);
+		for(int i=1;i<points.size();i++){
+			Point p = points.get(i);
+			if(p.x<=topLeft.x && p.y<=topLeft.y){
+				topLeft = p;
+			}
+			else if(p.x>=botRight.x && p.y>=botRight.y){
+				botRight = p;
+			}
+			
+		}
+		int height = botRight.y - topLeft.y;
+		int width = botRight.x - topLeft.x;
+		
+		rect.setLocation(topLeft.x, topLeft.y);
+		rect.setSize(width, height);
+		
+		return rect;
+	}
+	
 	
 }

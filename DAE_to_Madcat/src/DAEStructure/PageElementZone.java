@@ -13,6 +13,10 @@ public class PageElementZone {
 	private String boundary;
 	private String name;
 	private String type;
+	private int topLeftX;
+	private int topLeftY;
+	private int width;
+	private int height;
 	
 	private ArrayList<PageElementToken> mots;
 	private PageElementPropertyValue transcription;
@@ -83,6 +87,46 @@ public class PageElementZone {
 		this.name = name;
 	}
 	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public int getTopLeftX() {
+		return topLeftX;
+	}
+
+	public void setTopLeftX(int topLeftX) {
+		this.topLeftX = topLeftX;
+	}
+
+	public int getTopLeftY() {
+		return topLeftY;
+	}
+
+	public void setTopLeftY(int topLeftY) {
+		this.topLeftY = topLeftY;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
 	public boolean insert(BDDAccess bdd, PageElementSegment segment,PageImage image) throws SQLException{
 		String query = "SELECT DAE.DATA_ITEM_UNDERLYING.ID FROM DAE.DATA_ITEM_UNDERLYING WHERE DAE.DATA_ITEM_UNDERLYING.DESCRIPTION = '" + name + "'";
 		ResultSet result = bdd.executeQuery(query);
@@ -92,10 +136,15 @@ public class PageElementZone {
 			bdd.insertImageDataItem(id);
 			bdd.insertPhysicalImageDataItem(id);
 
-			query = "INSERT INTO DAE.PAGE_ELEMENT_UNDERLYING (ID) VALUES (?)";
+			query = "INSERT INTO DAE.PAGE_ELEMENT_UNDERLYING (ID,TOPLEFTX,TOPLEFTY,WIDTH,HEIGHT) VALUES (?,?,?,?,?)";
 			ArrayList<Object> collumns = new ArrayList<Object>();
 
 			collumns.add(this.id);
+			collumns.add(this.topLeftX);
+			collumns.add(this.topLeftY);
+			collumns.add(this.width);
+			collumns.add(this.height);
+			
 			//collumns.add(this.boundary);
 
 			bdd.insert(query, collumns);
@@ -105,6 +154,7 @@ public class PageElementZone {
 
 			collumns.add(segment.getId());
 			collumns.add(this.id);
+			
 
 			bdd.insert(query, collumns);
 			
@@ -127,13 +177,6 @@ public class PageElementZone {
 		return false;
 	}
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
+	
 
 }

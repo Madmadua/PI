@@ -11,6 +11,10 @@ public class PageElementSegment {
 	
 	private String boundary;
 	private String name;
+	private int topLeftX;
+	private int topLeftY;
+	private int width;
+	private int height;
 	
 	private ArrayList<PageElementZone> zones;
 	private PageElementPropertyValue transcription;
@@ -89,10 +93,15 @@ public class PageElementSegment {
 			bdd.insertImageDataItem(id);
 			bdd.insertPhysicalImageDataItem(id);
 
-			query = "INSERT INTO DAE.PAGE_ELEMENT_UNDERLYING (ID) VALUES (?)";
+			query = "INSERT INTO DAE.PAGE_ELEMENT_UNDERLYING (ID,TOPLEFTX,TOPLEFTY,WIDTH,HEIGHT) VALUES (?,?,?,?,?)";
 			ArrayList<Object> collumns = new ArrayList<Object>();
 
 			collumns.add(this.id);
+			collumns.add(this.topLeftX);
+			collumns.add(this.topLeftY);
+			collumns.add(this.width);
+			collumns.add(this.height);
+			
 			//collumns.add(this.boundary);
 
 			bdd.insert(query, collumns);
@@ -113,6 +122,38 @@ public class PageElementSegment {
 		result.close();
 		bdd.closeStatement();
 		return false;
+	}
+
+	public int getTopLeftX() {
+		return topLeftX;
+	}
+
+	public void setTopLeftX(int topLeftX) {
+		this.topLeftX = topLeftX;
+	}
+
+	public int getTopLeftY() {
+		return topLeftY;
+	}
+
+	public void setTopLeftY(int topLeftY) {
+		this.topLeftY = topLeftY;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
 	}
 
 	
