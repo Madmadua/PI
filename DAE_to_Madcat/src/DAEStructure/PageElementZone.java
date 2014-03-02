@@ -1,4 +1,5 @@
 package DAEStructure;
+import java.awt.Point;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class PageElementZone {
 	private int topLeftY;
 	private int width;
 	private int height;
+	private ArrayList<Point> points;
 	
 	private ArrayList<PageElementToken> mots;
 	private PageElementPropertyValue transcription;
@@ -175,6 +177,14 @@ public class PageElementZone {
 		result.close();
 		bdd.closeStatement();
 		return false;
+	}
+
+	public ArrayList<Point> getPoints() {
+		return points;
+	}
+
+	public void setPoints(ArrayList<Point> points) {
+		this.points = points;
 	}
 
 	

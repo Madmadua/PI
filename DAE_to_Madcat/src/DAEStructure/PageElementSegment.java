@@ -15,6 +15,7 @@ public class PageElementSegment {
 	private int topLeftY;
 	private int width;
 	private int height;
+	private boolean inserted = false;
 	
 	private ArrayList<PageElementZone> zones;
 	private PageElementPropertyValue transcription;
@@ -83,47 +84,6 @@ public class PageElementSegment {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public boolean insert(BDDAccess bdd, PageImage image) throws SQLException{
-		String query = "SELECT DAE.DATA_ITEM_UNDERLYING.ID FROM DAE.DATA_ITEM_UNDERLYING WHERE DAE.DATA_ITEM_UNDERLYING.DESCRIPTION = '" + name + "'";
-		ResultSet result = bdd.executeQuery(query);
-		
-		if(!result.next()){
-			this.id = bdd.insertDataItem(name, "page_element");
-			bdd.insertImageDataItem(id);
-			bdd.insertPhysicalImageDataItem(id);
-
-			query = "INSERT INTO DAE.PAGE_ELEMENT_UNDERLYING (ID,TOPLEFTX,TOPLEFTY,WIDTH,HEIGHT) VALUES (?,?,?,?,?)";
-			ArrayList<Object> collumns = new ArrayList<Object>();
-
-			collumns.add(this.id);
-			collumns.add(this.topLeftX);
-			collumns.add(this.topLeftY);
-			collumns.add(this.width);
-			collumns.add(this.height);
-			
-			//collumns.add(this.boundary);
-
-			bdd.insert(query, collumns);
-
-			query = "INSERT INTO DAE.CONTAINS_PAGE_ELEMENT (PAGE_ELEMENT_ID,PAGE_IMAGE_ID) VALUES (?,?)";
-			collumns = new ArrayList<Object>();
-
-			collumns.add(this.id);
-			collumns.add(image.getId());
-
-			bdd.insert(query, collumns);
-			result.close();
-			bdd.closeStatement();
-			return true;
-		}
-		id = result.getInt(1);
-		System.err.println("Page Element " + name + " already exists");
-		result.close();
-		bdd.closeStatement();
-		return false;
-	}
-
 	public int getTopLeftX() {
 		return topLeftX;
 	}
@@ -156,5 +116,65 @@ public class PageElementSegment {
 		this.height = height;
 	}
 
+	public boolean prepare(BDDAccess bdd,PageImage image) throws SQLException{
+		String query = "SELECT DAE.DATA_ITEM_UNDERLYING.ID FROM DAE.DATA_ITEM_UNDERLYING WHERE DAE.DATA_ITEM_UNDERLYING.DESCRIPTION = '" + name + "'";
+		ResultSet result = bdd.executeQuery(query);
+		
+		if(!result.next()){
+			this.id = bdd.insertDataItem(name, "page_element");
+			bdd.insertImageDataItem(id);
+			bdd.insertPhysicalImageDataItem(id);
+			
+			query = "INSERT INTO DAE.PAGE_ELEMENT_UNDERLYING (ID) VALUES (?)";
+			ArrayList<Object> collumns = new ArrayList<Object>();
+
+			collumns.add(this.id);
+			
+			//collumns.add(this.boundary);
+
+			bdd.insert(query, collumns);
+
+			query = "INSERT INTO DAE.CONTAINS_PAGE_ELEMENT (PAGE_ELEMENT_ID,PAGE_IMAGE_ID) VALUES (?,?)";
+			collumns = new ArrayList<Object>();
+
+			collumns.add(this.id);
+			collumns.add(image.getId());
+
+			bdd.insert(query, collumns);
+			bdd.closeStatement();
+			result.close();
+			inserted = true;
+			return true;
+		}
+		id = result.getInt(1);
+		System.err.println("Page Element " + name + " already exists");
+		result.close();
+		bdd.closeStatement();
+		inserted = false;
+		return false;
+	}
+
+	public boolean insert(BDDAccess bdd) throws SQLException{
+		if(inserted){
+			String query = "UPDATE DAE.PAGE_ELEMENT_UNDERLYING " +
+					"SET TOPLEFTX = ?," +
+					"TOPLEFTY = ?," +
+					"WIDTH = ?," +
+					"HEIGHT = ?" +
+					"WHERE ID = ?";
+			ArrayList<Object> collumns = new ArrayList<Object>();
+
+			collumns.add(this.topLeftX);
+			collumns.add(this.topLeftY);
+			collumns.add(this.width);
+			collumns.add(this.height);
+			collumns.add(id);
+			
+			//collumns.add(this.boundary);
+
+			bdd.insert(query, collumns);
+		}
+		return inserted;
+	}
 	
 }

@@ -29,6 +29,7 @@ public class MadcatToDae {
 	private PageElementToken token = new PageElementToken();
 	private ArrayList<Point> tokenPoints;
 	private ArrayList<Point> zonePoints;
+	private ArrayList<Point> segmentPoints;
 	private PageElementSegment segment = new PageElementSegment();
 	private static String path = "/dae/database/openhart/image/";
 	private String zoneName;
@@ -40,7 +41,8 @@ public class MadcatToDae {
 		bdd = new BDDAccess();
 		zones = new HashMap();
 		tokensImages = new HashMap();
-		
+		zonePoints = new ArrayList<Point>();
+		segmentPoints = new ArrayList<Point>();
 	}
 	
 	public void insertDoc(Attributes attributes){
@@ -146,7 +148,9 @@ public class MadcatToDae {
 		boundary = boundary.substring(0, index);
 		
 		zone.setBoundary(boundary);
+		zone.setPoints(zonePoints);
 		zones.put(zoneName, zone);
+		zonePoints = new ArrayList<Point>();
 		
 		
 	}
@@ -181,10 +185,11 @@ public class MadcatToDae {
 		String id = attributes.getValue("id");
 		
 		segment = new PageElementSegment();
+		segmentPoints = new ArrayList<Point>();
 		segment.setName("Dataset " + dataset.getName() + " " + id);
 		
 		try {
-			segment.insert(bdd, image);
+			segment.prepare(bdd,image);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -205,7 +210,9 @@ public class MadcatToDae {
 		boundaryPV.setValue(zone.getBoundary());
 		boundaryPV.setValueTypeId(DataTypeProperty.BOUNDARY);
 		
-		Rectangle rect = buildRectangle(zonePoints);
+		ArrayList<Point> points = zone.getPoints();
+		Rectangle rect = buildRectangle(points);
+		segmentPoints.addAll(points);
 		
 		zone.setWidth(rect.width);
 		zone.setHeight(rect.height);
@@ -306,5 +313,19 @@ public class MadcatToDae {
 		return rect;
 	}
 	
-	
+	public void updateSegment(){
+		Rectangle rect = buildRectangle(segmentPoints);
+		
+		segment.setTopLeftX(rect.x);
+		segment.setTopLeftY(rect.y);
+		segment.setHeight(rect.height);
+		segment.setWidth(rect.width);
+		
+		try {
+			segment.insert(bdd);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

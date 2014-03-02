@@ -90,6 +90,10 @@ public class MadcatHandler extends DefaultHandler{
 					dae.endToken(buffer.toString());
 					buffer = null;
 				}
+				if(qName.equals("segment")){
+					dae.updateSegment();
+				}
+						
 				
 	}
 	public void characters(char[] ch,int start, int length)
