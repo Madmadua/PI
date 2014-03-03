@@ -13,7 +13,6 @@ public class Dataset {
 	private String purpose;
 
 	private ArrayList<PageImage> images;
-	private DatasetSection content;
 	private PageElementPropertyValue writer;
 
 
@@ -59,14 +58,6 @@ public class Dataset {
 
 	public void setImages(ArrayList<PageImage> images) {
 		this.images = images;
-	}
-
-	public DatasetSection getContent() {
-		return content;
-	}
-
-	public void setContent(DatasetSection content) {
-		this.content = content;
 	}
 
 	public PageElementPropertyValue getWriter() {
