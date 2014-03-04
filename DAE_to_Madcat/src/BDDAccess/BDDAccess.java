@@ -193,7 +193,6 @@ public class BDDAccess {
 			try{
 				Statement state;
 				state = conn.createStatement();
-				System.out.println("Il est passé par ici!");
 				ResultSet result = state.executeQuery(
 						"SELECT PAGE_ELEMENT_UNDERLYING.ID " +
 								"FROM CONTAINS_PAGE_ELEMENT, PAGE_ELEMENT_UNDERLYING " +
@@ -204,7 +203,6 @@ public class BDDAccess {
 								" FROM PAGE_ELEMENT_UNDERLYING, ASSOCIATE_PAGE_ELEMENT" +
 								" WHERE PAGE_ELEMENT_UNDERLYING.ID = ASSOCIATE_PAGE_ELEMENT.ASSOCIATING_PAGE_ELEMENT_ID)"
 						);
-				System.out.println("Il repassera par là!");
 
 				ResultSetMetaData resultMeta = result.getMetaData();
 
@@ -224,7 +222,6 @@ public class BDDAccess {
 					log.logInfo("PageElementSegment associé à PageImage:" + image.getId() + " importé (ID:" +
 							elementId + ", boudary:" +
 							boundary + ")");
-					System.out.println("seg id : "+segment.getId());
 					ArrayList<PageElementSegment> seg = image.getSegments();
 					seg.add(segment);
 					image.setSegments(seg);
@@ -363,6 +360,7 @@ public class BDDAccess {
 							String value = this.clobToString((Clob) result.getObject(3));
 
 							if(valueType == DataTypeProperty.BOUNDARY){
+								System.out.println(value+pvId+"toto");
 								zone.setBoundary(value);
 							}
 							if(valueType == DataTypeProperty.TRANSLATION){
@@ -410,7 +408,10 @@ public class BDDAccess {
 							}
 
 							int tokenId = Integer.valueOf(result.getObject(1).toString());
-							int pixels = Integer.valueOf(result.getObject(2).toString());
+							int pixels = 0;
+							if(result.getObject(2) != null){
+								pixels = Integer.valueOf(result.getObject(2).toString());
+							}
 							int topLeftX = Integer.valueOf(result.getObject(3).toString());
 							int topLeftY = Integer.valueOf(result.getObject(4).toString());
 							int width = Integer.valueOf(result.getObject(5).toString());
@@ -454,7 +455,7 @@ public class BDDAccess {
 											"FROM PAGE_ELEMENT_P_VAL_UNDERLYING, HAS_VALUE, INCLUDES_PE_PV " +
 											"WHERE HAS_VALUE.PAGE_ELEMENT_ID = " + String.valueOf(token.getId()) +
 											" AND PAGE_ELEMENT_P_VAL_UNDERLYING.ID = HAS_VALUE.PAGE_ELEMENT_PROPERTY_VALUE_ID" +
-											" AND INCLUDES_PE_PV.DATASET.ID = " + String.valueOf(dataset.getId()) +
+											" AND INCLUDES_PE_PV.DATASET_ID = " + String.valueOf(dataset.getId()) +
 											" AND INCLUDES_PE_PV.PAGE_ELEMENT_PROPERTY_VALUE_ID = PAGE_ELEMENT_P_VAL_UNDERLYING.ID"
 									);
 
@@ -493,7 +494,6 @@ public class BDDAccess {
 
 					}
 					for(PageElementToken p : tokens){
-						System.out.println(p.getId());
 					}
 					zone.setMots(tokens);
 
@@ -502,7 +502,6 @@ public class BDDAccess {
 
 			}
 			for(PageElementSegment p : segments){
-				System.out.println("seg : "+p.getId());
 			}
 			image.setSegments(segments);
 

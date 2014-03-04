@@ -67,7 +67,6 @@ public class MadcatGenerator {
 						affiche();
 					}else{
 						if(error == 0){
-							System.out.println(args[2]);
 							enregistre(args[2]);
 						}
 					}
@@ -275,7 +274,11 @@ public class MadcatGenerator {
 
 	public ArrayList<Point> genererPoints(String boundary) throws MyGeneratorException {
 		ArrayList<Point> points = new ArrayList<Point>();
+		System.out.println("boundary : " + boundary);
 		//(1,2);(3,5)
+		if(boundary == ""){
+			return points;
+		}
 		String[] boundarySplit = boundary.split(";");
 		for(String point : boundarySplit){
 			point = point.replace(")(", ",");
@@ -288,6 +291,7 @@ public class MadcatGenerator {
 			}
 			
 			if(pointSplit.length != 2 && pointSplit.length != 4){
+				System.out.println(boundary);
 				throw new MyGeneratorException("[genererPoints] Erreur boundary mal formé : " + boundary);
 			}else{
 				points.add(new Point(Integer.valueOf(pointSplit[0]),Integer.valueOf(pointSplit[1])));
