@@ -189,7 +189,7 @@ public class MadcatToDae {
 		segment.setName("Dataset " + dataset.getName() + " " + id);
 		
 		try {
-			segment.prepare(bdd,image);
+			segment.insert(bdd,image);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -211,6 +211,7 @@ public class MadcatToDae {
 		boundaryPV.setValueTypeId(DataTypeProperty.BOUNDARY);
 		
 		ArrayList<Point> points = zone.getPoints();
+		System.out.println(zone.getName() + " x=" + points.get(0).x + " y=" + points.get(0).y);
 		Rectangle rect = buildRectangle(points);
 		segmentPoints.addAll(points);
 		
@@ -289,21 +290,33 @@ public class MadcatToDae {
 	public Rectangle buildRectangle(ArrayList<Point> points){
 		Rectangle rect = new Rectangle();
 		
-		Point topLeft = new Point();
-		Point botRight = new Point();
+		Point topLeft = points.get(0);
+		Point botRight = points.get(0);
 		
-		topLeft = points.get(0);
-		botRight = points.get(0);
+		
+		
 		for(int i=1;i<points.size();i++){
 			Point p = points.get(i);
-			if(p.x<=topLeft.x && p.y<=topLeft.y){
-				topLeft = p;
+			System.out.println(topLeft.toString());
+			if(p.x<topLeft.x){
+				Point np = new Point(p.x,topLeft.y);
+				topLeft = np;
 			}
-			else if(p.x>=botRight.x && p.y>=botRight.y){
-				botRight = p;
+			if(p.y<topLeft.y){
+				Point np = new Point(topLeft.x,p.y);
+			}
+			if(p.x>botRight.x){
+				Point np = new Point(p.x,botRight.y);
+				botRight = np;
+			}
+			if(p.y>botRight.y){
+				Point np = new Point(botRight.x,p.y);
+				botRight = np;
 			}
 			
 		}
+		System.out.println(topLeft.toString());
+		System.out.println(botRight.toString());
 		int height = botRight.y - topLeft.y;
 		int width = botRight.x - topLeft.x;
 		
@@ -322,7 +335,7 @@ public class MadcatToDae {
 		segment.setWidth(rect.width);
 		
 		try {
-			segment.insert(bdd);
+			segment.update(bdd);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

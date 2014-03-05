@@ -116,7 +116,7 @@ public class PageElementSegment {
 		this.height = height;
 	}
 
-	public boolean prepare(BDDAccess bdd,PageImage image) throws SQLException{
+	public boolean insert(BDDAccess bdd,PageImage image) throws SQLException{
 		String query = "SELECT DAE.DATA_ITEM_UNDERLYING.ID FROM DAE.DATA_ITEM_UNDERLYING WHERE DAE.DATA_ITEM_UNDERLYING.DESCRIPTION = '" + name + "'";
 		ResultSet result = bdd.executeQuery(query);
 		
@@ -154,7 +154,7 @@ public class PageElementSegment {
 		return false;
 	}
 
-	public boolean insert(BDDAccess bdd) throws SQLException{
+	public boolean update(BDDAccess bdd) throws SQLException{
 		if(inserted){
 			String query = "UPDATE DAE.PAGE_ELEMENT_UNDERLYING " +
 					"SET TOPLEFTX = ?," +
