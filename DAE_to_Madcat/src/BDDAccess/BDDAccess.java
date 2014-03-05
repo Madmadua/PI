@@ -148,15 +148,18 @@ public class BDDAccess {
 				int vdpi = 0;
 				int hdpi = 0;
 				int skew = 0;
-				String path = "";//result.getObject(5).toString();
+				String path = "";
+				if(result.getObject(5) != null){
+					path = result.getObject(5).toString();
+				}
 				int width = Integer.valueOf(result.getObject(6).toString());
 				int height = Integer.valueOf(result.getObject(7).toString());
 				ArrayList<PageElementSegment> segments = new ArrayList<PageElementSegment>();
 
-				if(result.getObject(2).toString() != "null"){
+				if(result.getObject(2) != "null"){
 					vdpi = Integer.valueOf(result.getObject(2).toString());
 				}
-				if(result.getObject(3).toString() != "null"){
+				if(result.getObject(3) != "null"){
 					hdpi = Integer.valueOf(result.getObject(3).toString());
 				}
 				/*if(result.getObject(4).toString() != "null"){
@@ -493,15 +496,11 @@ public class BDDAccess {
 						}
 
 					}
-					for(PageElementToken p : tokens){
-					}
 					zone.setMots(tokens);
 
 				}
 				segment.setZones(zones);
 
-			}
-			for(PageElementSegment p : segments){
 			}
 			image.setSegments(segments);
 
