@@ -13,7 +13,7 @@ public class Dataset {
 	private String purpose;
 
 	private ArrayList<PageImage> images;
-	private PageElementPropertyValue writer;
+	private String writer;
 
 
 	public Dataset(int id, String name, String purpose, ArrayList<PageImage> images) {
@@ -60,11 +60,11 @@ public class Dataset {
 		this.images = images;
 	}
 
-	public PageElementPropertyValue getWriter() {
+	public String getWriter() {
 		return writer;
 	}
 
-	public void setWriter(PageElementPropertyValue writer) {
+	public void setWriter(String writer) {
 		this.writer = writer;
 	}
 

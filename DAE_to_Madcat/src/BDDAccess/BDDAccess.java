@@ -7,12 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import Constants.DataTypeProperty;
-import DAEStructure.Dataset;
-import DAEStructure.PageElementPropertyValue;
-import DAEStructure.PageElementSegment;
-import DAEStructure.PageElementToken;
-import DAEStructure.PageElementZone;
-import DAEStructure.PageImage;
+import DAEStructure.*;
 import Exception.MyBDDException;
 import Log.Log;
 
@@ -99,6 +94,42 @@ public class BDDAccess {
 				//dataset.setPurpose(result.getObject(3).toString());
 
 				log.logInfo("Dataset importé (ID:" + id + ", name:" + result.getObject(2).toString() + ", purpose:" + result.getObject(2).toString() + ")");
+			}else{
+				throw new MyBDDException("Erreur BDDAcces/getDataset/2 pas de dataset avec l'id " + id);
+			}
+
+			if(result.next()){
+				throw new MyBDDException("Erreur BDDAcces/getDataset/2 plusieurs dataset avec l'id " + id);
+			}
+
+			result.close();
+			state.close();
+
+		}catch (Exception e) {
+			if(e instanceof MyBDDException){
+				throw new MyBDDException(((MyBDDException) e).getDescription());
+			}else{
+				e.printStackTrace();
+			}
+		}
+		
+		// 2.2 recup writer
+		try{
+			Statement state;
+			state = conn.createStatement();
+			ResultSet result = state.executeQuery("SELECT PERSON.NAME " +
+												" FROM PERSON, CONTRIBUTE" +
+												" WHERE CONTRIBUTE.DATA_ITEM_ID = " + String.valueOf(id) +
+												" AND PERSON.ID = CONTRIBUTE.PERSON_ID");
+			ResultSetMetaData resultMeta = result.getMetaData();
+
+			if(resultMeta.getColumnCount() != 1){
+				throw new MyBDDException("Erreur BDDAcces/getDataset/2.2");
+			}
+
+			if(result.next()){
+				dataset.setWriter(result.getObject(1).toString());
+
 			}else{
 				throw new MyBDDException("Erreur BDDAcces/getDataset/2 pas de dataset avec l'id " + id);
 			}
@@ -362,10 +393,6 @@ public class BDDAccess {
 							int valueType = Integer.valueOf(result.getObject(2).toString());
 							String value = this.clobToString((Clob) result.getObject(3));
 
-							if(valueType == DataTypeProperty.BOUNDARY){
-								System.out.println(value+pvId+"toto");
-								zone.setBoundary(value);
-							}
 							if(valueType == DataTypeProperty.TRANSLATION){
 								zone.setTraduction(new PageElementPropertyValue(pvId, "traduction", value));
 								log.logInfo("Traduction du PEZone:" + zone.getId() + " importé (ID:" +
@@ -375,6 +402,45 @@ public class BDDAccess {
 								zone.setTraduction(new PageElementPropertyValue(pvId, "transcription", value));
 								log.logInfo("Transcription du PEZone:" + zone.getId() + " importé (ID:" +
 										pvId + ", value:" + value +")");
+							}
+						}
+
+					}catch (Exception e) {
+						if(e instanceof MyBDDException){
+							throw new MyBDDException(((MyBDDException) e).getDescription());
+						}else{
+							e.printStackTrace();
+						}
+					}
+					
+					// recuperation du boundary
+					try{
+						Statement state;
+						state = conn.createStatement();
+						ResultSet result = state.executeQuery(
+								"SELECT PAGE_ELEMENT_P_VAL_UNDERLYING.ID, " +
+										"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE_TYPE, " +
+										"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE " +
+										"FROM PAGE_ELEMENT_P_VAL_UNDERLYING, HAS_VALUE " +
+										"WHERE HAS_VALUE.PAGE_ELEMENT_ID = " + String.valueOf(zone.getId()) +
+										" AND PAGE_ELEMENT_P_VAL_UNDERLYING.ID = HAS_VALUE.PAGE_ELEMENT_PROPERTY_VALUE_ID"
+								);
+
+						ResultSetMetaData resultMeta = result.getMetaData();
+
+						while(result.next()){
+
+							if(resultMeta.getColumnCount() != 3){
+								throw new MyBDDException("Erreur BDDAcces/getDataset/4.2.3.1 nombre de collones.");
+							}
+
+							int pvId = Integer.valueOf(result.getObject(1).toString());
+							int valueType = Integer.valueOf(result.getObject(2).toString());
+							String value = this.clobToString((Clob) result.getObject(3));
+
+							if(valueType == DataTypeProperty.BOUNDARY){
+								System.out.println(value+pvId+"toto");
+								zone.setBoundary(value);
 							}
 						}
 

@@ -96,6 +96,7 @@ public class MadcatGenerator {
 	}
 	
 	private void generate(boolean isDIR, boolean isDTT, boolean isRef) throws MyGeneratorException{
+		//Attribution des attribut de la balise doc
 		Attribute version = new Attribute("version", "2008.1");
 		racine.setAttribute(version);
 		
@@ -111,12 +112,14 @@ public class MadcatGenerator {
 		racine.addContent(doc);
 		
 		Element writer = new Element("writer");
-		Attribute wId = new Attribute("id", "qsfgsg"); // a modifier ****************************************
+		Attribute wId = new Attribute("id", dataset.getWriter()); 
 		writer.setAttribute(wId);
 		doc.addContent(writer);
 		
 		Element image = new Element("image");
 		doc.addContent(image);
+		
+		//La partie image contiendra les zones et les point les consernant
 		
 		for(PageImage pageImage : dataset.getImages()){
 			
@@ -133,6 +136,7 @@ public class MadcatGenerator {
 			page.setAttribute(dpi);
 			image.addContent(page);
 			
+			//On récupère toutes les zones pour en afficher les points.
 			for(PageElementSegment segment : pageImage.getSegments()){
 				for(PageElementZone zone : segment.getZones()){
 					Element eZone = new Element("zone");
@@ -155,6 +159,7 @@ public class MadcatGenerator {
 						polygon.addContent(polyPoint);
 					}
 					
+					//Si on demande un madcat de référence on affiche aussi les tokens.
 					if(isRef){
 						for(PageElementToken token : zone.getMots()){
 							Element tokenImage = new Element("token-image");
@@ -198,6 +203,7 @@ public class MadcatGenerator {
 			}
 		}
 		
+		//On passe à l'affichage du contenu
 		Element content = new Element("content");
 		doc.addContent(content);
 		
