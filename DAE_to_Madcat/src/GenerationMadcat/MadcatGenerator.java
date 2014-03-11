@@ -238,7 +238,14 @@ public class MadcatGenerator {
 							seg.addContent(tokenE);
 							
 							Element source = new Element("source");
-							source.addContent(token.getTranscription().getValue());
+							//System.out.println(token.getTraduction().getValue());
+							//System.out.println(token.getTranscription().getValue());
+							//System.out.println(token.getSource().getValue());
+							if(token.getSource() != null){
+								source.addContent(token.getSource().getValue());
+							}else{
+								System.out.println("le token "+token.getName()+" n'as dans de source");
+							}
 							tokenE.addContent(source);
 						}
 					}
@@ -246,13 +253,21 @@ public class MadcatGenerator {
 				
 				if(isRef || isDTT){
 					Element transcription = new Element("transcription");
-					transcription.addContent(segmentC.getTranscription().getValue());
+					if(segmentC.getTranscription() != null){
+						transcription.addContent(segmentC.getTranscription().getValue());
+					}else{
+						System.out.println("le segment "+segmentC.getName()+" n'as dans de transcription");
+					}
 					seg.addContent(transcription);
 				}
 				
 				if(isRef){
 					Element translation = new Element("translation");
-					translation.addContent(segmentC.getTraduction().getValue());
+					if(segmentC.getTranscription() != null){
+						translation.addContent(segmentC.getTraduction().getValue());
+					}else{
+						System.out.println("le segment "+segmentC.getName()+" n'as dans de traduction");
+					}
 					seg.addContent(translation);
 				}
 				
@@ -264,7 +279,7 @@ public class MadcatGenerator {
 		try{
 			XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
 			sortie.output(document, System.out);
-		}catch(java.io.IOException e){
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
@@ -280,7 +295,6 @@ public class MadcatGenerator {
 
 	public ArrayList<Point> genererPoints(String boundary) throws MyGeneratorException {
 		ArrayList<Point> points = new ArrayList<Point>();
-		System.out.println("boundary : " + boundary);
 		//(1,2);(3,5)
 		if(boundary == ""){
 			return points;
@@ -297,7 +311,6 @@ public class MadcatGenerator {
 			}
 			
 			if(pointSplit.length != 2 && pointSplit.length != 4){
-				System.out.println(boundary);
 				throw new MyGeneratorException("[genererPoints] Erreur boundary mal formé : " + boundary);
 			}else{
 				points.add(new Point(Integer.valueOf(pointSplit[0]),Integer.valueOf(pointSplit[1])));

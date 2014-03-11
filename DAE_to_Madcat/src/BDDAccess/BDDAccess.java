@@ -281,11 +281,9 @@ public class BDDAccess {
 							"SELECT PAGE_ELEMENT_P_VAL_UNDERLYING.ID, " +
 									"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE_TYPE, " +
 									"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE " +
-									"FROM PAGE_ELEMENT_P_VAL_UNDERLYING, HAS_VALUE, INCLUDES_PE_PV " +
+									"FROM PAGE_ELEMENT_P_VAL_UNDERLYING, HAS_VALUE " +
 									"WHERE HAS_VALUE.PAGE_ELEMENT_ID = " + String.valueOf(segment.getId()) +
-									" AND PAGE_ELEMENT_P_VAL_UNDERLYING.ID = HAS_VALUE.PAGE_ELEMENT_PROPERTY_VALUE_ID" +
-									" AND INCLUDES_PE_PV.DATASET_ID = " + String.valueOf(dataset.getId()) +
-									" AND INCLUDES_PE_PV.PAGE_ELEMENT_PROPERTY_VALUE_ID = PAGE_ELEMENT_P_VAL_UNDERLYING.ID"
+									" AND PAGE_ELEMENT_P_VAL_UNDERLYING.ID = HAS_VALUE.PAGE_ELEMENT_PROPERTY_VALUE_ID"
 							);
 
 					ResultSetMetaData resultMeta = result.getMetaData();
@@ -298,17 +296,13 @@ public class BDDAccess {
 
 						int pvId = Integer.valueOf(result.getObject(1).toString());
 						int valueType = Integer.valueOf(result.getObject(2).toString());
-						String value = this.clobToString((Clob) result.getObject(1));
+						String value = this.clobToString((Clob) result.getObject(3));
 						
 						if(valueType == DataTypeProperty.TRANSLATION){
 							segment.setTraduction(new PageElementPropertyValue(pvId, "traduction", value));
-							log.logInfo("Traduction du PESegment:" + segment.getId() + " importé (ID:" +
-									pvId + ", value:" + value +")");
 						}
 						if(valueType == DataTypeProperty.TRANSCRIPTION){
-							segment.setTraduction(new PageElementPropertyValue(pvId, "transcription", value));
-							log.logInfo("Transcription du PESegment:" + segment.getId() + " importé (ID:" +
-									pvId + ", value:" + value +")");
+							segment.setTranscription(new PageElementPropertyValue(pvId, "transcription", value));
 						}
 					}
 
@@ -374,12 +368,9 @@ public class BDDAccess {
 								"SELECT PAGE_ELEMENT_P_VAL_UNDERLYING.ID, " +
 										"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE_TYPE, " +
 										"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE " +
-										"FROM PAGE_ELEMENT_P_VAL_UNDERLYING, HAS_VALUE, INCLUDES_PE_PV " +
+										"FROM PAGE_ELEMENT_P_VAL_UNDERLYING, HAS_VALUE " +
 										"WHERE HAS_VALUE.PAGE_ELEMENT_ID = " + String.valueOf(zone.getId()) +
-										" AND PAGE_ELEMENT_P_VAL_UNDERLYING.ID = HAS_VALUE.PAGE_ELEMENT_PROPERTY_VALUE_ID" +
-										" AND INCLUDES_PE_PV.DATASET_ID = " + String.valueOf(dataset.getId()) + 
-										" AND INCLUDES_PE_PV.PAGE_ELEMENT_PROPERTY_VALUE_ID = PAGE_ELEMENT_P_VAL_UNDERLYING.ID"
-								);
+										" AND PAGE_ELEMENT_P_VAL_UNDERLYING.ID = HAS_VALUE.PAGE_ELEMENT_PROPERTY_VALUE_ID");
 
 						ResultSetMetaData resultMeta = result.getMetaData();
 
@@ -439,7 +430,6 @@ public class BDDAccess {
 							String value = this.clobToString((Clob) result.getObject(3));
 
 							if(valueType == DataTypeProperty.BOUNDARY){
-								System.out.println(value+pvId+"toto");
 								zone.setBoundary(value);
 							}
 						}
@@ -513,7 +503,7 @@ public class BDDAccess {
 					ArrayList<PageElementToken> tokens = zone.getMots();
 					for(PageElementToken token : tokens){
 
-						////// 4.2.3.3.1 recuperer tradaction et transcription du PE token
+						////// 4.2.3.3.1 recuperer tradaction, source et transcription du PE token
 						try{
 							Statement state;
 							state = conn.createStatement();
@@ -521,11 +511,9 @@ public class BDDAccess {
 									"SELECT PAGE_ELEMENT_P_VAL_UNDERLYING.ID, " +
 											"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE_TYPE, " +
 											"PAGE_ELEMENT_P_VAL_UNDERLYING.VALUE " +
-											"FROM PAGE_ELEMENT_P_VAL_UNDERLYING, HAS_VALUE, INCLUDES_PE_PV " +
+											"FROM PAGE_ELEMENT_P_VAL_UNDERLYING, HAS_VALUE " +
 											"WHERE HAS_VALUE.PAGE_ELEMENT_ID = " + String.valueOf(token.getId()) +
-											" AND PAGE_ELEMENT_P_VAL_UNDERLYING.ID = HAS_VALUE.PAGE_ELEMENT_PROPERTY_VALUE_ID" +
-											" AND INCLUDES_PE_PV.DATASET_ID = " + String.valueOf(dataset.getId()) +
-											" AND INCLUDES_PE_PV.PAGE_ELEMENT_PROPERTY_VALUE_ID = PAGE_ELEMENT_P_VAL_UNDERLYING.ID"
+											" AND PAGE_ELEMENT_P_VAL_UNDERLYING.ID = HAS_VALUE.PAGE_ELEMENT_PROPERTY_VALUE_ID"
 									);
 
 							ResultSetMetaData resultMeta = result.getMetaData();
@@ -538,17 +526,16 @@ public class BDDAccess {
 
 								int pvId = Integer.valueOf(result.getObject(1).toString());
 								int valueType = Integer.valueOf(result.getObject(2).toString());
-								String value = this.clobToString((Clob) result.getObject(1));
+								String value = this.clobToString((Clob) result.getObject(3));
 
 								if(valueType == DataTypeProperty.TRANSLATION){
 									token.setTraduction(new PageElementPropertyValue(pvId, "traduction", value));
-									log.logInfo("Traduction du PEToken:" + token.getId() + " importé (ID:" +
-											pvId + ", value:" + value +")");
 								}
 								if(valueType == DataTypeProperty.TRANSCRIPTION){
-									token.setTraduction(new PageElementPropertyValue(pvId, "transcription", value));
-									log.logInfo("Traduction du PEToken:" + token.getId() + " importé (ID:" +
-											pvId + ", value:" + value +")");
+									token.setTranscription(new PageElementPropertyValue(pvId, "transcription", value));
+								}
+								if(valueType == DataTypeProperty.SOURCE){
+									token.setSource(new PageElementPropertyValue(pvId, "source", value));
 								}
 							}
 
