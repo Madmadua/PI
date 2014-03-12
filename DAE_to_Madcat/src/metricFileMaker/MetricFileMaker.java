@@ -22,6 +22,7 @@ public class MetricFileMaker {
 	
 	private Statement statement;
 	private String datasetName;
+	private String ID;
 	
 	private ResultSet resultIDTranslations;
 	private ResultSet resultIDTranscriptions;
@@ -35,9 +36,9 @@ public class MetricFileMaker {
 	private ArrayList<String> translations;
 	private ArrayList<String> transcriptions;
 	
-	public MetricFileMaker(String datasetName)
+	public MetricFileMaker(String ID)
 	{
-		this.datasetName = datasetName;
+		this.ID = ID;
 		idsTranslations = new ArrayList<Integer>();
 		idsTranscriptions= new ArrayList<Integer>();
 		
@@ -50,6 +51,9 @@ public class MetricFileMaker {
 		BDDAccess bdd = new BDDAccess();
 		try {
 			statement = bdd.getConn().createStatement();
+			ResultSet set = statement.executeQuery("select NAME from DATASET_UNDERLYING where ID="+ID);
+			set.next();
+			datasetName=set.getString(1);
 			resultIDTranslations = statement.executeQuery("select ID from data_item_underlying where description like 'Dataset "+datasetName+"%translation'");
 			while(resultIDTranslations.next())
 			{	
@@ -82,11 +86,11 @@ public class MetricFileMaker {
 		}
 		}
 	
-	public void makeHypSGML()
+	public void makeHypSGML(String dir)
 	{
 		PrintWriter writer;
 		try {
-			writer = new PrintWriter("hyp.sgml", "UTF-8");
+			writer = new PrintWriter(dir+"/hyp.sgml", "UTF-8");
 			writer.println("<tstset setid=\"MADCAT09\" srclang=\"Arabic\" trglang=\"English\">");
 			writer.println("<doc docid=\""+datasetName+"\" sysid=\"MADCAT\" genre=\"newswire\">");
 			for(int i=0;i<translations.size();++i)
@@ -105,6 +109,89 @@ public class MetricFileMaker {
 		}
 	}
 	
+	public void makeRefSGML(String dir)
+	{
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter(dir+"/ref.sgml", "UTF-8");
+			writer.println("<refset setid=\"MADCAT09\" srclang=\"Arabic\" trglang=\"English\">");
+			writer.println("<doc docid=\""+datasetName+"\" sysid=\"MADCAT\" genre=\"newswire\">");
+			for(int i=0;i<translations.size();++i)
+			{
+				writer.println("<seg id=\""+i+"\">"+translations.get(i)+"</seg>");
+			}
+			writer.println("</doc>");
+			writer.println("</refset>");
+			writer.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void makeHypTRN(String dir)
+	{
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter(dir+"/hyp.trn", "UTF-8");
+			for(int i=0;i<translations.size();++i)
+			{
+				writer.println(translations.get(i)+"("+datasetName+'_'+(i+1)+')');
+			}
+			writer.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void makeRefTRN(String dir)
+	{
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter(dir+"/ref.trn", "UTF-8");
+			for(int i=0;i<translations.size();++i)
+			{
+				writer.println(translations.get(i)+"("+datasetName+'_'+(i+1)+')');
+			}
+			writer.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void makeSRC(String dir)
+	{
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter(dir+"/hyp.src", "UTF-8");
+			writer.println("<srcset setid=\"MADCAT09\" srclang=\"Arabic\" trglang=\"English\">");
+			writer.println("<doc docid=\""+datasetName+"\" sysid=\"MADCAT\" genre=\"newswire\">");
+			for(int i=0;i<translations.size();++i)
+			{
+				writer.println("<seg id=\""+i+"\">"+transcriptions.get(i)+"</seg>");
+			}
+			writer.println("</doc>");
+			writer.println("</srcset>");
+			writer.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	private String clobToString(Clob data) {
 	    StringBuilder sb = new StringBuilder();
 	    try {
