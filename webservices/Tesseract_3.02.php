@@ -53,40 +53,22 @@
  * 
  * @section Note
  * 
- * For demo executions, and if the \a $algoname variable is modified in setup.php, this file
- * should be renamed to \a $algoname.php.
  */
+$algoOracleID = 125;
+$algoname = 'Tesseract';
+$algoversion = '3.02'; 
  
-//== START EDITABLE ZONE 
-
-/**
- * \brief Name of hosted algorithm.
- *  
- * Should exactly match SQL query "select NAME from ALGORITHM where ID = \a $algoOracleID"
- * 
- * @var $algoname 
- */
-$algoOracleID = 262;
-$algoname = 'meteor';
-$algoversion = '1.4';
-
-/**
- * Edit the contents of setup.php to fit your needs.
- */ 
 include('setup.php');
 
 $inputT = array();
-$inputT['meteor_reference_file'] = array('name'=>'meteor_reference_file', 'type'=>'xsd:string');
-$inputT['meteor_hypothesis_file'] = array('name'=>'meteor_hypothesis_file', 'type'=>'xsd:string');
-
-
+$inputT['input_image'] = array('name'=>'input_image', 'type'=>'xsd:string');
 $outputT = array();
-$outputT['meteor_output'] = array('name'=>'result-url', 'type'=>'xsd:string');
-file_put_contents("log.txt","madcatGenerator was here!\n");
-//== STOP EDITABLE ZONE
+$outputT['text_file'] = array('name'=>'text_file', 'type'=>'xsd:string');
+
+
 
 /**
- * This function is currently a demo stub running 'Ocrad'. Eventually this will launch the 
+ * This function is currently a demo stub running 'convert'. Eventually this will launch the 
  * effective execution of the corresponding algorithm (as set in the \a $input URIs array parameter)
  *  
  * @param [in] $input the array of arguments related to the execution
@@ -100,7 +82,12 @@ function callback($input) {
 	global $executionDir;
 	global $executionPrefix;
 	global $algoname;
-    	global $hostname;
+	global $hostname;
+
+	// Retrieving input file
+	// ATTENTION! Be sure the array keys correspond to the keys declared in \a $inputT in setup.php
+	$filename = $input['input_image'];
+	$extension = '.txt';
 	
 	// Creating temporary work directory
 	$localdir = $htmlBaseDir . '/' . $executionDir . '/' . $algoname . '/' . time();
@@ -108,78 +95,30 @@ function callback($input) {
 	    return new soap_fault('SERVER', '', 'Cannot create local directory', '');
 	}
 	
-	//== START EDITABLE ZONE
-	/*
-	 * The following editable zone is made for retrieving the input parameters
-	 * and preparing them (copying on disk, other preparatory manipulations) to
-	 * be provided as input arguments to the actual executable.
-	 * 
-	 * In this case there is only one input parameter: the input file
-	 * 
-	 * ATTENTION! When modifying this code, be sure the array keys correspond to 
-	 * the keys declared in \a $inputT in setup.php
-	 */
-	$inputReference = $input['meteor_reference_file'];
-	$inputHypothesis = $input['meteor_hypothesis_file'];
-	
-	
-	/*
-	 * This is code is only doing raw execution without the required logging
-	 * on the DAE server. Logging provenance on the DAE server can only
-	 * be done when the software and service are dully registered with
-	 * the platform.
-	 */ 
-	
-
-    //Getting reference file  
-    
-	$referenceFile = $localdir.'/'.array_pop(explode("/",$inputReference));
-	if (!copy($inputReference,$referenceFile)) {
-            error_log('Cannot copy file '.$inputReference);
-	    return new soap_fault('SERVER', '', 'Execution Error', 'Cannot copy file');
-	}	
-    
-    //Getting hypothesis file
-
-	$hypothesisFile = $localdir.'/'.array_pop(explode("/",$inputHypothesis));
-	if (!copy($inputHypothesis,$hypothesisFile)) {
-            error_log('Cannot copy file '.$inputHypothesis);
-	    return new soap_fault('SERVER', '', 'Execution Error', 'Cannot copy file');
-	}	
-    //Running tercom
-
-	$execString = 'java -Xmx2G -jar /home/dae/WebServices/meteor-1.4.jar '.$hypothesisFile.' '.$referenceFile.' -m \'exact stem synonym\' -l en > '.$localdir.'/output.txt';
-
-	//== STOP EDITABLE ZONE
-	
-	$returnValue = system($execString,$returnCode);
-	if ($returnCode) {
-	    return new soap_fault('SERVER', $error, 'Execution Error', 'Return code = ' . $returnCode .' '. $execString);
+	// Copying the input file to the temporary directory
+	$localname = tempnam($localdir, $executionPrefix);
+	$localname = $localname . '_' . basename($filename);
+	if(! copy($filename,$localname)) {
+	    return new soap_fault('SERVER', '', 'Cannot copy file', $filename);
 	}
-
-	//== START EDITABLE ZONE
 	/*
-	 * This editable zone retrieves the results from the execution and creates the appropriate
-	 * output data structure for retrieval by the caller.
-	 * 
-	 * In this particular case, the execution output consists of 2 files that have been stored
-	 * in the execution directory. Since this directory is accessible by the webserver, we construct
-	 * the appropriate URLs so that the client can download them.
-	 */
+	 * This is currently only doing raw execution without the required logging
+	 * on the DAE server.
+	 */ 	
+	$execString = '/usr/bin/tesseract '.escapeshellarg($localname).' '.escapeshellarg($localname).'> /dev/null 2>&1';
+	$returnValue = system($execString,$returnCode);
+	
+	if ($returnCode) {
+	    return new soap_fault('SERVER', '', 'Execution Error', 'Return code = ' . $returnCode);
+	}
+	
 	// Stripping absolute path information and prefixing URL information.
-	//$localOCR = 'http://'.$hostname. substr($localOCR,strlen($htmlBaseDir));
-	//$localLayout = 'http://'.$hostname. substr($localLayout,strlen($htmlBaseDir));
+	$localimage = 'http://'.$hostname. substr($localname.$extension,strlen($htmlBaseDir));
 		
 	// ATTENTION! Be sure the array keys correspond to the keys declared in \a $outputT in setup.php
-	/*$result = array(
-   	'ocr_result_file' => $localOCR, 
-       	'layout_result_file' => $localLayout
-    );*/
-    $result=array('meteor_output' => 'http://localhost/'.substr($localdir,9).'/output.txt');
-    //$result=array('result-url' => 'http://localhost/wsdl/i');
-    //== STOP EDITABLE ZONE
-    
-    return $result;
+	return array(
+	   	'text_file' => $localimage
+    );
 }
 
 /*
@@ -245,7 +184,6 @@ $server->register('callback',                	// method PhP callback function
    		'encoded',                            	// use          
 		$algoname.' algorithm'					// documentation
 );
-
 
 // Use the POST request to (try to) invoke the service
 $HTTP_RAW_POST_DATA = isset($HTTP_RAW_POST_DATA) ? $HTTP_RAW_POST_DATA : '';

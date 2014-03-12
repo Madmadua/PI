@@ -155,7 +155,7 @@ function callback($input) {
 
 	//This is just a test so it will just copy the expected result...
 	$resultFile = $localdir.'/result.madcat.xml';
-	if (!copy('http://localhost/openhart/db/out.madcat.xml',$resultFile)) {
+	if (!copy('http://localhost/openhart/db/dir_out.madcat.xml',$resultFile)) {
             error_log('Cannot copy result file ');
 	    return new soap_fault('SERVER', '', 'Execution Error', 'Cannot copy result file');
 	}	

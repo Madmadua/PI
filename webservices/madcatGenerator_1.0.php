@@ -66,9 +66,9 @@
  * 
  * @var $algoname 
  */
-$algoOracleID = 262;
-$algoname = 'meteor';
-$algoversion = '1.4';
+$algoOracleID = 289;
+$algoname = 'madcatGenerator';
+$algoversion = '1.0';
 
 /**
  * Edit the contents of setup.php to fit your needs.
@@ -76,13 +76,13 @@ $algoversion = '1.4';
 include('setup.php');
 
 $inputT = array();
-$inputT['meteor_reference_file'] = array('name'=>'meteor_reference_file', 'type'=>'xsd:string');
-$inputT['meteor_hypothesis_file'] = array('name'=>'meteor_hypothesis_file', 'type'=>'xsd:string');
+$inputT['madcatGenerator_datasetID'] = array('name'=>'madcatGenerator_datasetID', 'type'=>'xsd:string');
+$inputT['madcatGenerator_algotype'] = array('name'=>'madcatGenerator_algotype','type'=>'xsd:string');
 
 
 $outputT = array();
-$outputT['meteor_output'] = array('name'=>'result-url', 'type'=>'xsd:string');
-file_put_contents("log.txt","madcatGenerator was here!\n");
+$outputT['madcatGenerator_output'] = array('name'=>'madcatGenerator_output','type'=>'xsd:string');
+
 //== STOP EDITABLE ZONE
 
 /**
@@ -119,8 +119,8 @@ function callback($input) {
 	 * ATTENTION! When modifying this code, be sure the array keys correspond to 
 	 * the keys declared in \a $inputT in setup.php
 	 */
-	$inputReference = $input['meteor_reference_file'];
-	$inputHypothesis = $input['meteor_hypothesis_file'];
+	$inputDataset = $input['madcatGenerator_datasetID'];
+	$inputType = $input['madcatGenerator_algotype'];
 	
 	
 	/*
@@ -130,25 +130,11 @@ function callback($input) {
 	 * the platform.
 	 */ 
 	
-
-    //Getting reference file  
-    
-	$referenceFile = $localdir.'/'.array_pop(explode("/",$inputReference));
-	if (!copy($inputReference,$referenceFile)) {
-            error_log('Cannot copy file '.$inputReference);
-	    return new soap_fault('SERVER', '', 'Execution Error', 'Cannot copy file');
-	}	
-    
-    //Getting hypothesis file
-
-	$hypothesisFile = $localdir.'/'.array_pop(explode("/",$inputHypothesis));
-	if (!copy($inputHypothesis,$hypothesisFile)) {
-            error_log('Cannot copy file '.$inputHypothesis);
-	    return new soap_fault('SERVER', '', 'Execution Error', 'Cannot copy file');
-	}	
+   
+	$resultFile = $localdir. '/output.xml';
     //Running tercom
 
-	$execString = 'java -Xmx2G -jar /home/dae/WebServices/meteor-1.4.jar '.$hypothesisFile.' '.$referenceFile.' -m \'exact stem synonym\' -l en > '.$localdir.'/output.txt';
+	$execString = 'java -jar /home/dae/WebServices/madcatGenerator.jar '.$inputDataset.' '.$inputType.' '.$resultFile.' 1>/dev/null 2>/dev/null';
 
 	//== STOP EDITABLE ZONE
 	
@@ -175,8 +161,7 @@ function callback($input) {
    	'ocr_result_file' => $localOCR, 
        	'layout_result_file' => $localLayout
     );*/
-    $result=array('meteor_output' => 'http://localhost/'.substr($localdir,9).'/output.txt');
-    //$result=array('result-url' => 'http://localhost/wsdl/i');
+    $result=array('madcatGenerator_output' => 'http://localhost/'.substr($resultFile,9));
     //== STOP EDITABLE ZONE
     
     return $result;

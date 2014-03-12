@@ -66,9 +66,9 @@
  * 
  * @var $algoname 
  */
-$algoOracleID = 262;
-$algoname = 'meteor';
-$algoversion = '1.4';
+$algoOracleID = 268;
+$algoname = 'dirMFM';
+$algoversion = '1.0';
 
 /**
  * Edit the contents of setup.php to fit your needs.
@@ -76,13 +76,17 @@ $algoversion = '1.4';
 include('setup.php');
 
 $inputT = array();
-$inputT['meteor_reference_file'] = array('name'=>'meteor_reference_file', 'type'=>'xsd:string');
-$inputT['meteor_hypothesis_file'] = array('name'=>'meteor_hypothesis_file', 'type'=>'xsd:string');
+$inputT['dirmfm_ref'] = array('name'=>'dirmfm_ref', 'type'=>'xsd:string');
+$inputT['dirmfm_hyp'] = array('name'=>'dirmfm_hyp', 'type'=>'xsd:string');
 
 
 $outputT = array();
-$outputT['meteor_output'] = array('name'=>'result-url', 'type'=>'xsd:string');
-file_put_contents("log.txt","madcatGenerator was here!\n");
+$outputT['dirmfm_hyp_sgml'] = array('name'=>'dirmfm_hyp_sgml','type'=>'xsd:string');
+$outputT['dirmfm_ref_sgml'] = array('name'=>'dirmfm_ref_sgml','type'=>'xsd:string');
+$outputT['dirmfm_hyp_trn'] = array('name'=>'dirmfm_hyp_trn','type'=>'xsd:string');
+$outputT['dirmfm_ref_trn'] = array('name'=>'dirmfm_ref_trn','type'=>'xsd:string');
+$outputT['dirmfm_ref_src'] = array('name'=>'dirmfm_ref_src','type'=>'xsd:string');
+
 //== STOP EDITABLE ZONE
 
 /**
@@ -119,8 +123,8 @@ function callback($input) {
 	 * ATTENTION! When modifying this code, be sure the array keys correspond to 
 	 * the keys declared in \a $inputT in setup.php
 	 */
-	$inputReference = $input['meteor_reference_file'];
-	$inputHypothesis = $input['meteor_hypothesis_file'];
+	$refID = $input['dirmfm_ref'];
+	$hyp = $input['dirmfm_hyp'];
 	
 	
 	/*
@@ -130,25 +134,19 @@ function callback($input) {
 	 * the platform.
 	 */ 
 	
-
-    //Getting reference file  
-    
-	$referenceFile = $localdir.'/'.array_pop(explode("/",$inputReference));
-	if (!copy($inputReference,$referenceFile)) {
-            error_log('Cannot copy file '.$inputReference);
+	
+	$hypothesis = $localdir.'/'.array_pop(explode("/",$hyp));
+	if (!copy($hyp,$hypothesis)) {
+            error_log('Cannot copy file '.$hyp);
 	    return new soap_fault('SERVER', '', 'Execution Error', 'Cannot copy file');
-	}	
-    
-    //Getting hypothesis file
+	}
+	$hypID = file_get_contents($hypothesis);
+	$hypID = str_replace(PHP_EOL, '', $hypID);
+		
+	
 
-	$hypothesisFile = $localdir.'/'.array_pop(explode("/",$inputHypothesis));
-	if (!copy($inputHypothesis,$hypothesisFile)) {
-            error_log('Cannot copy file '.$inputHypothesis);
-	    return new soap_fault('SERVER', '', 'Execution Error', 'Cannot copy file');
-	}	
-    //Running tercom
-
-	$execString = 'java -Xmx2G -jar /home/dae/WebServices/meteor-1.4.jar '.$hypothesisFile.' '.$referenceFile.' -m \'exact stem synonym\' -l en > '.$localdir.'/output.txt';
+	$execString = 'java -jar /home/dae/WebServices/dirMFM.jar '.$refID.' '.$hypID.' '.$localdir.' 1>mfm.txt 2>err.txt';
+	
 
 	//== STOP EDITABLE ZONE
 	
@@ -175,9 +173,14 @@ function callback($input) {
    	'ocr_result_file' => $localOCR, 
        	'layout_result_file' => $localLayout
     );*/
-    $result=array('meteor_output' => 'http://localhost/'.substr($localdir,9).'/output.txt');
-    //$result=array('result-url' => 'http://localhost/wsdl/i');
-    //== STOP EDITABLE ZONE
+    $result=array('dirmfm_hyp_sgml' => 'http://localhost/'.substr($localdir,9).'/hyp.sgml',
+    'dirmfm_ref_sgml' => 'http://localhost/'.substr($localdir,9).'/ref.sgml',
+    'dirmfm_hyp_trn' => 'http://localhost/'.substr($localdir,9).'/hyp.trn',
+    'dirmfm_ref_trn' => 'http://localhost/'.substr($localdir,9).'/ref.trn',
+    'dirmfm_ref_src' => 'http://localhost/'.substr($localdir,9).'/hyp.src');
+	file_put_contents('exec.txt',print_r($result,true));
+    
+//== STOP EDITABLE ZONE
     
     return $result;
 }

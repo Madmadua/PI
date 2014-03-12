@@ -80,6 +80,7 @@ $inputT['madcat2dae_input'] = array('name'=>'meteor_reference_file', 'type'=>'xs
 
 
 $outputT = array();
+$outputT['madcat2dae_output'] = array('name'=>'madcat2dae_output','type'=>'xsd:string');
 
 //== STOP EDITABLE ZONE
 
@@ -136,9 +137,10 @@ function callback($input) {
 	    return new soap_fault('SERVER', '', 'Execution Error', 'Cannot copy file');
 	}	
     
+	$resultFile = $localdir. '/result.txt';
     //Running tercom
 
-	$execString = 'java -jar /home/dae/WebServices/madcat2dae.jar '.$madcatFile.' 1>/dev/null 2>/dev/null';
+	$execString = 'java -jar /home/dae/WebServices/madcat2dae.jar '.$madcatFile.' 1>'.$resultFile.' 2>/dev/null';
 
 	//== STOP EDITABLE ZONE
 	
@@ -165,7 +167,7 @@ function callback($input) {
    	'ocr_result_file' => $localOCR, 
        	'layout_result_file' => $localLayout
     );*/
-    //$result=array('result-url' => 'http://localhost/wsdl/i');
+    $result=array('madcat2dae_output' => $resultFile);
     //== STOP EDITABLE ZONE
     
     return $result;
