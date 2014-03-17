@@ -30,3 +30,30 @@ Command-line arguments:  -os linux -ws gtk -arch x86_64
 
 !ENTRY org.eclipse.core.resources 2 10035 2014-01-31 11:18:10.869
 !MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+!SESSION 2014-02-09 18:09:09.752 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_27
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86 -data /home/dae/PI
+
+!ENTRY org.eclipse.core.resources 2 10035 2014-02-09 18:09:15.593
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.egit.ui 4 0 2014-02-10 17:32:04.206
+!MESSAGE Invalid thread access
+!STACK 0
+org.eclipse.swt.SWTException: Invalid thread access
+	at org.eclipse.swt.SWT.error(SWT.java:4282)
+	at org.eclipse.swt.SWT.error(SWT.java:4197)
+	at org.eclipse.swt.SWT.error(SWT.java:4168)
+	at org.eclipse.swt.widgets.Widget.error(Widget.java:466)
+	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:404)
+	at org.eclipse.swt.widgets.Text.getTextChars(Text.java:1064)
+	at org.eclipse.swt.widgets.Text.getText(Text.java:1008)
+	at org.eclipse.egit.ui.UIUtils$2.updateProposals(UIUtils.java:291)
+	at org.eclipse.egit.ui.internal.components.RepositorySelectionPage.getGitRepositoryInfo(RepositorySelectionPage.java:1018)
+	at org.eclipse.egit.ui.internal.clone.AbstractGitCloneWizard.executeCloneOperation(AbstractGitCloneWizard.java:433)
+	at org.eclipse.egit.ui.internal.clone.AbstractGitCloneWizard.access$2(AbstractGitCloneWizard.java:424)
+	at org.eclipse.egit.ui.internal.clone.AbstractGitCloneWizard$5.run(AbstractGitCloneWizard.java:386)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)

@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE madcat SYSTEM "/slp/raid2/HART/2013/doc/MADCATDataFormatSpec_V6.3/openhart.v1.0.0.dtd">
+<madcat version="2008.1">
+	<doc id="groups.google.com_women1000_ffe5cf590b24ad4e_ARB_20051020_073500_1_LDC0175" src="groups.google.com_women1000_ffe5cf590b24ad4e_ARB_20051020_073500_1_LDC0175.tif" nbpages="1" type="newsgroup">
+		<writer id="LDC0175"/>
+		<image>
+			<page id="groups.google.com_women1000_ffe5cf590b24ad4e_ARB_20051020_073500_1" dpi="600" colordepth="2" width="5100" height="6600">
+				<zone id="z1" type="line">
+					<polygon>
+						<point x="4707" y="574"/>
+						<point x="4220" y="574"/>
+						<point x="4161" y="560"/>
+						<point x="3810" y="560"/>
+						<point x="3759" y="582"/>
+						<point x="3282" y="582"/>
+						<point x="3237" y="582"/>
+						<point x="2726" y="582"/>
+						<point x="2657" y="604"/>
+						<point x="2508" y="604"/>
+						<point x="2471" y="604"/>
+						<point x="2106" y="604"/>
+						<point x="2039" y="624"/>
+						<point x="1754" y="624"/>
+						<point x="1754" y="751"/>
+						<point x="2039" y="751"/>
+						<point x="2106" y="737"/>
+						<point x="2471" y="737"/>
+						<point x="2508" y="761"/>
+						<point x="2657" y="761"/>
+						<point x="2726" y="779"/>
+						<point x="3237" y="779"/>
+						<point x="3282" y="739"/>
+						<point x="3759" y="739"/>
+						<point x="3810" y="749"/>
+						<point x="4161" y="749"/>
+						<point x="4220" y="727"/>
+						<point x="4707" y="727"/>
+					</polygon>
+				</zone>
+				<zone id="z2" type="line">
+					<polygon>
+						<point x="4697" y="804"/>
+						<point x="4254" y="804"/>
+						<point x="4254" y="957"/>
+						<point x="4697" y="957"/>
+					</polygon>
+				</zone>
+				<zone id="z3" type="line">
+					<polygon>
+						<point x="4725" y="994"/>
+						<point x="4274" y="994"/>
+						<point x="4185" y="980"/>
+						<point x="3812" y="980"/>
+						<point x="3757" y="990"/>
+						<point x="3340" y="990"/>
+						<point x="3269" y="1002"/>
+						<point x="2830" y="1002"/>
+						<point x="2753" y="1018"/>
+						<point x="2612" y="1018"/>
+						<point x="2563" y="992"/>
+						<point x="2178" y="992"/>
+						<point x="2133" y="1032"/>
+						<point x="1868" y="1032"/>
+						<point x="1868" y="1137"/>
+						<point x="2133" y="1137"/>
+						<point x="2178" y="1141"/>
+						<point x="2563" y="1141"/>
+						<point x="2612" y="1171"/>
+						<point x="2753" y="1171"/>
+						<point x="2830" y="1181"/>
+						<point x="3269" y="1181"/>
+						<point x="3340" y="1143"/>
+						<point x="3757" y="1143"/>
+						<point x="3812" y="1171"/>
+						<point x="4185" y="1171"/>
+						<point x="4274" y="1133"/>
+						<point x="4725" y="1133"/>
+					</polygon>
+				</zone>
+				<zone id="z4" type="line">
+					<polygon>
+						<point x="4731" y="1228"/>
+						<point x="4466" y="1228"/>
+						<point x="4466" y="1329"/>
+						<point x="4731" y="1329"/>
+					</polygon>
+				</zone>
+				<zone id="z5" type="line">
+					<polygon>
+						<point x="4743" y="1384"/>
+						<point x="4342" y="1384"/>
+						<point x="4255" y="1414"/>
+						<point x="3816" y="1414"/>
+						<point x="3807" y="1398"/>
+						<point x="3318" y="1398"/>
+						<point x="3235" y="1412"/>
+						<point x="2882" y="1412"/>
+						<point x="2849" y="1414"/>
+						<point x="2230" y="1414"/>
+						<point x="2173" y="1418"/>
+						<point x="1990" y="1418"/>
+						<point x="1990" y="1569"/>
+						<point x="2173" y="1569"/>
+						<point x="2230" y="1607"/>
+						<point x="2849" y="1607"/>
+						<point x="2882" y="1639"/>
+						<point x="3235" y="1639"/>
+						<point x="3318" y="1571"/>
+						<point x="3807" y="1571"/>
+						<point x="3816" y="1561"/>
+						<point x="4255" y="1561"/>
+						<point x="4342" y="1525"/>
+						<point x="4743" y="1525"/>
+					</polygon>
+				</zone>
+				<zone id="z6" type="line">
+					<polygon>
+						<point x="4727" y="1624"/>
+						<point x="4272" y="1624"/>
+						<point x="4227" y="1626"/>
+						<point x="3870" y="1626"/>
+						<point x="3823" y="1610"/>
+						<point x="3194" y="1610"/>
+						<point x="3141" y="1622"/>
+						<point x="2590" y="1622"/>
+						<point x="2535" y="1626"/>
+						<point x="2264" y="1626"/>
+						<point x="2264" y="1801"/>
+						<point x="2535" y="1801"/>
+						<point x="2590" y="1763"/>
+						<point x="3141" y="1763"/>
+						<point x="3194" y="1753"/>
+						<point x="3823" y="1753"/>
+						<point x="3870" y="1795"/>
+						<point x="4227" y="1795"/>
+						<point x="4272" y="1763"/>
+						<point x="4727" y="1763"/>
+					</polygon>
+				</zone>
+				<zone id="z7" type="line">
+					<polygon>
+						<point x="4735" y="1832"/>
+						<point x="4338" y="1832"/>
+						<point x="4293" y="1802"/>
+						<point x="3854" y="1802"/>
+						<point x="3809" y="1834"/>
+						<point x="3236" y="1834"/>
+						<point x="3183" y="1838"/>
+						<point x="2904" y="1838"/>
+						<point x="2819" y="1844"/>
+						<point x="1996" y="1844"/>
+						<point x="1996" y="1979"/>
+						<point x="2819" y="1979"/>
+						<point x="2904" y="1977"/>
+						<point x="3183" y="1977"/>
+						<point x="3236" y="2015"/>
+						<point x="3809" y="2015"/>
+						<point x="3854" y="1997"/>
+						<point x="4293" y="1997"/>
+						<point x="4338" y="1975"/>
+						<point x="4735" y="1975"/>
+					</polygon>
+				</zone>
+				<zone id="z8" type="line">
+					<polygon>
+						<point x="4745" y="2030"/>
+						<point x="4336" y="2030"/>
+						<point x="4273" y="2044"/>
+						<point x="3972" y="2044"/>
+						<point x="3897" y="2096"/>
+						<point x="3634" y="2096"/>
+						<point x="3595" y="2056"/>
+						<point x="3416" y="2056"/>
+						<point x="3353" y="2048"/>
+						<point x="2918" y="2048"/>
+						<point x="2929" y="2048"/>
+						<point x="2538" y="2048"/>
+						<point x="2538" y="2207"/>
+						<point x="2929" y="2207"/>
+						<point x="2918" y="2223"/>
+						<point x="3353" y="2223"/>
+						<point x="3416" y="2135"/>
+						<point x="3595" y="2135"/>
+						<point x="3634" y="2231"/>
+						<point x="3897" y="2231"/>
+						<point x="3972" y="2161"/>
+						<point x="4273" y="2161"/>
+						<point x="4336" y="2163"/>
+						<point x="4745" y="2163"/>
+					</polygon>
+				</zone>
+				<zone id="z9" type="line">
+					<polygon>
+						<point x="4755" y="2218"/>
+						<point x="4262" y="2218"/>
+						<point x="4219" y="2234"/>
+						<point x="3610" y="2234"/>
+						<point x="3531" y="2282"/>
+						<point x="3340" y="2282"/>
+						<point x="3307" y="2220"/>
+						<point x="2866" y="2220"/>
+						<point x="2779" y="2220"/>
+						<point x="2436" y="2220"/>
+						<point x="2393" y="2238"/>
+						<point x="1930" y="2238"/>
+						<point x="1930" y="2393"/>
+						<point x="2393" y="2393"/>
+						<point x="2436" y="2409"/>
+						<point x="2779" y="2409"/>
+						<point x="2866" y="2403"/>
+						<point x="3307" y="2403"/>
+						<point x="3340" y="2371"/>
+						<point x="3531" y="2371"/>
+						<point x="3610" y="2421"/>
+						<point x="4219" y="2421"/>
+						<point x="4262" y="2391"/>
+						<point x="4755" y="2391"/>
+					</polygon>
+				</zone>
+				<zone id="z10" type="line">
+					<polygon>
+						<point x="4785" y="2434"/>
+						<point x="4274" y="2434"/>
+						<point x="4207" y="2428"/>
+						<point x="3696" y="2428"/>
+						<point x="3655" y="2432"/>
+						<point x="3178" y="2432"/>
+						<point x="3095" y="2432"/>
+						<point x="2844" y="2432"/>
+						<point x="2783" y="2466"/>
+						<point x="2328" y="2466"/>
+						<point x="2263" y="2440"/>
+						<point x="1914" y="2440"/>
+						<point x="1914" y="2599"/>
+						<point x="2263" y="2599"/>
+						<point x="2328" y="2593"/>
+						<point x="2783" y="2593"/>
+						<point x="2844" y="2587"/>
+						<point x="3095" y="2587"/>
+						<point x="3178" y="2597"/>
+						<point x="3655" y="2597"/>
+						<point x="3696" y="2605"/>
+						<point x="4207" y="2605"/>
+						<point x="4274" y="2589"/>
+						<point x="4785" y="2589"/>
+					</polygon>
+				</zone>
+				<zone id="z11" type="line">
+					<polygon>
+						<point x="4773" y="2630"/>
+						<point x="4088" y="2630"/>
+						<point x="4009" y="2712"/>
+						<point x="3994" y="2712"/>
+						<point x="3994" y="2729"/>
+						<point x="4009" y="2729"/>
+						<point x="4088" y="2813"/>
+						<point x="4773" y="2813"/>
+					</polygon>
+				</zone>
+				<zone id="z12" type="line">
+					<polygon>
+						<point x="4731" y="2838"/>
+						<point x="4194" y="2838"/>
+						<point x="4175" y="2836"/>
+						<point x="3612" y="2836"/>
+						<point x="3623" y="2836"/>
+						<point x="3456" y="2836"/>
+						<point x="3393" y="2844"/>
+						<point x="3236" y="2844"/>
+						<point x="3161" y="2864"/>
+						<point x="2684" y="2864"/>
+						<point x="2655" y="2818"/>
+						<point x="2274" y="2818"/>
+						<point x="2274" y="2993"/>
+						<point x="2655" y="2993"/>
+						<point x="2684" y="2997"/>
+						<point x="3161" y="2997"/>
+						<point x="3236" y="2979"/>
+						<point x="3393" y="2979"/>
+						<point x="3456" y="2965"/>
+						<point x="3623" y="2965"/>
+						<point x="3612" y="3005"/>
+						<point x="4175" y="3005"/>
+						<point x="4194" y="3029"/>
+						<point x="4731" y="3029"/>
+					</polygon>
+				</zone>
+				<zone id="z13" type="line">
+					<polygon>
+						<point x="4725" y="3038"/>
+						<point x="4068" y="3038"/>
+						<point x="4017" y="3132"/>
+						<point x="3990" y="3132"/>
+						<point x="3939" y="3046"/>
+						<point x="3652" y="3046"/>
+						<point x="3595" y="3062"/>
+						<point x="3222" y="3062"/>
+						<point x="3147" y="3056"/>
+						<point x="2798" y="3056"/>
+						<point x="2757" y="3054"/>
+						<point x="2370" y="3054"/>
+						<point x="2309" y="3058"/>
+						<point x="1894" y="3058"/>
+						<point x="1894" y="3245"/>
+						<point x="2309" y="3245"/>
+						<point x="2370" y="3235"/>
+						<point x="2757" y="3235"/>
+						<point x="2798" y="3247"/>
+						<point x="3147" y="3247"/>
+						<point x="3222" y="3197"/>
+						<point x="3595" y="3197"/>
+						<point x="3652" y="3169"/>
+						<point x="3939" y="3169"/>
+						<point x="3990" y="3165"/>
+						<point x="4017" y="3165"/>
+						<point x="4068" y="3213"/>
+						<point x="4725" y="3213"/>
+					</polygon>
+				</zone>
+				<zone id="z14" type="line">
+					<polygon>
+						<point x="4751" y="3238"/>
+						<point x="4570" y="3238"/>
+						<point x="4527" y="3300"/>
+						<point x="4256" y="3300"/>
+						<point x="4213" y="3322"/>
+						<point x="4177" y="3322"/>
+						<point x="4143" y="3238"/>
+						<point x="3778" y="3238"/>
+						<point x="3693" y="3254"/>
+						<point x="3320" y="3254"/>
+						<point x="3247" y="3238"/>
+						<point x="2784" y="3238"/>
+						<point x="2735" y="3292"/>
+						<point x="2566" y="3292"/>
+						<point x="2493" y="3274"/>
+						<point x="2128" y="3274"/>
+						<point x="2128" y="3453"/>
+						<point x="2493" y="3453"/>
+						<point x="2566" y="3381"/>
+						<point x="2735" y="3381"/>
+						<point x="2784" y="3427"/>
+						<point x="3247" y="3427"/>
+						<point x="3320" y="3431"/>
+						<point x="3693" y="3431"/>
+						<point x="3778" y="3417"/>
+						<point x="4143" y="3417"/>
+						<point x="4177" y="3379"/>
+						<point x="4213" y="3379"/>
+						<point x="4256" y="3441"/>
+						<point x="4527" y="3441"/>
+						<point x="4570" y="3391"/>
+						<point x="4751" y="3391"/>
+					</polygon>
+				</zone>
+				<zone id="z15" type="line">
+					<polygon>
+						<point x="4725" y="3448"/>
+						<point x="4206" y="3448"/>
+						<point x="4177" y="3458"/>
+						<point x="3524" y="3458"/>
+						<point x="3471" y="3446"/>
+						<point x="2906" y="3446"/>
+						<point x="2839" y="3466"/>
+						<point x="2680" y="3466"/>
+						<point x="2655" y="3452"/>
+						<point x="2184" y="3452"/>
+						<point x="2139" y="3520"/>
+						<point x="1872" y="3520"/>
+						<point x="1872" y="3655"/>
+						<point x="2139" y="3655"/>
+						<point x="2184" y="3633"/>
+						<point x="2655" y="3633"/>
+						<point x="2680" y="3621"/>
+						<point x="2839" y="3621"/>
+						<point x="2906" y="3635"/>
+						<point x="3471" y="3635"/>
+						<point x="3524" y="3663"/>
+						<point x="4177" y="3663"/>
+						<point x="4206" y="3613"/>
+						<point x="4725" y="3613"/>
+					</polygon>
+				</zone>
+				<zone id="z16" type="line">
+					<polygon>
+						<point x="4731" y="3670"/>
+						<point x="4378" y="3670"/>
+						<point x="4301" y="3704"/>
+						<point x="4124" y="3704"/>
+						<point x="4041" y="3664"/>
+						<point x="3460" y="3664"/>
+						<point x="3369" y="3718"/>
+						<point x="3182" y="3718"/>
+						<point x="3107" y="3668"/>
+						<point x="2818" y="3668"/>
+						<point x="2751" y="3660"/>
+						<point x="2372" y="3660"/>
+						<point x="2372" y="3819"/>
+						<point x="2751" y="3819"/>
+						<point x="2818" y="3837"/>
+						<point x="3107" y="3837"/>
+						<point x="3182" y="3811"/>
+						<point x="3369" y="3811"/>
+						<point x="3460" y="3793"/>
+						<point x="4041" y="3793"/>
+						<point x="4124" y="3791"/>
+						<point x="4301" y="3791"/>
+						<point x="4378" y="3823"/>
+						<point x="4731" y="3823"/>
+					</polygon>
+				</zone>
+				<zone id="z17" type="line">
+					<polygon>
+						<point x="4717" y="3852"/>
+						<point x="3956" y="3852"/>
+						<point x="3945" y="3856"/>
+						<point x="3342" y="3856"/>
+						<point x="3279" y="3866"/>
+						<point x="3138" y="3866"/>
+						<point x="3077" y="3886"/>
+						<point x="2836" y="3886"/>
+						<point x="2775" y="3882"/>
+						<point x="2366" y="3882"/>
+						<point x="2327" y="3878"/>
+						<point x="1912" y="3878"/>
+						<point x="1912" y="4057"/>
+						<point x="2327" y="4057"/>
+						<point x="2366" y="4093"/>
+						<point x="2775" y="4093"/>
+						<point x="2836" y="4029"/>
+						<point x="3077" y="4029"/>
+						<point x="3138" y="4037"/>
+						<point x="3279" y="4037"/>
+						<point x="3342" y="4041"/>
+						<point x="3945" y="4041"/>
+						<point x="3956" y="4061"/>
+						<point x="4717" y="4061"/>
+					</polygon>
+				</zone>
+				<zone id="z18" type="line">
+					<polygon>
+						<point x="4701" y="4072"/>
+						<point x="4506" y="4072"/>
+						<point x="4437" y="4094"/>
+						<point x="3992" y="4094"/>
+						<point x="3923" y="4074"/>
+						<point x="3780" y="4074"/>
+						<point x="3767" y="4098"/>
+						<point x="3468" y="4098"/>
+						<point x="3403" y="4130"/>
+						<point x="3374" y="4130"/>
+						<point x="3374" y="4183"/>
+						<point x="3403" y="4183"/>
+						<point x="3468" y="4205"/>
+						<point x="3767" y="4205"/>
+						<point x="3780" y="4229"/>
+						<point x="3923" y="4229"/>
+						<point x="3992" y="4189"/>
+						<point x="4437" y="4189"/>
+						<point x="4506" y="4251"/>
+						<point x="4701" y="4251"/>
+					</polygon>
+				</zone>
+				<zone id="z19" type="line">
+					<polygon>
+						<point x="4695" y="4266"/>
+						<point x="4374" y="4266"/>
+						<point x="4305" y="4276"/>
+						<point x="3976" y="4276"/>
+						<point x="3945" y="4276"/>
+						<point x="3478" y="4276"/>
+						<point x="3395" y="4274"/>
+						<point x="2932" y="4274"/>
+						<point x="2897" y="4244"/>
+						<point x="2402" y="4244"/>
+						<point x="2402" y="4441"/>
+						<point x="2897" y="4441"/>
+						<point x="2932" y="4445"/>
+						<point x="3395" y="4445"/>
+						<point x="3478" y="4439"/>
+						<point x="3945" y="4439"/>
+						<point x="3976" y="4379"/>
+						<point x="4305" y="4379"/>
+						<point x="4374" y="4427"/>
+						<point x="4695" y="4427"/>
+					</polygon>
+				</zone>
+				<zone id="z20" type="line">
+					<polygon>
+						<point x="4695" y="4462"/>
+						<point x="4116" y="4462"/>
+						<point x="4069" y="4476"/>
+						<point x="3640" y="4476"/>
+						<point x="3567" y="4484"/>
+						<point x="3234" y="4484"/>
+						<point x="3179" y="4464"/>
+						<point x="2962" y="4464"/>
+						<point x="2899" y="4476"/>
+						<point x="2544" y="4476"/>
+						<point x="2487" y="4488"/>
+						<point x="2326" y="4488"/>
+						<point x="2326" y="4641"/>
+						<point x="2487" y="4641"/>
+						<point x="2544" y="4649"/>
+						<point x="2899" y="4649"/>
+						<point x="2962" y="4613"/>
+						<point x="3179" y="4613"/>
+						<point x="3234" y="4653"/>
+						<point x="3567" y="4653"/>
+						<point x="3640" y="4655"/>
+						<point x="4069" y="4655"/>
+						<point x="4116" y="4653"/>
+						<point x="4695" y="4653"/>
+					</polygon>
+				</zone>
+				<zone id="z21" type="line">
+					<polygon>
+						<point x="4677" y="4678"/>
+						<point x="4016" y="4678"/>
+						<point x="3929" y="4676"/>
+						<point x="3372" y="4676"/>
+						<point x="3372" y="4855"/>
+						<point x="3929" y="4855"/>
+						<point x="4016" y="4865"/>
+						<point x="4677" y="4865"/>
+					</polygon>
+				</zone>
+				<zone id="z22" type="line">
+					<polygon>
+						<point x="4671" y="4868"/>
+						<point x="3864" y="4868"/>
+						<point x="3763" y="4962"/>
+						<point x="3734" y="4962"/>
+						<point x="3697" y="4878"/>
+						<point x="3038" y="4878"/>
+						<point x="2987" y="4892"/>
+						<point x="2788" y="4892"/>
+						<point x="2725" y="4892"/>
+						<point x="2276" y="4892"/>
+						<point x="2276" y="5069"/>
+						<point x="2725" y="5069"/>
+						<point x="2788" y="5003"/>
+						<point x="2987" y="5003"/>
+						<point x="3038" y="5087"/>
+						<point x="3697" y="5087"/>
+						<point x="3734" y="5009"/>
+						<point x="3763" y="5009"/>
+						<point x="3864" y="5043"/>
+						<point x="4671" y="5043"/>
+					</polygon>
+				</zone>
+				<zone id="z23" type="line">
+					<polygon>
+						<point x="4679" y="5076"/>
+						<point x="3798" y="5076"/>
+						<point x="3737" y="5066"/>
+						<point x="3176" y="5066"/>
+						<point x="3133" y="5084"/>
+						<point x="2960" y="5084"/>
+						<point x="2905" y="5068"/>
+						<point x="2218" y="5068"/>
+						<point x="2113" y="5158"/>
+						<point x="2094" y="5158"/>
+						<point x="2094" y="5185"/>
+						<point x="2113" y="5185"/>
+						<point x="2218" y="5269"/>
+						<point x="2905" y="5269"/>
+						<point x="2960" y="5251"/>
+						<point x="3133" y="5251"/>
+						<point x="3176" y="5213"/>
+						<point x="3737" y="5213"/>
+						<point x="3798" y="5253"/>
+						<point x="4679" y="5253"/>
+					</polygon>
+				</zone>
+			</page>
+		</image>
+		<content>
+			<section id="sec0001" type="tokenization">
+				<segment id="s1">
+					<zone_ref>z1</zone_ref>
+				</segment>
+				<segment id="s2">
+					<zone_ref>z2</zone_ref>
+				</segment>
+				<segment id="s3">
+					<zone_ref>z3</zone_ref>
+				</segment>
+				<segment id="s4">
+					<zone_ref>z4</zone_ref>
+				</segment>
+				<segment id="s5">
+					<zone_ref>z5</zone_ref>
+					<zone_ref>z6</zone_ref>
+					<zone_ref>z7</zone_ref>
+					<zone_ref>z8</zone_ref>
+				</segment>
+				<segment id="s6">
+					<zone_ref>z9</zone_ref>
+					<zone_ref>z10</zone_ref>
+					<zone_ref>z11</zone_ref>
+				</segment>
+				<segment id="s7">
+					<zone_ref>z12</zone_ref>
+					<zone_ref>z13</zone_ref>
+					<zone_ref>z14</zone_ref>
+					<zone_ref>z15</zone_ref>
+					<zone_ref>z16</zone_ref>
+					<zone_ref>z17</zone_ref>
+					<zone_ref>z18</zone_ref>
+				</segment>
+				<segment id="s8">
+					<zone_ref>z19</zone_ref>
+					<zone_ref>z20</zone_ref>
+					<zone_ref>z21</zone_ref>
+					<zone_ref>z22</zone_ref>
+					<zone_ref>z23</zone_ref>
+				</segment>
+			</section>
+		</content>
+	</doc>
+</madcat>

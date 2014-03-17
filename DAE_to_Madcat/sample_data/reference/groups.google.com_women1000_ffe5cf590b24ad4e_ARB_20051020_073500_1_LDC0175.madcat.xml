@@ -1,0 +1,1947 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE madcat SYSTEM "ftp://jaguar.ncsl.nist.gov/madcat/resources/madcat.v1.1.1.dtd">
+<madcat version="2008.1">
+	<doc id="groups.google.com_women1000_ffe5cf590b24ad4e_ARB_20051020_073500_1_LDC0175" src="groups.google.com_women1000_ffe5cf590b24ad4e_ARB_20051020_073500_1_LDC0175.tif" nbpages="1" type="newsgroup">
+		<writer id="LDC0175"/>
+		<image>
+			<page id="groups.google.com_women1000_ffe5cf590b24ad4e_ARB_20051020_073500_1" dpi="600" colordepth="2" width="5100" height="6600">
+				<zone id="z1" type="line">
+					<polygon>
+						<point x="4707" y="574"/>
+						<point x="4220" y="574"/>
+						<point x="4161" y="560"/>
+						<point x="3810" y="560"/>
+						<point x="3759" y="582"/>
+						<point x="3282" y="582"/>
+						<point x="3237" y="582"/>
+						<point x="2726" y="582"/>
+						<point x="2657" y="604"/>
+						<point x="2508" y="604"/>
+						<point x="2471" y="604"/>
+						<point x="2106" y="604"/>
+						<point x="2039" y="624"/>
+						<point x="1754" y="624"/>
+						<point x="1754" y="751"/>
+						<point x="2039" y="751"/>
+						<point x="2106" y="737"/>
+						<point x="2471" y="737"/>
+						<point x="2508" y="761"/>
+						<point x="2657" y="761"/>
+						<point x="2726" y="779"/>
+						<point x="3237" y="779"/>
+						<point x="3282" y="739"/>
+						<point x="3759" y="739"/>
+						<point x="3810" y="749"/>
+						<point x="4161" y="749"/>
+						<point x="4220" y="727"/>
+						<point x="4707" y="727"/>
+					</polygon>
+					<token-image id="t1">
+						<polygon>
+							<point x="4220" y="574"/>
+							<point x="4708" y="574"/>
+							<point x="4708" y="728"/>
+							<point x="4220" y="728"/>
+						</polygon>
+					</token-image>
+					<token-image id="t2">
+						<polygon>
+							<point x="3810" y="560"/>
+							<point x="4162" y="560"/>
+							<point x="4162" y="750"/>
+							<point x="3810" y="750"/>
+						</polygon>
+					</token-image>
+					<token-image id="t3">
+						<polygon>
+							<point x="3282" y="582"/>
+							<point x="3760" y="582"/>
+							<point x="3760" y="740"/>
+							<point x="3282" y="740"/>
+						</polygon>
+					</token-image>
+					<token-image id="t4">
+						<polygon>
+							<point x="2726" y="582"/>
+							<point x="3238" y="582"/>
+							<point x="3238" y="780"/>
+							<point x="2726" y="780"/>
+						</polygon>
+					</token-image>
+					<token-image id="t5">
+						<polygon>
+							<point x="2508" y="604"/>
+							<point x="2658" y="604"/>
+							<point x="2658" y="762"/>
+							<point x="2508" y="762"/>
+						</polygon>
+					</token-image>
+					<token-image id="t6">
+						<polygon>
+							<point x="2106" y="604"/>
+							<point x="2472" y="604"/>
+							<point x="2472" y="738"/>
+							<point x="2106" y="738"/>
+						</polygon>
+					</token-image>
+					<token-image id="t7">
+						<polygon>
+							<point x="1754" y="624"/>
+							<point x="2040" y="624"/>
+							<point x="2040" y="752"/>
+							<point x="1754" y="752"/>
+						</polygon>
+					</token-image>
+				</zone>
+				<zone id="z2" type="line">
+					<polygon>
+						<point x="4697" y="804"/>
+						<point x="4254" y="804"/>
+						<point x="4254" y="957"/>
+						<point x="4697" y="957"/>
+					</polygon>
+					<token-image id="t8">
+						<polygon>
+							<point x="4254" y="804"/>
+							<point x="4698" y="804"/>
+							<point x="4698" y="958"/>
+							<point x="4254" y="958"/>
+						</polygon>
+					</token-image>
+				</zone>
+				<zone id="z3" type="line">
+					<polygon>
+						<point x="4725" y="994"/>
+						<point x="4274" y="994"/>
+						<point x="4185" y="980"/>
+						<point x="3812" y="980"/>
+						<point x="3757" y="990"/>
+						<point x="3340" y="990"/>
+						<point x="3269" y="1002"/>
+						<point x="2830" y="1002"/>
+						<point x="2753" y="1018"/>
+						<point x="2612" y="1018"/>
+						<point x="2563" y="992"/>
+						<point x="2178" y="992"/>
+						<point x="2133" y="1032"/>
+						<point x="1868" y="1032"/>
+						<point x="1868" y="1137"/>
+						<point x="2133" y="1137"/>
+						<point x="2178" y="1141"/>
+						<point x="2563" y="1141"/>
+						<point x="2612" y="1171"/>
+						<point x="2753" y="1171"/>
+						<point x="2830" y="1181"/>
+						<point x="3269" y="1181"/>
+						<point x="3340" y="1143"/>
+						<point x="3757" y="1143"/>
+						<point x="3812" y="1171"/>
+						<point x="4185" y="1171"/>
+						<point x="4274" y="1133"/>
+						<point x="4725" y="1133"/>
+					</polygon>
+					<token-image id="t9">
+						<polygon>
+							<point x="4274" y="994"/>
+							<point x="4726" y="994"/>
+							<point x="4726" y="1134"/>
+							<point x="4274" y="1134"/>
+						</polygon>
+					</token-image>
+					<token-image id="t10">
+						<polygon>
+							<point x="3812" y="980"/>
+							<point x="4186" y="980"/>
+							<point x="4186" y="1172"/>
+							<point x="3812" y="1172"/>
+						</polygon>
+					</token-image>
+					<token-image id="t11">
+						<polygon>
+							<point x="3340" y="990"/>
+							<point x="3758" y="990"/>
+							<point x="3758" y="1144"/>
+							<point x="3340" y="1144"/>
+						</polygon>
+					</token-image>
+					<token-image id="t12">
+						<polygon>
+							<point x="2830" y="1002"/>
+							<point x="3270" y="1002"/>
+							<point x="3270" y="1182"/>
+							<point x="2830" y="1182"/>
+						</polygon>
+					</token-image>
+					<token-image id="t13">
+						<polygon>
+							<point x="2612" y="1018"/>
+							<point x="2754" y="1018"/>
+							<point x="2754" y="1172"/>
+							<point x="2612" y="1172"/>
+						</polygon>
+					</token-image>
+					<token-image id="t14">
+						<polygon>
+							<point x="2178" y="992"/>
+							<point x="2564" y="992"/>
+							<point x="2564" y="1142"/>
+							<point x="2178" y="1142"/>
+						</polygon>
+					</token-image>
+					<token-image id="t15">
+						<polygon>
+							<point x="1868" y="1032"/>
+							<point x="2134" y="1032"/>
+							<point x="2134" y="1138"/>
+							<point x="1868" y="1138"/>
+						</polygon>
+					</token-image>
+				</zone>
+				<zone id="z4" type="line">
+					<polygon>
+						<point x="4731" y="1228"/>
+						<point x="4466" y="1228"/>
+						<point x="4466" y="1329"/>
+						<point x="4731" y="1329"/>
+					</polygon>
+					<token-image id="t16">
+						<polygon>
+							<point x="4466" y="1228"/>
+							<point x="4732" y="1228"/>
+							<point x="4732" y="1330"/>
+							<point x="4466" y="1330"/>
+						</polygon>
+					</token-image>
+				</zone>
+				<zone id="z5" type="line">
+					<polygon>
+						<point x="4743" y="1384"/>
+						<point x="4342" y="1384"/>
+						<point x="4255" y="1414"/>
+						<point x="3816" y="1414"/>
+						<point x="3807" y="1398"/>
+						<point x="3318" y="1398"/>
+						<point x="3235" y="1412"/>
+						<point x="2882" y="1412"/>
+						<point x="2849" y="1414"/>
+						<point x="2230" y="1414"/>
+						<point x="2173" y="1418"/>
+						<point x="1990" y="1418"/>
+						<point x="1990" y="1569"/>
+						<point x="2173" y="1569"/>
+						<point x="2230" y="1607"/>
+						<point x="2849" y="1607"/>
+						<point x="2882" y="1639"/>
+						<point x="3235" y="1639"/>
+						<point x="3318" y="1571"/>
+						<point x="3807" y="1571"/>
+						<point x="3816" y="1561"/>
+						<point x="4255" y="1561"/>
+						<point x="4342" y="1525"/>
+						<point x="4743" y="1525"/>
+					</polygon>
+					<token-image id="t17">
+						<polygon>
+							<point x="4342" y="1384"/>
+							<point x="4744" y="1384"/>
+							<point x="4744" y="1526"/>
+							<point x="4342" y="1526"/>
+						</polygon>
+					</token-image>
+					<token-image id="t18">
+						<polygon>
+							<point x="3816" y="1414"/>
+							<point x="4256" y="1414"/>
+							<point x="4256" y="1562"/>
+							<point x="3816" y="1562"/>
+						</polygon>
+					</token-image>
+					<token-image id="t19">
+						<polygon>
+							<point x="3318" y="1398"/>
+							<point x="3808" y="1398"/>
+							<point x="3808" y="1572"/>
+							<point x="3318" y="1572"/>
+						</polygon>
+					</token-image>
+					<token-image id="t20">
+						<polygon>
+							<point x="2882" y="1412"/>
+							<point x="3236" y="1412"/>
+							<point x="3236" y="1640"/>
+							<point x="2882" y="1640"/>
+						</polygon>
+					</token-image>
+					<token-image id="t21">
+						<polygon>
+							<point x="2230" y="1414"/>
+							<point x="2850" y="1414"/>
+							<point x="2850" y="1608"/>
+							<point x="2230" y="1608"/>
+						</polygon>
+					</token-image>
+					<token-image id="t22">
+						<polygon>
+							<point x="1990" y="1418"/>
+							<point x="2174" y="1418"/>
+							<point x="2174" y="1570"/>
+							<point x="1990" y="1570"/>
+						</polygon>
+					</token-image>
+				</zone>
+				<zone id="z6" type="line">
+					<polygon>
+						<point x="4727" y="1624"/>
+						<point x="4272" y="1624"/>
+						<point x="4227" y="1626"/>
+						<point x="3870" y="1626"/>
+						<point x="3823" y="1610"/>
+						<point x="3194" y="1610"/>
+						<point x="3141" y="1622"/>
+						<point x="2590" y="1622"/>
+						<point x="2535" y="1626"/>
+						<point x="2264" y="1626"/>
+						<point x="2264" y="1801"/>
+						<point x="2535" y="1801"/>
+						<point x="2590" y="1763"/>
+						<point x="3141" y="1763"/>
+						<point x="3194" y="1753"/>
+						<point x="3823" y="1753"/>
+						<point x="3870" y="1795"/>
+						<point x="4227" y="1795"/>
+						<point x="4272" y="1763"/>
+						<point x="4727" y="1763"/>
+					</polygon>
+					<token-image id="t23">
+						<polygon>
+							<point x="4272" y="1624"/>
+							<point x="4728" y="1624"/>
+							<point x="4728" y="1764"/>
+							<point x="4272" y="1764"/>
+						</polygon>
+					</token-image>
+					<token-image id="t24">
+						<polygon>
+							<point x="3870" y="1626"/>
+							<point x="4228" y="1626"/>
+							<point x="4228" y="1796"/>
+							<point x="3870" y="1796"/>
+						</polygon>
+					</token-image>
+					<token-image id="t25">
+						<polygon>
+							<point x="3194" y="1610"/>
+							<point x="3824" y="1610"/>
+							<point x="3824" y="1754"/>
+							<point x="3194" y="1754"/>
+						</polygon>
+					</token-image>
+					<token-image id="t26">
+						<polygon>
+							<point x="2590" y="1622"/>
+							<point x="3142" y="1622"/>
+							<point x="3142" y="1764"/>
+							<point x="2590" y="1764"/>
+						</polygon>
+					</token-image>
+					<token-image id="t27">
+						<polygon>
+							<point x="2264" y="1626"/>
+							<point x="2536" y="1626"/>
+							<point x="2536" y="1802"/>
+							<point x="2264" y="1802"/>
+						</polygon>
+					</token-image>
+				</zone>
+				<zone id="z7" type="line">
+					<polygon>
+						<point x="4735" y="1832"/>
+						<point x="4338" y="1832"/>
+						<point x="4293" y="1802"/>
+						<point x="3854" y="1802"/>
+						<point x="3809" y="1834"/>
+						<point x="3236" y="1834"/>
+						<point x="3183" y="1838"/>
+						<point x="2904" y="1838"/>
+						<point x="2819" y="1844"/>
+						<point x="1996" y="1844"/>
+						<point x="1996" y="1979"/>
+						<point x="2819" y="1979"/>
+						<point x="2904" y="1977"/>
+						<point x="3183" y="1977"/>
+						<point x="3236" y="2015"/>
+						<point x="3809" y="2015"/>
+						<point x="3854" y="1997"/>
+						<point x="4293" y="1997"/>
+						<point x="4338" y="1975"/>
+						<point x="4735" y="1975"/>
+					</polygon>
+					<token-image id="t28">
+						<polygon>
+							<point x="4338" y="1832"/>
+							<point x="4736" y="1832"/>
+							<point x="4736" y="1976"/>
+							<point x="4338" y="1976"/>
+						</polygon>
+					</token-image>
+					<token-image id="t29">
+						<polygon>
+							<point x="3854" y="1802"/>
+							<point x="4294" y="1802"/>
+							<point x="4294" y="1998"/>
+							<point x="3854" y="1998"/>
+						</polygon>
+					</token-image>
+					<token-image id="t30">
+						<polygon>
+							<point x="3236" y="1834"/>
+							<point x="3810" y="1834"/>
+							<point x="3810" y="2016"/>
+							<point x="3236" y="2016"/>
+						</polygon>
+					</token-image>
+					<token-image id="t31">
+						<polygon>
+							<point x="2904" y="1838"/>
+							<point x="3184" y="1838"/>
+							<point x="3184" y="1978"/>
+							<point x="2904" y="1978"/>
+						</polygon>
+					</token-image>
+					<token-image id="t32">
+						<polygon>
+							<point x="1996" y="1844"/>
+							<point x="2820" y="1844"/>
+							<point x="2820" y="1980"/>
+							<point x="1996" y="1980"/>
+						</polygon>
+					</token-image>
+				</zone>
+				<zone id="z8" type="line">
+					<polygon>
+						<point x="4745" y="2030"/>
+						<point x="4336" y="2030"/>
+						<point x="4273" y="2044"/>
+						<point x="3972" y="2044"/>
+						<point x="3897" y="2096"/>
+						<point x="3634" y="2096"/>
+						<point x="3595" y="2056"/>
+						<point x="3416" y="2056"/>
+						<point x="3353" y="2048"/>
+						<point x="2918" y="2048"/>
+						<point x="2929" y="2048"/>
+						<point x="2538" y="2048"/>
+						<point x="2538" y="2207"/>
+						<point x="2929" y="2207"/>
+						<point x="2918" y="2223"/>
+						<point x="3353" y="2223"/>
+						<point x="3416" y="2135"/>
+						<point x="3595" y="2135"/>
+						<point x="3634" y="2231"/>
+						<point x="3897" y="2231"/>
+						<point x="3972" y="2161"/>
+						<point x="4273" y="2161"/>
+						<point x="4336" y="2163"/>
+						<point x="4745" y="2163"/>
+					</polygon>
+					<token-image id="t33">
+						<polygon>
+							<point x="4336" y="2030"/>
+							<point x="4746" y="2030"/>
+							<point x="4746" y="2164"/>
+							<point x="4336" y="2164"/>
+						</polygon>
+					</token-image>
+					<token-image id="t34">
+						<polygon>
+							<point x="3972" y="2044"/>
+							<point x="4274" y="2044"/>
+							<point x="4274" y="2162"/>
+							<point x="3972" y="2162"/>
+						</polygon>
+					</token-image>
+					<token-image id="t35">
+						<polygon>
+							<point x="3634" y="2096"/>
+							<point x="3898" y="2096"/>
+							<point x="3898" y="2232"/>
+							<point x="3634" y="2232"/>
+						</polygon>
+					</token-image>
+					<token-image id="t36">
+						<polygon>
+							<point x="3416" y="2056"/>
+							<point x="3596" y="2056"/>
+							<point x="3596" y="2136"/>
+							<point x="3416" y="2136"/>
+						</polygon>
+					</token-image>
+					<token-image id="t37">
+						<polygon>
+							<point x="2918" y="2048"/>
+							<point x="3354" y="2048"/>
+							<point x="3354" y="2224"/>
+							<point x="2918" y="2224"/>
+						</polygon>
+					</token-image>
+					<token-image id="t38">
+						<polygon>
+							<point x="2538" y="2048"/>
+							<point x="2930" y="2048"/>
+							<point x="2930" y="2208"/>
+							<point x="2538" y="2208"/>
+						</polygon>
+					</token-image>
+				</zone>
+				<zone id="z9" type="line">
+					<polygon>
+						<point x="4755" y="2218"/>
+						<point x="4262" y="2218"/>
+						<point x="4219" y="2234"/>
+						<point x="3610" y="2234"/>
+						<point x="3531" y="2282"/>
+						<point x="3340" y="2282"/>
+						<point x="3307" y="2220"/>
+						<point x="2866" y="2220"/>
+						<point x="2779" y="2220"/>
+						<point x="2436" y="2220"/>
+						<point x="2393" y="2238"/>
+						<point x="1930" y="2238"/>
+						<point x="1930" y="2393"/>
+						<point x="2393" y="2393"/>
+						<point x="2436" y="2409"/>
+						<point x="2779" y="2409"/>
+						<point x="2866" y="2403"/>
+						<point x="3307" y="2403"/>
+						<point x="3340" y="2371"/>
+						<point x="3531" y="2371"/>
+						<point x="3610" y="2421"/>
+						<point x="4219" y="2421"/>
+						<point x="4262" y="2391"/>
+						<point x="4755" y="2391"/>
+					</polygon>
+					<token-image id="t39">
+						<polygon>
+							<point x="4262" y="2218"/>
+							<point x="4756" y="2218"/>
+							<point x="4756" y="2392"/>
+							<point x="4262" y="2392"/>
+						</polygon>
+					</token-image>
+					<token-image id="t40">
+						<polygon>
+							<point x="3610" y="2234"/>
+							<point x="4220" y="2234"/>
+							<point x="4220" y="2422"/>
+							<point x="3610" y="2422"/>
+						</polygon>
+					</token-image>
+					<token-image id="t41">
+						<polygon>
+							<point x="3340" y="2282"/>
+							<point x="3532" y="2282"/>
+							<point x="3532" y="2372"/>
+							<point x="3340" y="2372"/>
+						</polygon>
+					</token-image>
+					<token-image id="t42">
+						<polygon>
+							<point x="2866" y="2220"/>
+							<point x="3308" y="2220"/>
+							<point x="3308" y="2404"/>
+							<point x="2866" y="2404"/>
+						</polygon>
+					</token-image>
+					<token-image id="t43">
+						<polygon>
+							<point x="2436" y="2220"/>
+							<point x="2780" y="2220"/>
+							<point x="2780" y="2410"/>
+							<point x="2436" y="2410"/>
+						</polygon>
+					</token-image>
+					<token-image id="t44">
+						<polygon>
+							<point x="1930" y="2238"/>
+							<point x="2394" y="2238"/>
+							<point x="2394" y="2394"/>
+							<point x="1930" y="2394"/>
+						</polygon>
+					</token-image>
+				</zone>
+				<zone id="z10" type="line">
+					<polygon>
+						<point x="4785" y="2434"/>
+						<point x="4274" y="2434"/>
+						<point x="4207" y="2428"/>
+						<point x="3696" y="2428"/>
+						<point x="3655" y="2432"/>
+						<point x="3178" y="2432"/>
+						<point x="3095" y="2432"/>
+						<point x="2844" y="2432"/>
+						<point x="2783" y="2466"/>
+						<point x="2328" y="2466"/>
+						<point x="2263" y="2440"/>
+						<point x="1914" y="2440"/>
+						<point x="1914" y="2599"/>
+						<point x="2263" y="2599"/>
+						<point x="2328" y="2593"/>
+						<point x="2783" y="2593"/>
+						<point x="2844" y="2587"/>
+						<point x="3095" y="2587"/>
+						<point x="3178" y="2597"/>
+						<point x="3655" y="2597"/>
+						<point x="3696" y="2605"/>
+						<point x="4207" y="2605"/>
+						<point x="4274" y="2589"/>
+						<point x="4785" y="2589"/>
+					</polygon>
+					<token-image id="t45">
+						<polygon>
+							<point x="4274" y="2434"/>
+							<point x="4786" y="2434"/>
+							<point x="4786" y="2590"/>
+							<point x="4274" y="2590"/>
+						</polygon>
+					</token-image>
+					<token-image id="t46">
+						<polygon>
+							<point x="3696" y="2428"/>
+							<point x="4208" y="2428"/>
+							<point x="4208" y="2606"/>
+							<point x="3696" y="2606"/>
+						</polygon>
+					</token-image>
+					<token-image id="t47">
+						<polygon>
+							<point x="3178" y="2432"/>
+							<point x="3656" y="2432"/>
+							<point x="3656" y="2598"/>
+							<point x="3178" y="2598"/>
+						</polygon>
+					</token-image>
+					<token-image id="t48">
+						<polygon>
+							<point x="2844" y="2432"/>
+							<point x="3096" y="2432"/>
+							<point x="3096" y="2588"/>
+							<point x="2844" y="2588"/>
+						</polygon>
+					</token-image>
+					<token-image id="t49">
+						<polygon>
+							<point x="2328" y="2466"/>
+							<point x="2784" y="2466"/>
+							<point x="2784" y="2594"/>
+							<point x="2328" y="2594"/>
+						</polygon>
+					</token-image>
+					<token-image id="t50">
+						<polygon>
+							<point x="1914" y="2440"/>
+							<point x="2264" y="2440"/>
+							<point x="2264" y="2600"/>
+							<point x="1914" y="2600"/>
+						</polygon>
+					</token-image>
+				</zone>
+				<zone id="z11" type="line">
+					<polygon>
+						<point x="4773" y="2630"/>
+						<point x="4088" y="2630"/>
+						<point x="4009" y="2712"/>
+						<point x="3994" y="2712"/>
+						<point x="3994" y="2729"/>
+						<point x="4009" y="2729"/>
+						<point x="4088" y="2813"/>
+						<point x="4773" y="2813"/>
+					</polygon>
+					<token-image id="t51">
+						<polygon>
+							<point x="4088" y="2630"/>
+							<point x="4774" y="2630"/>
+							<point x="4774" y="2814"/>
+							<point x="4088" y="2814"/>
+						</polygon>
+					</token-image>
+					<token-image id="t52">
+						<polygon>
+							<point x="3994" y="2712"/>
+							<point x="4010" y="2712"/>
+							<point x="4010" y="2730"/>
+							<point x="3994" y="2730"/>
+						</polygon>
+					</token-image>
+				</zone>
+				<zone id="z12" type="line">
+					<polygon>
+						<point x="4731" y="2838"/>
+						<point x="4194" y="2838"/>
+						<point x="4175" y="2836"/>
+						<point x="3612" y="2836"/>
+						<point x="3623" y="2836"/>
+						<point x="3456" y="2836"/>
+						<point x="3393" y="2844"/>
+						<point x="3236" y="2844"/>
+						<point x="3161" y="2864"/>
+						<point x="2684" y="2864"/>
+						<point x="2655" y="2818"/>
+						<point x="2274" y="2818"/>
+						<point x="2274" y="2993"/>
+						<point x="2655" y="2993"/>
+						<point x="2684" y="2997"/>
+						<point x="3161" y="2997"/>
+						<point x="3236" y="2979"/>
+						<point x="3393" y="2979"/>
+						<point x="3456" y="2965"/>
+						<point x="3623" y="2965"/>
+						<point x="3612" y="3005"/>
+						<point x="4175" y="3005"/>
+						<point x="4194" y="3029"/>
+						<point x="4731" y="3029"/>
+					</polygon>
+					<token-image id="t53">
+						<polygon>
+							<point x="4194" y="2838"/>
+							<point x="4732" y="2838"/>
+							<point x="4732" y="3030"/>
+							<point x="4194" y="3030"/>
+						</polygon>
+					</token-image>
+					<token-image id="t54">
+						<polygon>
+							<point x="3612" y="2836"/>
+							<point x="4176" y="2836"/>
+							<point x="4176" y="3006"/>
+							<point x="3612" y="3006"/>
+						</polygon>
+					</token-image>
+					<token-image id="t55">
+						<polygon>
+							<point x="3456" y="2836"/>
+							<point x="3624" y="2836"/>
+							<point x="3624" y="2966"/>
+							<point x="3456" y="2966"/>
+						</polygon>
+					</token-image>
+					<token-image id="t56">
+						<polygon>
+							<point x="3236" y="2844"/>
+							<point x="3394" y="2844"/>
+							<point x="3394" y="2980"/>
+							<point x="3236" y="2980"/>
+						</polygon>
+					</token-image>
+					<token-image id="t57">
+						<polygon>
+							<point x="2684" y="2864"/>
+							<point x="3162" y="2864"/>
+							<point x="3162" y="2998"/>
+							<point x="2684" y="2998"/>
+						</polygon>
+					</token-image>
+					<token-image id="t58">
+						<polygon>
+							<point x="2274" y="2818"/>
+							<point x="2656" y="2818"/>
+							<point x="2656" y="2994"/>
+							<point x="2274" y="2994"/>
+						</polygon>
+					</token-image>
+				</zone>
+				<zone id="z13" type="line">
+					<polygon>
+						<point x="4725" y="3038"/>
+						<point x="4068" y="3038"/>
+						<point x="4017" y="3132"/>
+						<point x="3990" y="3132"/>
+						<point x="3939" y="3046"/>
+						<point x="3652" y="3046"/>
+						<point x="3595" y="3062"/>
+						<point x="3222" y="3062"/>
+						<point x="3147" y="3056"/>
+						<point x="2798" y="3056"/>
+						<point x="2757" y="3054"/>
+						<point x="2370" y="3054"/>
+						<point x="2309" y="3058"/>
+						<point x="1894" y="3058"/>
+						<point x="1894" y="3245"/>
+						<point x="2309" y="3245"/>
+						<point x="2370" y="3235"/>
+						<point x="2757" y="3235"/>
+						<point x="2798" y="3247"/>
+						<point x="3147" y="3247"/>
+						<point x="3222" y="3197"/>
+						<point x="3595" y="3197"/>
+						<point x="3652" y="3169"/>
+						<point x="3939" y="3169"/>
+						<point x="3990" y="3165"/>
+						<point x="4017" y="3165"/>
+						<point x="4068" y="3213"/>
+						<point x="4725" y="3213"/>
+					</polygon>
+					<token-image id="t59">
+						<polygon>
+							<point x="4068" y="3038"/>
+							<point x="4726" y="3038"/>
+							<point x="4726" y="3214"/>
+							<point x="4068" y="3214"/>
+						</polygon>
+					</token-image>
+					<token-image id="t60">
+						<polygon>
+							<point x="3990" y="3132"/>
+							<point x="4018" y="3132"/>
+							<point x="4018" y="3166"/>
+							<point x="3990" y="3166"/>
+						</polygon>
+					</token-image>
+					<token-image id="t61">
+						<polygon>
+							<point x="3652" y="3046"/>
+							<point x="3940" y="3046"/>
+							<point x="3940" y="3170"/>
+							<point x="3652" y="3170"/>
+						</polygon>
+					</token-image>
+					<token-image id="t62">
+						<polygon>
+							<point x="3222" y="3062"/>
+							<point x="3596" y="3062"/>
+							<point x="3596" y="3198"/>
+							<point x="3222" y="3198"/>
+						</polygon>
+					</token-image>
+					<token-image id="t63">
+						<polygon>
+							<point x="2798" y="3056"/>
+							<point x="3148" y="3056"/>
+							<point x="3148" y="3248"/>
+							<point x="2798" y="3248"/>
+						</polygon>
+					</token-image>
+					<token-image id="t64">
+						<polygon>
+							<point x="2370" y="3054"/>
+							<point x="2758" y="3054"/>
+							<point x="2758" y="3236"/>
+							<point x="2370" y="3236"/>
+						</polygon>
+					</token-image>
+					<token-image id="t65">
+						<polygon>
+							<point x="1894" y="3058"/>
+							<point x="2310" y="3058"/>
+							<point x="2310" y="3246"/>
+							<point x="1894" y="3246"/>
+						</polygon>
+					</token-image>
+				</zone>
+				<zone id="z14" type="line">
+					<polygon>
+						<point x="4751" y="3238"/>
+						<point x="4570" y="3238"/>
+						<point x="4527" y="3300"/>
+						<point x="4256" y="3300"/>
+						<point x="4213" y="3322"/>
+						<point x="4177" y="3322"/>
+						<point x="4143" y="3238"/>
+						<point x="3778" y="3238"/>
+						<point x="3693" y="3254"/>
+						<point x="3320" y="3254"/>
+						<point x="3247" y="3238"/>
+						<point x="2784" y="3238"/>
+						<point x="2735" y="3292"/>
+						<point x="2566" y="3292"/>
+						<point x="2493" y="3274"/>
+						<point x="2128" y="3274"/>
+						<point x="2128" y="3453"/>
+						<point x="2493" y="3453"/>
+						<point x="2566" y="3381"/>
+						<point x="2735" y="3381"/>
+						<point x="2784" y="3427"/>
+						<point x="3247" y="3427"/>
+						<point x="3320" y="3431"/>
+						<point x="3693" y="3431"/>
+						<point x="3778" y="3417"/>
+						<point x="4143" y="3417"/>
+						<point x="4177" y="3379"/>
+						<point x="4213" y="3379"/>
+						<point x="4256" y="3441"/>
+						<point x="4527" y="3441"/>
+						<point x="4570" y="3391"/>
+						<point x="4751" y="3391"/>
+					</polygon>
+					<token-image id="t66">
+						<polygon>
+							<point x="4570" y="3238"/>
+							<point x="4752" y="3238"/>
+							<point x="4752" y="3392"/>
+							<point x="4570" y="3392"/>
+						</polygon>
+					</token-image>
+					<token-image id="t67">
+						<polygon>
+							<point x="4256" y="3300"/>
+							<point x="4528" y="3300"/>
+							<point x="4528" y="3442"/>
+							<point x="4256" y="3442"/>
+						</polygon>
+					</token-image>
+					<token-image id="t68">
+						<polygon>
+							<point x="4177" y="3322"/>
+							<point x="4214" y="3322"/>
+							<point x="4214" y="3380"/>
+							<point x="4177" y="3380"/>
+						</polygon>
+					</token-image>
+					<token-image id="t69">
+						<polygon>
+							<point x="3778" y="3238"/>
+							<point x="4144" y="3238"/>
+							<point x="4144" y="3418"/>
+							<point x="3778" y="3418"/>
+						</polygon>
+					</token-image>
+					<token-image id="t70">
+						<polygon>
+							<point x="3320" y="3254"/>
+							<point x="3694" y="3254"/>
+							<point x="3694" y="3432"/>
+							<point x="3320" y="3432"/>
+						</polygon>
+					</token-image>
+					<token-image id="t71">
+						<polygon>
+							<point x="2784" y="3238"/>
+							<point x="3248" y="3238"/>
+							<point x="3248" y="3428"/>
+							<point x="2784" y="3428"/>
+						</polygon>
+					</token-image>
+					<token-image id="t72">
+						<polygon>
+							<point x="2566" y="3292"/>
+							<point x="2736" y="3292"/>
+							<point x="2736" y="3382"/>
+							<point x="2566" y="3382"/>
+						</polygon>
+					</token-image>
+					<token-image id="t73">
+						<polygon>
+							<point x="2128" y="3274"/>
+							<point x="2494" y="3274"/>
+							<point x="2494" y="3454"/>
+							<point x="2128" y="3454"/>
+						</polygon>
+					</token-image>
+				</zone>
+				<zone id="z15" type="line">
+					<polygon>
+						<point x="4725" y="3448"/>
+						<point x="4206" y="3448"/>
+						<point x="4177" y="3458"/>
+						<point x="3524" y="3458"/>
+						<point x="3471" y="3446"/>
+						<point x="2906" y="3446"/>
+						<point x="2839" y="3466"/>
+						<point x="2680" y="3466"/>
+						<point x="2655" y="3452"/>
+						<point x="2184" y="3452"/>
+						<point x="2139" y="3520"/>
+						<point x="1872" y="3520"/>
+						<point x="1872" y="3655"/>
+						<point x="2139" y="3655"/>
+						<point x="2184" y="3633"/>
+						<point x="2655" y="3633"/>
+						<point x="2680" y="3621"/>
+						<point x="2839" y="3621"/>
+						<point x="2906" y="3635"/>
+						<point x="3471" y="3635"/>
+						<point x="3524" y="3663"/>
+						<point x="4177" y="3663"/>
+						<point x="4206" y="3613"/>
+						<point x="4725" y="3613"/>
+					</polygon>
+					<token-image id="t74">
+						<polygon>
+							<point x="4206" y="3448"/>
+							<point x="4726" y="3448"/>
+							<point x="4726" y="3614"/>
+							<point x="4206" y="3614"/>
+						</polygon>
+					</token-image>
+					<token-image id="t75">
+						<polygon>
+							<point x="3524" y="3458"/>
+							<point x="4178" y="3458"/>
+							<point x="4178" y="3664"/>
+							<point x="3524" y="3664"/>
+						</polygon>
+					</token-image>
+					<token-image id="t76">
+						<polygon>
+							<point x="2906" y="3446"/>
+							<point x="3472" y="3446"/>
+							<point x="3472" y="3636"/>
+							<point x="2906" y="3636"/>
+						</polygon>
+					</token-image>
+					<token-image id="t77">
+						<polygon>
+							<point x="2680" y="3466"/>
+							<point x="2840" y="3466"/>
+							<point x="2840" y="3622"/>
+							<point x="2680" y="3622"/>
+						</polygon>
+					</token-image>
+					<token-image id="t78">
+						<polygon>
+							<point x="2184" y="3452"/>
+							<point x="2656" y="3452"/>
+							<point x="2656" y="3634"/>
+							<point x="2184" y="3634"/>
+						</polygon>
+					</token-image>
+					<token-image id="t79">
+						<polygon>
+							<point x="1872" y="3520"/>
+							<point x="2140" y="3520"/>
+							<point x="2140" y="3656"/>
+							<point x="1872" y="3656"/>
+						</polygon>
+					</token-image>
+				</zone>
+				<zone id="z16" type="line">
+					<polygon>
+						<point x="4731" y="3670"/>
+						<point x="4378" y="3670"/>
+						<point x="4301" y="3704"/>
+						<point x="4124" y="3704"/>
+						<point x="4041" y="3664"/>
+						<point x="3460" y="3664"/>
+						<point x="3369" y="3718"/>
+						<point x="3182" y="3718"/>
+						<point x="3107" y="3668"/>
+						<point x="2818" y="3668"/>
+						<point x="2751" y="3660"/>
+						<point x="2372" y="3660"/>
+						<point x="2372" y="3819"/>
+						<point x="2751" y="3819"/>
+						<point x="2818" y="3837"/>
+						<point x="3107" y="3837"/>
+						<point x="3182" y="3811"/>
+						<point x="3369" y="3811"/>
+						<point x="3460" y="3793"/>
+						<point x="4041" y="3793"/>
+						<point x="4124" y="3791"/>
+						<point x="4301" y="3791"/>
+						<point x="4378" y="3823"/>
+						<point x="4731" y="3823"/>
+					</polygon>
+					<token-image id="t80">
+						<polygon>
+							<point x="4378" y="3670"/>
+							<point x="4732" y="3670"/>
+							<point x="4732" y="3824"/>
+							<point x="4378" y="3824"/>
+						</polygon>
+					</token-image>
+					<token-image id="t81">
+						<polygon>
+							<point x="4124" y="3704"/>
+							<point x="4302" y="3704"/>
+							<point x="4302" y="3792"/>
+							<point x="4124" y="3792"/>
+						</polygon>
+					</token-image>
+					<token-image id="t82">
+						<polygon>
+							<point x="3460" y="3664"/>
+							<point x="4042" y="3664"/>
+							<point x="4042" y="3794"/>
+							<point x="3460" y="3794"/>
+						</polygon>
+					</token-image>
+					<token-image id="t83">
+						<polygon>
+							<point x="3182" y="3718"/>
+							<point x="3370" y="3718"/>
+							<point x="3370" y="3812"/>
+							<point x="3182" y="3812"/>
+						</polygon>
+					</token-image>
+					<token-image id="t84">
+						<polygon>
+							<point x="2818" y="3668"/>
+							<point x="3108" y="3668"/>
+							<point x="3108" y="3838"/>
+							<point x="2818" y="3838"/>
+						</polygon>
+					</token-image>
+					<token-image id="t85">
+						<polygon>
+							<point x="2372" y="3660"/>
+							<point x="2752" y="3660"/>
+							<point x="2752" y="3820"/>
+							<point x="2372" y="3820"/>
+						</polygon>
+					</token-image>
+				</zone>
+				<zone id="z17" type="line">
+					<polygon>
+						<point x="4717" y="3852"/>
+						<point x="3956" y="3852"/>
+						<point x="3945" y="3856"/>
+						<point x="3342" y="3856"/>
+						<point x="3279" y="3866"/>
+						<point x="3138" y="3866"/>
+						<point x="3077" y="3886"/>
+						<point x="2836" y="3886"/>
+						<point x="2775" y="3882"/>
+						<point x="2366" y="3882"/>
+						<point x="2327" y="3878"/>
+						<point x="1912" y="3878"/>
+						<point x="1912" y="4057"/>
+						<point x="2327" y="4057"/>
+						<point x="2366" y="4093"/>
+						<point x="2775" y="4093"/>
+						<point x="2836" y="4029"/>
+						<point x="3077" y="4029"/>
+						<point x="3138" y="4037"/>
+						<point x="3279" y="4037"/>
+						<point x="3342" y="4041"/>
+						<point x="3945" y="4041"/>
+						<point x="3956" y="4061"/>
+						<point x="4717" y="4061"/>
+					</polygon>
+					<token-image id="t86">
+						<polygon>
+							<point x="3956" y="3852"/>
+							<point x="4718" y="3852"/>
+							<point x="4718" y="4062"/>
+							<point x="3956" y="4062"/>
+						</polygon>
+					</token-image>
+					<token-image id="t87">
+						<polygon>
+							<point x="3342" y="3856"/>
+							<point x="3946" y="3856"/>
+							<point x="3946" y="4042"/>
+							<point x="3342" y="4042"/>
+						</polygon>
+					</token-image>
+					<token-image id="t88">
+						<polygon>
+							<point x="3138" y="3866"/>
+							<point x="3280" y="3866"/>
+							<point x="3280" y="4038"/>
+							<point x="3138" y="4038"/>
+						</polygon>
+					</token-image>
+					<token-image id="t89">
+						<polygon>
+							<point x="2836" y="3886"/>
+							<point x="3078" y="3886"/>
+							<point x="3078" y="4030"/>
+							<point x="2836" y="4030"/>
+						</polygon>
+					</token-image>
+					<token-image id="t90">
+						<polygon>
+							<point x="2366" y="3882"/>
+							<point x="2776" y="3882"/>
+							<point x="2776" y="4094"/>
+							<point x="2366" y="4094"/>
+						</polygon>
+					</token-image>
+					<token-image id="t91">
+						<polygon>
+							<point x="1912" y="3878"/>
+							<point x="2328" y="3878"/>
+							<point x="2328" y="4058"/>
+							<point x="1912" y="4058"/>
+						</polygon>
+					</token-image>
+				</zone>
+				<zone id="z18" type="line">
+					<polygon>
+						<point x="4701" y="4072"/>
+						<point x="4506" y="4072"/>
+						<point x="4437" y="4094"/>
+						<point x="3992" y="4094"/>
+						<point x="3923" y="4074"/>
+						<point x="3780" y="4074"/>
+						<point x="3767" y="4098"/>
+						<point x="3468" y="4098"/>
+						<point x="3403" y="4130"/>
+						<point x="3374" y="4130"/>
+						<point x="3374" y="4183"/>
+						<point x="3403" y="4183"/>
+						<point x="3468" y="4205"/>
+						<point x="3767" y="4205"/>
+						<point x="3780" y="4229"/>
+						<point x="3923" y="4229"/>
+						<point x="3992" y="4189"/>
+						<point x="4437" y="4189"/>
+						<point x="4506" y="4251"/>
+						<point x="4701" y="4251"/>
+					</polygon>
+					<token-image id="t92">
+						<polygon>
+							<point x="4506" y="4072"/>
+							<point x="4702" y="4072"/>
+							<point x="4702" y="4252"/>
+							<point x="4506" y="4252"/>
+						</polygon>
+					</token-image>
+					<token-image id="t93">
+						<polygon>
+							<point x="3992" y="4094"/>
+							<point x="4438" y="4094"/>
+							<point x="4438" y="4190"/>
+							<point x="3992" y="4190"/>
+						</polygon>
+					</token-image>
+					<token-image id="t94">
+						<polygon>
+							<point x="3780" y="4074"/>
+							<point x="3924" y="4074"/>
+							<point x="3924" y="4230"/>
+							<point x="3780" y="4230"/>
+						</polygon>
+					</token-image>
+					<token-image id="t95">
+						<polygon>
+							<point x="3468" y="4098"/>
+							<point x="3768" y="4098"/>
+							<point x="3768" y="4206"/>
+							<point x="3468" y="4206"/>
+						</polygon>
+					</token-image>
+					<token-image id="t96">
+						<polygon>
+							<point x="3374" y="4130"/>
+							<point x="3404" y="4130"/>
+							<point x="3404" y="4184"/>
+							<point x="3374" y="4184"/>
+						</polygon>
+					</token-image>
+				</zone>
+				<zone id="z19" type="line">
+					<polygon>
+						<point x="4695" y="4266"/>
+						<point x="4374" y="4266"/>
+						<point x="4305" y="4276"/>
+						<point x="3976" y="4276"/>
+						<point x="3945" y="4276"/>
+						<point x="3478" y="4276"/>
+						<point x="3395" y="4274"/>
+						<point x="2932" y="4274"/>
+						<point x="2897" y="4244"/>
+						<point x="2402" y="4244"/>
+						<point x="2402" y="4441"/>
+						<point x="2897" y="4441"/>
+						<point x="2932" y="4445"/>
+						<point x="3395" y="4445"/>
+						<point x="3478" y="4439"/>
+						<point x="3945" y="4439"/>
+						<point x="3976" y="4379"/>
+						<point x="4305" y="4379"/>
+						<point x="4374" y="4427"/>
+						<point x="4695" y="4427"/>
+					</polygon>
+					<token-image id="t97">
+						<polygon>
+							<point x="4374" y="4266"/>
+							<point x="4696" y="4266"/>
+							<point x="4696" y="4428"/>
+							<point x="4374" y="4428"/>
+						</polygon>
+					</token-image>
+					<token-image id="t98">
+						<polygon>
+							<point x="3976" y="4276"/>
+							<point x="4306" y="4276"/>
+							<point x="4306" y="4380"/>
+							<point x="3976" y="4380"/>
+						</polygon>
+					</token-image>
+					<token-image id="t99">
+						<polygon>
+							<point x="3478" y="4276"/>
+							<point x="3946" y="4276"/>
+							<point x="3946" y="4440"/>
+							<point x="3478" y="4440"/>
+						</polygon>
+					</token-image>
+					<token-image id="t100">
+						<polygon>
+							<point x="2932" y="4274"/>
+							<point x="3396" y="4274"/>
+							<point x="3396" y="4446"/>
+							<point x="2932" y="4446"/>
+						</polygon>
+					</token-image>
+					<token-image id="t101">
+						<polygon>
+							<point x="2402" y="4244"/>
+							<point x="2898" y="4244"/>
+							<point x="2898" y="4442"/>
+							<point x="2402" y="4442"/>
+						</polygon>
+					</token-image>
+				</zone>
+				<zone id="z20" type="line">
+					<polygon>
+						<point x="4695" y="4462"/>
+						<point x="4116" y="4462"/>
+						<point x="4069" y="4476"/>
+						<point x="3640" y="4476"/>
+						<point x="3567" y="4484"/>
+						<point x="3234" y="4484"/>
+						<point x="3179" y="4464"/>
+						<point x="2962" y="4464"/>
+						<point x="2899" y="4476"/>
+						<point x="2544" y="4476"/>
+						<point x="2487" y="4488"/>
+						<point x="2326" y="4488"/>
+						<point x="2326" y="4641"/>
+						<point x="2487" y="4641"/>
+						<point x="2544" y="4649"/>
+						<point x="2899" y="4649"/>
+						<point x="2962" y="4613"/>
+						<point x="3179" y="4613"/>
+						<point x="3234" y="4653"/>
+						<point x="3567" y="4653"/>
+						<point x="3640" y="4655"/>
+						<point x="4069" y="4655"/>
+						<point x="4116" y="4653"/>
+						<point x="4695" y="4653"/>
+					</polygon>
+					<token-image id="t102">
+						<polygon>
+							<point x="4116" y="4462"/>
+							<point x="4696" y="4462"/>
+							<point x="4696" y="4654"/>
+							<point x="4116" y="4654"/>
+						</polygon>
+					</token-image>
+					<token-image id="t103">
+						<polygon>
+							<point x="3640" y="4476"/>
+							<point x="4070" y="4476"/>
+							<point x="4070" y="4656"/>
+							<point x="3640" y="4656"/>
+						</polygon>
+					</token-image>
+					<token-image id="t104">
+						<polygon>
+							<point x="3234" y="4484"/>
+							<point x="3568" y="4484"/>
+							<point x="3568" y="4654"/>
+							<point x="3234" y="4654"/>
+						</polygon>
+					</token-image>
+					<token-image id="t105">
+						<polygon>
+							<point x="2962" y="4464"/>
+							<point x="3180" y="4464"/>
+							<point x="3180" y="4614"/>
+							<point x="2962" y="4614"/>
+						</polygon>
+					</token-image>
+					<token-image id="t106">
+						<polygon>
+							<point x="2544" y="4476"/>
+							<point x="2900" y="4476"/>
+							<point x="2900" y="4650"/>
+							<point x="2544" y="4650"/>
+						</polygon>
+					</token-image>
+					<token-image id="t107">
+						<polygon>
+							<point x="2326" y="4488"/>
+							<point x="2488" y="4488"/>
+							<point x="2488" y="4642"/>
+							<point x="2326" y="4642"/>
+						</polygon>
+					</token-image>
+				</zone>
+				<zone id="z21" type="line">
+					<polygon>
+						<point x="4677" y="4678"/>
+						<point x="4016" y="4678"/>
+						<point x="3929" y="4676"/>
+						<point x="3372" y="4676"/>
+						<point x="3372" y="4855"/>
+						<point x="3929" y="4855"/>
+						<point x="4016" y="4865"/>
+						<point x="4677" y="4865"/>
+					</polygon>
+					<token-image id="t108">
+						<polygon>
+							<point x="4016" y="4678"/>
+							<point x="4678" y="4678"/>
+							<point x="4678" y="4866"/>
+							<point x="4016" y="4866"/>
+						</polygon>
+					</token-image>
+					<token-image id="t109">
+						<polygon>
+							<point x="3372" y="4676"/>
+							<point x="3930" y="4676"/>
+							<point x="3930" y="4856"/>
+							<point x="3372" y="4856"/>
+						</polygon>
+					</token-image>
+				</zone>
+				<zone id="z22" type="line">
+					<polygon>
+						<point x="4671" y="4868"/>
+						<point x="3864" y="4868"/>
+						<point x="3763" y="4962"/>
+						<point x="3734" y="4962"/>
+						<point x="3697" y="4878"/>
+						<point x="3038" y="4878"/>
+						<point x="2987" y="4892"/>
+						<point x="2788" y="4892"/>
+						<point x="2725" y="4892"/>
+						<point x="2276" y="4892"/>
+						<point x="2276" y="5069"/>
+						<point x="2725" y="5069"/>
+						<point x="2788" y="5003"/>
+						<point x="2987" y="5003"/>
+						<point x="3038" y="5087"/>
+						<point x="3697" y="5087"/>
+						<point x="3734" y="5009"/>
+						<point x="3763" y="5009"/>
+						<point x="3864" y="5043"/>
+						<point x="4671" y="5043"/>
+					</polygon>
+					<token-image id="t110">
+						<polygon>
+							<point x="3864" y="4868"/>
+							<point x="4672" y="4868"/>
+							<point x="4672" y="5044"/>
+							<point x="3864" y="5044"/>
+						</polygon>
+					</token-image>
+					<token-image id="t111">
+						<polygon>
+							<point x="3734" y="4962"/>
+							<point x="3764" y="4962"/>
+							<point x="3764" y="5010"/>
+							<point x="3734" y="5010"/>
+						</polygon>
+					</token-image>
+					<token-image id="t112">
+						<polygon>
+							<point x="3038" y="4878"/>
+							<point x="3698" y="4878"/>
+							<point x="3698" y="5088"/>
+							<point x="3038" y="5088"/>
+						</polygon>
+					</token-image>
+					<token-image id="t113">
+						<polygon>
+							<point x="2788" y="4892"/>
+							<point x="2988" y="4892"/>
+							<point x="2988" y="5004"/>
+							<point x="2788" y="5004"/>
+						</polygon>
+					</token-image>
+					<token-image id="t114">
+						<polygon>
+							<point x="2276" y="4892"/>
+							<point x="2726" y="4892"/>
+							<point x="2726" y="5070"/>
+							<point x="2276" y="5070"/>
+						</polygon>
+					</token-image>
+				</zone>
+				<zone id="z23" type="line">
+					<polygon>
+						<point x="4679" y="5076"/>
+						<point x="3798" y="5076"/>
+						<point x="3737" y="5066"/>
+						<point x="3176" y="5066"/>
+						<point x="3133" y="5084"/>
+						<point x="2960" y="5084"/>
+						<point x="2905" y="5068"/>
+						<point x="2218" y="5068"/>
+						<point x="2113" y="5158"/>
+						<point x="2094" y="5158"/>
+						<point x="2094" y="5185"/>
+						<point x="2113" y="5185"/>
+						<point x="2218" y="5269"/>
+						<point x="2905" y="5269"/>
+						<point x="2960" y="5251"/>
+						<point x="3133" y="5251"/>
+						<point x="3176" y="5213"/>
+						<point x="3737" y="5213"/>
+						<point x="3798" y="5253"/>
+						<point x="4679" y="5253"/>
+					</polygon>
+					<token-image id="t115">
+						<polygon>
+							<point x="3798" y="5076"/>
+							<point x="4680" y="5076"/>
+							<point x="4680" y="5254"/>
+							<point x="3798" y="5254"/>
+						</polygon>
+					</token-image>
+					<token-image id="t116">
+						<polygon>
+							<point x="3176" y="5066"/>
+							<point x="3738" y="5066"/>
+							<point x="3738" y="5214"/>
+							<point x="3176" y="5214"/>
+						</polygon>
+					</token-image>
+					<token-image id="t117">
+						<polygon>
+							<point x="2960" y="5084"/>
+							<point x="3134" y="5084"/>
+							<point x="3134" y="5252"/>
+							<point x="2960" y="5252"/>
+						</polygon>
+					</token-image>
+					<token-image id="t118">
+						<polygon>
+							<point x="2218" y="5068"/>
+							<point x="2906" y="5068"/>
+							<point x="2906" y="5270"/>
+							<point x="2218" y="5270"/>
+						</polygon>
+					</token-image>
+					<token-image id="t119">
+						<polygon>
+							<point x="2094" y="5158"/>
+							<point x="2114" y="5158"/>
+							<point x="2114" y="5186"/>
+							<point x="2094" y="5186"/>
+						</polygon>
+					</token-image>
+				</zone>
+			</page>
+		</image>
+		<content>
+			<section id="sec0001" type="tokenization">
+				<segment id="s1">
+					<zone_ref>z1</zone_ref>
+					<token id="s1-1" ref_id="t1" status="">
+						<source>إعلان</source>
+					</token>
+					<token id="s1-2" ref_id="t2" status="">
+						<source>شركة</source>
+					</token>
+					<token id="s1-3" ref_id="t3" status="">
+						<source>نسائية</source>
+					</token>
+					<token id="s1-4" ref_id="t4" status="">
+						<source>عقارية</source>
+					</token>
+					<token id="s1-5" ref_id="t5" status="">
+						<source>في</source>
+					</token>
+					<token id="s1-6" ref_id="t6" status="">
+						<source>ملتقى</source>
+					</token>
+					<token id="s1-7" ref_id="t7" status="">
+						<source>جدة</source>
+					</token>
+					<transcription>إعلان شركة نسائية عقارية في ملتقى جدة</transcription>
+					<translation>Announcement of a female property company at a Jeddah meeting</translation>
+				</segment>
+				<segment id="s2">
+					<zone_ref>z2</zone_ref>
+					<token id="s2-8" ref_id="t8" status="">
+						<source>الإدارة</source>
+					</token>
+					<transcription> الإدارة </transcription>
+					<translation> Administration</translation>
+				</segment>
+				<segment id="s3">
+					<zone_ref>z3</zone_ref>
+					<token id="s3-9" ref_id="t9" status="">
+						<source>إعلان</source>
+					</token>
+					<token id="s3-10" ref_id="t10" status="">
+						<source>شركة</source>
+					</token>
+					<token id="s3-11" ref_id="t11" status="">
+						<source>نسائية</source>
+					</token>
+					<token id="s3-12" ref_id="t12" status="">
+						<source>عقارية</source>
+					</token>
+					<token id="s3-13" ref_id="t13" status="">
+						<source>في</source>
+					</token>
+					<token id="s3-14" ref_id="t14" status="">
+						<source>ملتقى</source>
+					</token>
+					<token id="s3-15" ref_id="t15" status="">
+						<source>جدة</source>
+					</token>
+					<transcription>إعلان شركة نسائية عقارية في ملتقى جدة </transcription>
+					<translation>Announcement of a female property company at a Jeddah meeting</translation>
+				</segment>
+				<segment id="s4">
+					<zone_ref>z4</zone_ref>
+					<token id="s4-16" ref_id="t16" status="">
+						<source>جدة</source>
+					</token>
+					<transcription>جدة</transcription>
+					<translation>Jeddah</translation>
+				</segment>
+				<segment id="s5">
+					<zone_ref>z5</zone_ref>
+					<zone_ref>z6</zone_ref>
+					<zone_ref>z7</zone_ref>
+					<zone_ref>z8</zone_ref>
+					<token id="s5-17" ref_id="t17" status="">
+						<source>كشفت</source>
+					</token>
+					<token id="s5-18" ref_id="t18" status="">
+						<source>مصادر</source>
+					</token>
+					<token id="s5-19" ref_id="t19" status="">
+						<source>لصحيفة</source>
+					</token>
+					<token id="s5-20" ref_id="t20" status="">
+						<source>اليوم</source>
+					</token>
+					<token id="s5-21" ref_id="t21" status="">
+						<source>السعودية</source>
+					</token>
+					<token id="s5-22" ref_id="t22" status="">
+						<source>ان</source>
+					</token>
+					<token id="s5-23" ref_id="t23" status="">
+						<source>الملتقى</source>
+					</token>
+					<token id="s5-24" ref_id="t24" status="">
+						<source>الثاني</source>
+					</token>
+					<token id="s5-25" ref_id="t25" status="">
+						<source>لصاحبات</source>
+					</token>
+					<token id="s5-26" ref_id="t26" status="">
+						<source>الاعمال</source>
+					</token>
+					<token id="s5-27" ref_id="t27" status="">
+						<source>بدول</source>
+					</token>
+					<token id="s5-28" ref_id="t28" status="">
+						<source>مجلس</source>
+					</token>
+					<token id="s5-29" ref_id="t29" status="">
+						<source>التعاون</source>
+					</token>
+					<token id="s5-30" ref_id="t30" status="">
+						<source>الخليجي</source>
+					</token>
+					<token id="s5-31" ref_id="t31" status="">
+						<source>الذي</source>
+					</token>
+					<token id="s5-32" ref_id="t32" status="">
+						<source>ستستضيفه</source>
+					</token>
+					<token id="s5-33" ref_id="t33" status="">
+						<source>مدينة</source>
+					</token>
+					<token id="s5-34" ref_id="t34" status="">
+						<source>جدة</source>
+					</token>
+					<token id="s5-35" ref_id="t35" status="">
+						<source>يوم</source>
+					</token>
+					<token id="s5-36" ref_id="t36" status="">
+						<source>21</source>
+					</token>
+					<token id="s5-37" ref_id="t37" status="">
+						<source>نوفمبر</source>
+					</token>
+					<token id="s5-38" ref_id="t38" status="">
+						<source>المقبل</source>
+					</token>
+					<transcription>كشفت مصادر لصحيفة اليوم السعودية ان الملتقى الثاني لصاحبات الاعمال بدول مجلس التعاون الخليجي الذي ستستضيفه مدينة جدة يوم 21 نوفمبر المقبل</transcription>
+					<translation>Sources revealed to Saudi newspaper Al-Youm that the second meeting of businesswomen in the Gulf Cooperation Council, to be hosted by Jeddah this November 21,</translation>
+				</segment>
+				<segment id="s6">
+					<zone_ref>z9</zone_ref>
+					<zone_ref>z10</zone_ref>
+					<zone_ref>z11</zone_ref>
+					<token id="s6-39" ref_id="t39" status="">
+						<source>سيشهد</source>
+					</token>
+					<token id="s6-40" ref_id="t40" status="">
+						<source>الإعلان</source>
+					</token>
+					<token id="s6-41" ref_id="t41" status="">
+						<source>عن</source>
+					</token>
+					<token id="s6-42" ref_id="t42" status="">
+						<source>تأسيس</source>
+					</token>
+					<token id="s6-43" ref_id="t43" status="">
+						<source>شركة</source>
+					</token>
+					<token id="s6-44" ref_id="t44" status="">
+						<source>نسائية</source>
+					</token>
+					<token id="s6-45" ref_id="t45" status="">
+						<source>خليجية</source>
+					</token>
+					<token id="s6-46" ref_id="t46" status="">
+						<source>عقارية</source>
+					</token>
+					<token id="s6-47" ref_id="t47" status="">
+						<source>تشارك</source>
+					</token>
+					<token id="s6-48" ref_id="t48" status="">
+						<source>فيها</source>
+					</token>
+					<token id="s6-49" ref_id="t49" status="">
+						<source>سيدات</source>
+					</token>
+					<token id="s6-50" ref_id="t50" status="">
+						<source>اعمال</source>
+					</token>
+					<token id="s6-51" ref_id="t51" status="">
+						<source>سعوديات</source>
+					</token>
+					<token id="s6-52" ref_id="t52" status="">
+						<source>.</source>
+					</token>
+					<transcription>سيشهد الإعلان عن تأسيس شركة نسائية خليجية عقارية تشارك فيها سيدات اعمال سعوديات.</transcription>
+					<translation>will see the announcement of a Gulf property company for women involving Saudi businesswomen.</translation>
+				</segment>
+				<segment id="s7">
+					<zone_ref>z12</zone_ref>
+					<zone_ref>z13</zone_ref>
+					<zone_ref>z14</zone_ref>
+					<zone_ref>z15</zone_ref>
+					<zone_ref>z16</zone_ref>
+					<zone_ref>z17</zone_ref>
+					<zone_ref>z18</zone_ref>
+					<token id="s7-53" ref_id="t53" status="">
+						<source>واشارت</source>
+					</token>
+					<token id="s7-54" ref_id="t54" status="">
+						<source>المصادر</source>
+					</token>
+					<token id="s7-55" ref_id="t55" status="">
+						<source>الى</source>
+					</token>
+					<token id="s7-56" ref_id="t56" status="">
+						<source>أن</source>
+					</token>
+					<token id="s7-57" ref_id="t57" status="">
+						<source>سيدات</source>
+					</token>
+					<token id="s7-58" ref_id="t58" status="">
+						<source>أعمال</source>
+					</token>
+					<token id="s7-59" ref_id="t59" status="">
+						<source>سعوديات</source>
+					</token>
+					<token id="s7-60" ref_id="t60" status="">
+						<source>،</source>
+					</token>
+					<token id="s7-61" ref_id="t61" status="">
+						<source>قمن</source>
+					</token>
+					<token id="s7-62" ref_id="t62" status="">
+						<source>خلال</source>
+					</token>
+					<token id="s7-63" ref_id="t63" status="">
+						<source>العام</source>
+					</token>
+					<token id="s7-64" ref_id="t64" status="">
+						<source>الحالي</source>
+					</token>
+					<token id="s7-65" ref_id="t65" status="">
+						<source>بزيارة</source>
+					</token>
+					<token id="s7-66" ref_id="t66" status="">
+						<source>إلى</source>
+					</token>
+					<token id="s7-67" ref_id="t67" status="">
+						<source>دبي</source>
+					</token>
+					<token id="s7-68" ref_id="t68" status="">
+						<source>،</source>
+					</token>
+					<token id="s7-69" ref_id="t69" status="">
+						<source>تلبية</source>
+					</token>
+					<token id="s7-70" ref_id="t70" status="">
+						<source>لدعوة</source>
+					</token>
+					<token id="s7-71" ref_id="t71" status="">
+						<source>موجهة</source>
+					</token>
+					<token id="s7-72" ref_id="t72" status="">
+						<source>من</source>
+					</token>
+					<token id="s7-73" ref_id="t73" status="">
+						<source>دائرة</source>
+					</token>
+					<token id="s7-74" ref_id="t74" status="">
+						<source>السياحة</source>
+					</token>
+					<token id="s7-75" ref_id="t75" status="">
+						<source>والتسويق</source>
+					</token>
+					<token id="s7-76" ref_id="t76" status="">
+						<source>التجاري</source>
+					</token>
+					<token id="s7-77" ref_id="t77" status="">
+						<source>في</source>
+					</token>
+					<token id="s7-78" ref_id="t78" status="">
+						<source>حكومة</source>
+					</token>
+					<token id="s7-79" ref_id="t79" status="">
+						<source>دبي</source>
+					</token>
+					<token id="s7-80" ref_id="t80" status="">
+						<source>وذلك</source>
+					</token>
+					<token id="s7-81" ref_id="t81" status="">
+						<source>بعد</source>
+					</token>
+					<token id="s7-82" ref_id="t82" status="">
+						<source>الانتهاء</source>
+					</token>
+					<token id="s7-83" ref_id="t83" status="">
+						<source>من</source>
+					</token>
+					<token id="s7-84" ref_id="t84" status="">
+						<source>ندوة</source>
+					</token>
+					<token id="s7-85" ref_id="t85" status="">
+						<source>آفاق</source>
+					</token>
+					<token id="s7-86" ref_id="t86" status="">
+						<source>الاستثمار</source>
+					</token>
+					<token id="s7-87" ref_id="t87" status="">
+						<source>العقاري</source>
+					</token>
+					<token id="s7-88" ref_id="t88" status="">
+						<source>في</source>
+					</token>
+					<token id="s7-89" ref_id="t89" status="">
+						<source>دول</source>
+					</token>
+					<token id="s7-90" ref_id="t90" status="">
+						<source>الخليج</source>
+					</token>
+					<token id="s7-91" ref_id="t91" status="">
+						<source>العربي</source>
+					</token>
+					<token id="s7-92" ref_id="t92" status="">
+						<source>التي</source>
+					</token>
+					<token id="s7-93" ref_id="t93" status="">
+						<source>عقدت</source>
+					</token>
+					<token id="s7-94" ref_id="t94" status="">
+						<source>في</source>
+					</token>
+					<token id="s7-95" ref_id="t95" status="">
+						<source>جدة</source>
+					</token>
+					<token id="s7-96" ref_id="t96" status="">
+						<source>،</source>
+					</token>
+					<transcription>واشارت المصادر الى أن سيدات أعمال سعوديات، قمن خلال العام الحالي بزيارة إلى دبي، تلبية لدعوة موجهة من دائرة السياحة والتسويق التجاري في حكومة دبي وذلك بعد الانتهاء من ندوة آفاق الاستثمار العقاري في دول الخليج العربي التي عقدت في جدة،</transcription>
+					<translation>The sources said Saudi businesswomen visited Dubai this year at the invitation of the government of Dubai's Department of Tourism and Commercial Marketing after the end of the Forum on the Horizons of Property Investment in the Arab Gulf States held in Jeddah.</translation>
+				</segment>
+				<segment id="s8">
+					<zone_ref>z19</zone_ref>
+					<zone_ref>z20</zone_ref>
+					<zone_ref>z21</zone_ref>
+					<zone_ref>z22</zone_ref>
+					<zone_ref>z23</zone_ref>
+					<token id="s8-97" ref_id="t97" status="">
+						<source>وكان</source>
+					</token>
+					<token id="s8-98" ref_id="t98" status="">
+						<source>هدف</source>
+					</token>
+					<token id="s8-99" ref_id="t99" status="">
+						<source>الزيارة</source>
+					</token>
+					<token id="s8-100" ref_id="t100" status="">
+						<source>التعريف</source>
+					</token>
+					<token id="s8-101" ref_id="t101" status="">
+						<source>بالمرأة</source>
+					</token>
+					<token id="s8-102" ref_id="t102" status="">
+						<source>السعودية</source>
+					</token>
+					<token id="s8-103" ref_id="t103" status="">
+						<source>وإلقاء</source>
+					</token>
+					<token id="s8-104" ref_id="t104" status="">
+						<source>الضوء</source>
+					</token>
+					<token id="s8-105" ref_id="t105" status="">
+						<source>على</source>
+					</token>
+					<token id="s8-106" ref_id="t106" status="">
+						<source>دورها</source>
+					</token>
+					<token id="s8-107" ref_id="t107" status="">
+						<source>في</source>
+					</token>
+					<token id="s8-108" ref_id="t108" status="">
+						<source>الاستثمار</source>
+					</token>
+					<token id="s8-109" ref_id="t109" status="">
+						<source>والتنمية</source>
+					</token>
+					<token id="s8-110" ref_id="t110" status="">
+						<source>الاقتصادية</source>
+					</token>
+					<token id="s8-111" ref_id="t111" status="">
+						<source>،</source>
+					</token>
+					<token id="s8-112" ref_id="t112" status="">
+						<source>والاطلاع</source>
+					</token>
+					<token id="s8-113" ref_id="t113" status="">
+						<source>على</source>
+					</token>
+					<token id="s8-114" ref_id="t114" status="">
+						<source>الفرص</source>
+					</token>
+					<token id="s8-115" ref_id="t115" status="">
+						<source>الاستثمارية</source>
+					</token>
+					<token id="s8-116" ref_id="t116" status="">
+						<source>المتاحة</source>
+					</token>
+					<token id="s8-117" ref_id="t117" status="">
+						<source>في</source>
+					</token>
+					<token id="s8-118" ref_id="t118" status="">
+						<source>الإمارات</source>
+					</token>
+					<token id="s8-119" ref_id="t119" status="">
+						<source>.</source>
+					</token>
+					<transcription>وكان هدف الزيارة التعريف بالمرأة السعودية وإلقاء الضوء على دورها في الاستثمار والتنمية الاقتصادية، والاطلاع على الفرص الاستثمارية المتاحة في الإمارات.</transcription>
+					<translation>The aim of the visit was to introduce Saudi women and shed light on their role in investment and economic growth and to study possible investment opportunities in the Emirates.</translation>
+				</segment>
+			</section>
+		</content>
+	</doc>
+</madcat>
