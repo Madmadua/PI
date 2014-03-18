@@ -92,12 +92,12 @@ public class MetricFileMaker {
 		try {
 			writer = new PrintWriter(dir+"/hyp.sgml", "UTF-8");
 			writer.println("<tstset setid=\"MADCAT09\" srclang=\"Arabic\" trglang=\"English\">");
-			writer.println("<doc docid=\""+datasetName+"\" sysid=\"MADCAT\" genre=\"newswire\">");
+			writer.println("	<doc docid=\""+"document"+"\" sysid=\"MADCAT\" genre=\"newswire\">");
 			for(int i=0;i<translations.size();++i)
 			{
-				writer.println("<seg id=\""+i+"\">"+translations.get(i)+"</seg>");
+				writer.println("		<seg id=\""+(i+1)+"\">"+translations.get(i)+"</seg>");
 			}
-			writer.println("</doc>");
+			writer.println("	</doc>");
 			writer.println("</tstset>");
 			writer.close();
 		} catch (FileNotFoundException e) {
@@ -115,12 +115,12 @@ public class MetricFileMaker {
 		try {
 			writer = new PrintWriter(dir+"/ref.sgml", "UTF-8");
 			writer.println("<refset setid=\"MADCAT09\" srclang=\"Arabic\" trglang=\"English\">");
-			writer.println("<doc docid=\""+datasetName+"\" sysid=\"MADCAT\" genre=\"newswire\">");
+			writer.println("	<doc docid=\""+"document"+"\" sysid=\"MADCAT\" genre=\"newswire\">");
 			for(int i=0;i<translations.size();++i)
 			{
-				writer.println("<seg id=\""+i+"\">"+translations.get(i)+"</seg>");
+				writer.println("		<seg id=\""+(i+1)+"\">"+translations.get(i)+"</seg>");
 			}
-			writer.println("</doc>");
+			writer.println("	</doc>");
 			writer.println("</refset>");
 			writer.close();
 		} catch (FileNotFoundException e) {
@@ -139,7 +139,7 @@ public class MetricFileMaker {
 			writer = new PrintWriter(dir+"/hyp.trn", "UTF-8");
 			for(int i=0;i<translations.size();++i)
 			{
-				writer.println(translations.get(i)+"("+datasetName+'_'+(i+1)+')');
+				writer.println(translations.get(i)+"("+"document"+'_'+(i+1)+')');
 			}
 			writer.close();
 		} catch (FileNotFoundException e) {
@@ -158,7 +158,7 @@ public class MetricFileMaker {
 			writer = new PrintWriter(dir+"/ref.trn", "UTF-8");
 			for(int i=0;i<translations.size();++i)
 			{
-				writer.println(translations.get(i)+"("+datasetName+'_'+(i+1)+')');
+				writer.println(translations.get(i)+"("+"document"+'_'+(i+1)+')');
 			}
 			writer.close();
 		} catch (FileNotFoundException e) {
@@ -176,12 +176,12 @@ public class MetricFileMaker {
 		try {
 			writer = new PrintWriter(dir+"/hyp.src", "UTF-8");
 			writer.println("<srcset setid=\"MADCAT09\" srclang=\"Arabic\" trglang=\"English\">");
-			writer.println("<doc docid=\""+datasetName+"\" sysid=\"MADCAT\" genre=\"newswire\">");
+			writer.println("	<doc docid=\""+"document"+"\" sysid=\"MADCAT\" genre=\"newswire\">");
 			for(int i=0;i<translations.size();++i)
 			{
-				writer.println("<seg id=\""+i+"\">"+transcriptions.get(i)+"</seg>");
+				writer.println("		<seg id=\""+(i+1)+"\">"+transcriptions.get(i)+"</seg>");
 			}
-			writer.println("</doc>");
+			writer.println("	</doc>");
 			writer.println("</srcset>");
 			writer.close();
 		} catch (FileNotFoundException e) {
