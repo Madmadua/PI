@@ -170,7 +170,7 @@ function callback($input) {
 
     //Running tercom
 
-    	$execString = '/home/dae/WebServices/sctk-2.4.8/sclite -r '.$referenceFile.' -h '.$hypothesisFile.' -i sp -e utf-8 -D -o rsum \"sgml\" -n output -O '.$localdir.' 1>log.txt 2>log.txt';
+    	$execString = '/home/dae/WebServices/sctk-2.4.8/sclite -r '.$referenceFile.' -h '.$hypothesisFile.' -i sp -e utf-8 -D -o rsum \"sgml\" -n output -O '.$localdir.' 1>'.$localdir.'/output.sgml 2>log.txt';
     //== STOP EDITABLE ZONE
 	
 	$returnValue = system($execString,$returnCode);

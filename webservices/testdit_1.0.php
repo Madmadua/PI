@@ -65,10 +65,10 @@
  * Should exactly match SQL query "select NAME from ALGORITHM where ID = \a $algoOracleID"
  * 
  * @var $algoname 
- */
-$algoOracleID = 262;
-$algoname = 'meteor';
-$algoversion = '1.4';
+ */;
+$algoOracleID = '290';
+$algoname = 'testdit';
+$algoversion = '1.0';
 
 /**
  * Edit the contents of setup.php to fit your needs.
@@ -76,13 +76,13 @@ $algoversion = '1.4';
 include('setup.php');
 
 $inputT = array();
-$inputT['meteor_reference_file'] = array('name'=>'meteor_reference_file', 'type'=>'xsd:string');
-$inputT['meteor_hypothesis_file'] = array('name'=>'meteor_hypothesis_file', 'type'=>'xsd:string');
+$inputT['testdit_madcat_file'] = array('name'=>'testdit_madcat_file', 'type'=>'xsd:string');
+$inputT['testdit_image_file'] = array('name'=>'testdit_image_file', 'type'=>'xsd:string');
 
 
 $outputT = array();
-$outputT['meteor_output'] = array('name'=>'result-url', 'type'=>'xsd:string');
-file_put_contents("log.txt","madcatGenerator was here!\n");
+$outputT['testdit_output'] = array('name'=>'testdit_output', 'type'=>'xsd:string');
+
 //== STOP EDITABLE ZONE
 
 /**
@@ -102,12 +102,16 @@ function callback($input) {
 	global $algoname;
     	global $hostname;
 	
+
+
 	// Creating temporary work directory
 	$localdir = $htmlBaseDir . '/' . $executionDir . '/' . $algoname . '/' . time();
 	if (!is_dir($localdir) && ! mkdir($localdir,0777,true)) {
 	    return new soap_fault('SERVER', '', 'Cannot create local directory', '');
 	}
 	
+	
+	$returnValue = system($execString,$returnCode);
 	//== START EDITABLE ZONE
 	/*
 	 * The following editable zone is made for retrieving the input parameters
@@ -119,8 +123,8 @@ function callback($input) {
 	 * ATTENTION! When modifying this code, be sure the array keys correspond to 
 	 * the keys declared in \a $inputT in setup.php
 	 */
-	$inputReference = $input['meteor_reference_file'];
-	$inputHypothesis = $input['meteor_hypothesis_file'];
+	$inputMadcat = $input['testdit_madcat_file'];
+	$inputImage = $input['testdit_image_file'];
 	
 	
 	/*
@@ -131,31 +135,37 @@ function callback($input) {
 	 */ 
 	
 
-    //Getting reference file  
+    //Getting madcat file  
     
-	$referenceFile = $localdir.'/'.array_pop(explode("/",$inputReference));
-	if (!copy($inputReference,$referenceFile)) {
-            error_log('Cannot copy file '.$inputReference);
-	    return new soap_fault('SERVER', '', 'Execution Error', 'Cannot copy file');
+	
+	$madcatFile = $localdir.'/'.array_pop(explode("/",$inputMadcat));
+	if (!copy($inputMadcat,$madcatFile)) {
+            error_log('Cannot copy file '.$inputMadcat);
+	    return new soap_fault('SERVER', '', 'Execution Error', 'Cannot copy file '.$inputMadcat);
 	}	
     
-    //Getting hypothesis file
+    //Getting image file
 
-	$hypothesisFile = $localdir.'/'.array_pop(explode("/",$inputHypothesis));
-	if (!copy($inputHypothesis,$hypothesisFile)) {
-            error_log('Cannot copy file '.$inputHypothesis);
-	    return new soap_fault('SERVER', '', 'Execution Error', 'Cannot copy file');
+	$imageFile = $localdir.'/'.array_pop(explode("/",$inputImage));
+	if (!copy($inputImage,$imageFile)) {
+            error_log('Cannot copy file '.$inputImage);
+	    return new soap_fault('SERVER', '', 'Execution Error', 'Cannot copy file '.$inputImage);
 	}	
-    //Running tercom
+    //Running testdit
 
-	$execString = 'java -Xmx2G -jar /home/dae/WebServices/meteor-1.4.jar '.$hypothesisFile.' '.$referenceFile.' -m \'exact stem synonym\' -l en > '.$localdir.'/output.txt';
+	//This is just a test so it will just copy the expected result...
+	$resultFile = $localdir.'/result.madcat.xml';
+	if (!copy('http://localhost/openhart/db/dit_out.madcat.xml',$resultFile)) {
+            error_log('Cannot copy result file ');
+	    return new soap_fault('SERVER', '', 'Execution Error', 'Cannot copy result file');
+	}	
 
 	//== STOP EDITABLE ZONE
 	
-	$returnValue = system($execString,$returnCode);
-	if ($returnCode) {
-	    return new soap_fault('SERVER', $error, 'Execution Error', 'Return code = ' . $returnCode .' '. $execString);
-	}
+	//$returnValue = system($execString,$returnCode);
+	//if ($returnCode) {
+	//    return new soap_fault('SERVER', $error, 'Execution Error', 'Return code = ' . $returnCode .' '. $execString);
+	//}
 
 	//== START EDITABLE ZONE
 	/*
@@ -175,7 +185,7 @@ function callback($input) {
    	'ocr_result_file' => $localOCR, 
        	'layout_result_file' => $localLayout
     );*/
-    $result=array('meteor_output' => 'http://localhost/'.substr($localdir,9).'/output.txt');
+    $result=array('testdit_output' => $resultFile);
     //$result=array('result-url' => 'http://localhost/wsdl/i');
     //== STOP EDITABLE ZONE
     

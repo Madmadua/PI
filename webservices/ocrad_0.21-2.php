@@ -66,23 +66,42 @@
  * 
  * @var $algoname 
  */
-$algoOracleID = 262;
-$algoname = 'meteor';
-$algoversion = '1.4';
+$algoname = 'ocrad';
+$algoversion = '0.21-2';
 
 /**
  * Edit the contents of setup.php to fit your needs.
  */ 
 include('setup.php');
 
+/**
+ * Array of input variables for hosted algorithm.
+ * 
+ * \todo write an extensive explanation on how to format this part
+ * 
+ * IMPORTANT: due to SOAP restrictions, the 'name' string cannot contain whitespaces. 
+ * This is an important constraint, given the assumed correspondence with the Oracle
+ * data or data_type mapping.
+ * 
+ * @var $inputT
+ */
 $inputT = array();
-$inputT['meteor_reference_file'] = array('name'=>'meteor_reference_file', 'type'=>'xsd:string');
-$inputT['meteor_hypothesis_file'] = array('name'=>'meteor_hypothesis_file', 'type'=>'xsd:string');
+$inputT['page_image'] = array('name'=>'page_image', 'type'=>'xsd:string');
 
-
+/**
+ * Array of output variables for hosted algorithm.
+ * 
+ * \todo write an extensive explanation on how to format this part
+ * 
+ * IMPORTANT: due to SOAP restrictions, the 'name' string cannot contain whitespaces. 
+ * This is an important constraint, given the assumed correspondence with the Oracle
+ * data or data_type mapping.
+ * 
+ * @var $outputT
+ */
 $outputT = array();
-$outputT['meteor_output'] = array('name'=>'result-url', 'type'=>'xsd:string');
-file_put_contents("log.txt","madcatGenerator was here!\n");
+$outputT['ocr_result_file'] = array('name'=>'ocr_result_file', 'type'=>'xsd:string');
+$outputT['layout_result_file'] = array('name'=>'layout_result_file', 'type'=>'xsd:string');
 //== STOP EDITABLE ZONE
 
 /**
@@ -100,7 +119,7 @@ function callback($input) {
 	global $executionDir;
 	global $executionPrefix;
 	global $algoname;
-    	global $hostname;
+    global $hostname;
 	
 	// Creating temporary work directory
 	$localdir = $htmlBaseDir . '/' . $executionDir . '/' . $algoname . '/' . time();
@@ -119,9 +138,17 @@ function callback($input) {
 	 * ATTENTION! When modifying this code, be sure the array keys correspond to 
 	 * the keys declared in \a $inputT in setup.php
 	 */
-	$inputReference = $input['meteor_reference_file'];
-	$inputHypothesis = $input['meteor_hypothesis_file'];
+	$filename = $input['page_image'];
 	
+	// Copying the input file to the temporary directory
+	$localname = tempnam($localdir, $executionPrefix);
+	$localname = $localname . '_' . basename($filename);
+	if(! copy($filename,$localname)) {
+	    return new soap_fault('SERVER', '', 'Cannot copy file', $filename);
+	}
+
+	$localOCR = $localname. '.txt';
+	$localLayout = $localname . '.ocr';
 	
 	/*
 	 * This is code is only doing raw execution without the required logging
@@ -130,31 +157,12 @@ function callback($input) {
 	 * the platform.
 	 */ 
 	
-
-    //Getting reference file  
-    
-	$referenceFile = $localdir.'/'.array_pop(explode("/",$inputReference));
-	if (!copy($inputReference,$referenceFile)) {
-            error_log('Cannot copy file '.$inputReference);
-	    return new soap_fault('SERVER', '', 'Execution Error', 'Cannot copy file');
-	}	
-    
-    //Getting hypothesis file
-
-	$hypothesisFile = $localdir.'/'.array_pop(explode("/",$inputHypothesis));
-	if (!copy($inputHypothesis,$hypothesisFile)) {
-            error_log('Cannot copy file '.$inputHypothesis);
-	    return new soap_fault('SERVER', '', 'Execution Error', 'Cannot copy file');
-	}	
-    //Running tercom
-
-	$execString = 'java -Xmx2G -jar /home/dae/WebServices/meteor-1.4.jar '.$hypothesisFile.' '.$referenceFile.' -m \'exact stem synonym\' -l en > '.$localdir.'/output.txt';
-
+	$execString = '/usr/bin/ocrad '.escapeshellarg($localname).' -o '.escapeshellarg($localOCR).' -l2 -x '.escapeshellarg($localLayout);
 	//== STOP EDITABLE ZONE
 	
 	$returnValue = system($execString,$returnCode);
 	if ($returnCode) {
-	    return new soap_fault('SERVER', $error, 'Execution Error', 'Return code = ' . $returnCode .' '. $execString);
+	    return new soap_fault('SERVER', '', 'Execution Error', 'Return code = ' . $returnCode);
 	}
 
 	//== START EDITABLE ZONE
@@ -167,16 +175,14 @@ function callback($input) {
 	 * the appropriate URLs so that the client can download them.
 	 */
 	// Stripping absolute path information and prefixing URL information.
-	//$localOCR = 'http://'.$hostname. substr($localOCR,strlen($htmlBaseDir));
-	//$localLayout = 'http://'.$hostname. substr($localLayout,strlen($htmlBaseDir));
+	$localOCR = 'http://'.$hostname. substr($localOCR,strlen($htmlBaseDir));
+	$localLayout = 'http://'.$hostname. substr($localLayout,strlen($htmlBaseDir));
 		
 	// ATTENTION! Be sure the array keys correspond to the keys declared in \a $outputT in setup.php
-	/*$result = array(
-   	'ocr_result_file' => $localOCR, 
+	$result = array(
+	   	'ocr_result_file' => $localOCR, 
        	'layout_result_file' => $localLayout
-    );*/
-    $result=array('meteor_output' => 'http://localhost/'.substr($localdir,9).'/output.txt');
-    //$result=array('result-url' => 'http://localhost/wsdl/i');
+    );
     //== STOP EDITABLE ZONE
     
     return $result;

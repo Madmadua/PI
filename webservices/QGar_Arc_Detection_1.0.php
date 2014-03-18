@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file algowsdl.php
+ * @file GenericTemplate.php
  * 
- * @author  Yingjie Li <yil308@lehigh.edu>
  * @author  Bart Lamiroy <lamiroy@cse.lehigh.edu>
+ * @author  Yingjie Li <yil308@lehigh.edu>
  * 
- * @date October 2010
+ * @date May 2011
  * 
  * @version 1.0
  *
@@ -43,46 +43,51 @@
 
 /**
  * @mainpage
- * 
- * @section Contents
- * 
- * This project is composed of 3 files:
- *  - ocrad.php
- *  - client.php
- *  - setup.php
- * 
- * @section Note
- * 
- * For demo executions, and if the \a $algoname variable is modified in setup.php, this file
- * should be renamed to \a $algoname.php.
  */
  
 //== START EDITABLE ZONE 
-
 /**
- * \brief Name of hosted algorithm.
- *  
- * Should exactly match SQL query "select NAME from ALGORITHM where ID = \a $algoOracleID"
- * 
- * @var $algoname 
- */
-$algoOracleID = 262;
-$algoname = 'meteor';
-$algoversion = '1.4';
-
-/**
- * Edit the contents of setup.php to fit your needs.
+ * If running your web service locally, edit the contents of localsetup.php to fit your local configuration.
  */ 
+$algoname = 'QGar Arc Detection';
+$algoFileName = str_replace(array(' ','/','\\'),'_',$algoname);
+$algoname = htmlentities($algoname);
+
+$algoversion = '1.0';
+$algopath = '/dae/database/upload/manual/ArcDetect/ArcDetect';
+
 include('setup.php');
 
+/**
+ * Array of input variables for hosted algorithm.
+ * 
+ * \todo write an extensive explanation on how to format this part
+ * 
+ * IMPORTANT: due to SOAP restrictions, the 'name' string cannot contain whitespaces. 
+ * This is an important constraint, given the assumed correspondence with the Oracle
+ * data or data_type mapping.
+ * 
+ * @var $inputT
+ */
 $inputT = array();
-$inputT['meteor_reference_file'] = array('name'=>'meteor_reference_file', 'type'=>'xsd:string');
-$inputT['meteor_hypothesis_file'] = array('name'=>'meteor_hypothesis_file', 'type'=>'xsd:string');
+$inputT['Arcs_vs_Circles'] = array('name'=>'Arcs_vs_Circles', 'type'=>'xsd:string');
+$inputT['Line_Drawing'] = array('name'=>'Line_Drawing', 'type'=>'xsd:string');
 
-
+/**
+ * Array of output variables for hosted algorithm.
+ * 
+ * \todo write an extensive explanation on how to format this part
+ * 
+ * IMPORTANT: due to SOAP restrictions, the 'name' string cannot contain whitespaces. 
+ * This is an important constraint, given the assumed correspondence with the Oracle
+ * data or data_type mapping.
+ * 
+ * @var $outputT
+ */
 $outputT = array();
-$outputT['meteor_output'] = array('name'=>'result-url', 'type'=>'xsd:string');
-file_put_contents("log.txt","madcatGenerator was here!\n");
+//$outputT['output_files'] = array('name'=>'output_files', 'type'=>'tns:StringArray');
+$outputT['Arcs_and_Circles'] = array('name'=>'Arcs_and_Circles', 'type'=>'xsd:string');
+
 //== STOP EDITABLE ZONE
 
 /**
@@ -100,86 +105,100 @@ function callback($input) {
 	global $executionDir;
 	global $executionPrefix;
 	global $algoname;
-    	global $hostname;
-	
+	global $hostname;
+	global $algopath;
+
 	// Creating temporary work directory
 	$localdir = $htmlBaseDir . '/' . $executionDir . '/' . $algoname . '/' . time();
 	if (!is_dir($localdir) && ! mkdir($localdir,0777,true)) {
+	     error_log("Problem creating $localdir");
 	    return new soap_fault('SERVER', '', 'Cannot create local directory', '');
 	}
 	
-	//== START EDITABLE ZONE
 	/*
-	 * The following editable zone is made for retrieving the input parameters
-	 * and preparing them (copying on disk, other preparatory manipulations) to
-	 * be provided as input arguments to the actual executable.
-	 * 
-	 * In this case there is only one input parameter: the input file
-	 * 
-	 * ATTENTION! When modifying this code, be sure the array keys correspond to 
-	 * the keys declared in \a $inputT in setup.php
-	 */
-	$inputReference = $input['meteor_reference_file'];
-	$inputHypothesis = $input['meteor_hypothesis_file'];
-	
-	
-	/*
-	 * This is code is only doing raw execution without the required logging
-	 * on the DAE server. Logging provenance on the DAE server can only
-	 * be done when the software and service are dully registered with
-	 * the platform.
-	 */ 
-	
+	 * Creating array $inputValues translating initial $input to local values by
+	 * downloading remote input files localy.
+	 */  
+	$inputValues = array();
+	foreach(array_keys($input) as $inputFieldName) {
 
-    //Getting reference file  
-    
-	$referenceFile = $localdir.'/'.array_pop(explode("/",$inputReference));
-	if (!copy($inputReference,$referenceFile)) {
-            error_log('Cannot copy file '.$inputReference);
-	    return new soap_fault('SERVER', '', 'Execution Error', 'Cannot copy file');
-	}	
-    
-    //Getting hypothesis file
+	    $filename = $input[$inputFieldName];
+	    $fragments = parse_url($filename);
 
-	$hypothesisFile = $localdir.'/'.array_pop(explode("/",$inputHypothesis));
-	if (!copy($inputHypothesis,$hypothesisFile)) {
-            error_log('Cannot copy file '.$inputHypothesis);
-	    return new soap_fault('SERVER', '', 'Execution Error', 'Cannot copy file');
-	}	
-    //Running tercom
-
-	$execString = 'java -Xmx2G -jar /home/dae/WebServices/meteor-1.4.jar '.$hypothesisFile.' '.$referenceFile.' -m \'exact stem synonym\' -l en > '.$localdir.'/output.txt';
-
-	//== STOP EDITABLE ZONE
-	
-	$returnValue = system($execString,$returnCode);
-	if ($returnCode) {
-	    return new soap_fault('SERVER', $error, 'Execution Error', 'Return code = ' . $returnCode .' '. $execString);
+	    if(isset($fragments['host']) && $fragments['host']) {    
+	        $localname = tempnam($localdir, $executionPrefix);
+	        if(! copy($filename,$localname)) {
+	            return new soap_fault('SERVER', '', 'Cannot copy file', $filename);
+	        }
+	        
+		    $imageInfo = getimagesize($localname);
+	        $inputValues[$inputFieldName] = $localname . '_' . basename($fragments['path']) . image_type_to_extension($imageInfo[2]);
+	        rename($localname,$inputValues[$inputFieldName]);
+	    }
+	    else {
+	        $inputValues[$inputFieldName] = $input[$inputFieldName];
+	    }
 	}
 
 	//== START EDITABLE ZONE
 	/*
-	 * This editable zone retrieves the results from the execution and creates the appropriate
-	 * output data structure for retrieval by the caller.
+	 * The following editable zone is made to provide the input arguments to the actual executable.
 	 * 
-	 * In this particular case, the execution output consists of 2 files that have been stored
-	 * in the execution directory. Since this directory is accessible by the webserver, we construct
-	 * the appropriate URLs so that the client can download them.
+	 * ATTENTION! When modifying this code, be sure the array keys correspond to 
+	 * the keys declared in \a $inputT and \a $outputT.
+	 * 
+	 * $localOutput is an array containing one entry for each return value defined in $outputT.
+	 * 
 	 */
-	// Stripping absolute path information and prefixing URL information.
-	//$localOCR = 'http://'.$hostname. substr($localOCR,strlen($htmlBaseDir));
-	//$localLayout = 'http://'.$hostname. substr($localLayout,strlen($htmlBaseDir));
-		
-	// ATTENTION! Be sure the array keys correspond to the keys declared in \a $outputT in setup.php
-	/*$result = array(
-   	'ocr_result_file' => $localOCR, 
-       	'layout_result_file' => $localLayout
-    );*/
-    $result=array('meteor_output' => 'http://localhost/'.substr($localdir,9).'/output.txt');
-    //$result=array('result-url' => 'http://localhost/wsdl/i');
-    //== STOP EDITABLE ZONE
+	$localOutput['Arcs_and_Circles'] = realpath($localdir) .  '/output.vec';
+    $logFile = escapeshellarg(realpath($localdir) .  '/logfile.txt');
+	
+    if(!isset($localInput['Arcs_vs_Circles']) || 
+        (strtolower($localInput['Arcs_vs_Circles']) != 'false' && $localInput['Arcs_vs_Circles'] != '0')) {
+        $algopath .= ' -a';
+    }
     
-    return $result;
+	$execString = "$algopath " . ' -o ' . escapeshellarg($localOutput['Arcs_and_Circles']) . ' '. escapeshellarg($inputValues['Line_Drawing']) . " > $logFile 2>&1";
+	//== STOP EDITABLE ZONE
+	error_log("Executing $execString");
+
+	$returnValue = system($execString,$returnCode);
+	if ($returnCode) {
+	    error_log("Execution failed: $returnValue");	
+	    return new soap_fault('SERVER', '', 'Execution Error', 'Return code = ' . $returnCode);
+	}
+
+	//== START EDITABLE ZONE
+	
+	/*
+	 * Placeholder for optional post-execution generation of \a $localOutput[] data
+	 */
+	
+	//== STOP EDITABLE ZONE
+	
+	/*
+	 * Transforming local output filenames into URLs when needed
+	 */
+	foreach(array_keys($localOutput) as $outputFieldName) {
+	
+	    if(is_array($localOutput[$outputFieldName])) {
+	        foreach(array_keys($localOutput[$outputFieldName]) as $outputItem) {
+	            if(is_file($localOutput[$outputFieldName][$outputItem])) {
+        	        // Stripping absolute path information and prefixing URL information.
+	                $localOutput[$outputFieldName][$outputItem] = 'http://'.$hostname. substr($localOutput[$outputFieldName][$outputItem],strlen(realpath($htmlBaseDir)));
+	            }
+	            
+	        }
+	    }
+	    else {
+	        if(is_file($localOutput[$outputFieldName])) {
+        	    // Stripping absolute path information and prefixing URL information.
+	            $localOutput[$outputFieldName] = 'http://'.$hostname. substr($localOutput[$outputFieldName],strlen(realpath($htmlBaseDir)));
+	        }
+	    }
+	}
+    
+    return $localOutput;
 }
 
 /*
@@ -234,6 +253,16 @@ $server->wsdl->addComplexType('inputType_'.$algoname, 'complexType',	'struct',
  */ 
 $server->wsdl->addComplexType('outputType_'.$algoname, 'complexType', 'struct', 
 							  'all', '', $outputT);
+
+// StringArray
+$server->wsdl->addComplexType('StringArray', 'complexType', 'array', '', 'SOAP-ENC:Array', array(),
+                array(
+                        array(
+                                'ref' => 'SOAP-ENC:arrayType',
+                                'wsdl:arrayType' => 'xsd:string[]'
+                        )
+        ), 'xsd:string'
+        );
 
 // Register the method to expose
 $server->register('callback',                	// method PhP callback function
