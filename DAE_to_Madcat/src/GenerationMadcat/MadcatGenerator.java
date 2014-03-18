@@ -38,7 +38,7 @@ public class MadcatGenerator {
 			error = 1;
 		}
 		if(error == 0 && args[0].equals("help")){
-			System.out.println("MadcatGenerator [datasetId] [DIR|DTT|REF] [path|afficher]");
+			System.out.println("MadcatGenerator [datasetId] [DIT|DIR|DTT|REF] [path|afficher]");
 			error = 1;
 		}
 		if(args.length != 3){
@@ -49,7 +49,7 @@ public class MadcatGenerator {
 			try {
 				dataset = access.getDataset(Integer.valueOf(args[0]));
 				MadcatGenerator mg = new MadcatGenerator(dataset);
-				if(args[1].equals("DIR")){
+				if(args[1].equals("DIR") || args[1].equals("DIT")){
 						mg.generateInputDIR();
 					}else{
 						if(args[1].equals("DTT")){
@@ -58,7 +58,7 @@ public class MadcatGenerator {
 							if(args[1].equals("REF")){
 								mg.generateInputRef();
 							}else{
-								System.out.println("Il faut specifier DIR|DTT|REF");
+								System.out.println("Il faut specifier DIT|DIR|DTT|REF");
 								error = 1;
 							}
 						}
