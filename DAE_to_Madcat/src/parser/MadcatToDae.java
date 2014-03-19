@@ -211,7 +211,6 @@ public class MadcatToDae {
 		boundaryPV.setValueTypeId(DataTypeProperty.BOUNDARY);
 		
 		ArrayList<Point> points = zone.getPoints();
-		System.out.println(zone.getName() + " x=" + points.get(0).x + " y=" + points.get(0).y);
 		Rectangle rect = buildRectangle(points);
 		segmentPoints.addAll(points);
 		
