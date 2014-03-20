@@ -96,6 +96,8 @@ public class MadcatHandler extends DefaultHandler{
 						
 				
 	}
+	
+	// Méthode pour lire les caractères à l'intérieur d'une balise
 	public void characters(char[] ch,int start, int length)
 			throws SAXException{
 		String lecture = new String(ch,start,length);

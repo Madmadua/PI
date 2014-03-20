@@ -21,18 +21,23 @@ public class MadcatToDae {
 	private BDDAccess bdd;
 	private Dataset dataset;
 	private PageImage image;
-	private HashMap zones;
 	private PageElementZone zone;
+	private PageElementToken token = new PageElementToken();
+	private PageElementSegment segment = new PageElementSegment();
+	
 	private boolean inToken = false;
 	private String boundary = "";
+	private static String path = "/dae/database/openhart/image/";
+	private String zoneName;
+	
+	private HashMap zones;
 	private HashMap tokensImages;
-	private PageElementToken token = new PageElementToken();
+	
 	private ArrayList<Point> tokenPoints;
 	private ArrayList<Point> zonePoints;
 	private ArrayList<Point> segmentPoints;
-	private PageElementSegment segment = new PageElementSegment();
-	private static String path = "/dae/database/openhart/image/";
-	private String zoneName;
+	
+	
 	
 	private String src;
 	private String ref;
