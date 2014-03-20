@@ -66,7 +66,7 @@
  * 
  * @var $algoname 
  */;
-$algoOracleID = '290';
+$algoOracleID = '242';
 $algoname = 'testdit';
 $algoversion = '1.0';
 
@@ -185,7 +185,7 @@ function callback($input) {
    	'ocr_result_file' => $localOCR, 
        	'layout_result_file' => $localLayout
     );*/
-    $result=array('testdit_output' => $resultFile);
+    $result=array('testdit_output' => 'http://localhost/'.substr($resultFile,9));
     //$result=array('result-url' => 'http://localhost/wsdl/i');
     //== STOP EDITABLE ZONE
     

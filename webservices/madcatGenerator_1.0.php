@@ -66,7 +66,7 @@
  * 
  * @var $algoname 
  */
-$algoOracleID = 289;
+$algoOracleID = 247;
 $algoname = 'madcatGenerator';
 $algoversion = '1.0';
 

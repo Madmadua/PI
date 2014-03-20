@@ -66,42 +66,27 @@
  * 
  * @var $algoname 
  */
-$algoname = 'tercom';
-$algoversion = '7.25';
-$algoOracleID = '243';
+$algoOracleID = 249;
+$algoname = 'ditMFM';
+$algoversion = '1.0';
 
 /**
  * Edit the contents of setup.php to fit your needs.
  */ 
 include('setup.php');
 
-/**
- * Array of input variables for hosted algorithm.
- * 
- * \todo write an extensive explanation on how to format this part
- * 
- * IMPORTANT: due to SOAP restrictions, the 'name' string cannot contain whitespaces. 
- * This is an important constraint, given the assumed correspondence with the Oracle
- * data or data_type mapping.
- * 
- * @var $inputT
- */
 $inputT = array();
-$inputT['tercom_reference_file'] = array('name'=>'tercom_reference_file', 'type'=>'xsd:string');
-$inputT['tercom_hypothesis_file'] = array('name'=>'tercom_hypothesis_file', 'type'=>'xsd:string');
+$inputT['ditmfm_ref'] = array('name'=>'ditmfm_ref', 'type'=>'xsd:string');
+$inputT['ditmfm_hyp'] = array('name'=>'ditmfm_hyp', 'type'=>'xsd:string');
 
-/**
- * Array of output variables for hosted algorithm.
- * 
- * \todo write an extensive explanation on how to format this part
- * 
- * IMPORTANT: due to SOAP restrictions, the 'name' string cannot contain whitespaces. 
- * This is an important constraint, given the assumed correspondence with the Oracle
- * data or data_type mapping.
- * 
- * @var $outputT
- */
-$outputT['tercom_output'] = array('name'=>'tercom_output', 'type'=>'xsd:string');
+
+$outputT = array();
+$outputT['ditmfm_hyp_sgml'] = array('name'=>'ditmfm_hyp_sgml','type'=>'xsd:string');
+$outputT['ditmfm_ref_sgml'] = array('name'=>'ditmfm_ref_sgml','type'=>'xsd:string');
+$outputT['ditmfm_hyp_trn'] = array('name'=>'ditmfm_hyp_trn','type'=>'xsd:string');
+$outputT['ditmfm_ref_trn'] = array('name'=>'ditmfm_ref_trn','type'=>'xsd:string');
+$outputT['ditmfm_ref_src'] = array('name'=>'ditmfm_ref_src','type'=>'xsd:string');
+
 //== STOP EDITABLE ZONE
 
 /**
@@ -119,14 +104,13 @@ function callback($input) {
 	global $executionDir;
 	global $executionPrefix;
 	global $algoname;
-        global $hostname;
+    	global $hostname;
 	
 	// Creating temporary work directory
 	$localdir = $htmlBaseDir . '/' . $executionDir . '/' . $algoname . '/' . time();
 	if (!is_dir($localdir) && ! mkdir($localdir,0777,true)) {
 	    return new soap_fault('SERVER', '', 'Cannot create local directory', '');
 	}
-	chmod($localdir,0777);
 	
 	//== START EDITABLE ZONE
 	/*
@@ -139,8 +123,9 @@ function callback($input) {
 	 * ATTENTION! When modifying this code, be sure the array keys correspond to 
 	 * the keys declared in \a $inputT in setup.php
 	 */
-	$inputReference = $input['tercom_reference_file'];
-	$inputHypothesis = $input['tercom_hypothesis_file'];
+	$refID = $input['ditmfm_ref'];
+	$hyp = $input['ditmfm_hyp'];
+	
 	
 	/*
 	 * This is code is only doing raw execution without the required logging
@@ -149,27 +134,20 @@ function callback($input) {
 	 * the platform.
 	 */ 
 	
+	
+	$hypothesis = $localdir.'/'.array_pop(explode("/",$hyp));
+	if (!copy($hyp,$hypothesis)) {
+            error_log('Cannot copy file '.$hyp);
+	    return new soap_fault('SERVER', '', 'Execution Error', 'Cannot copy file '.$hyp);
+	}
+	$hypID = file_get_contents($hypothesis);
+	$hypID = str_replace(PHP_EOL, '', $hypID);
+		
+	
 
-    //Getting reference file  
-   
+	$execString = 'java -jar /home/dae/WebServices/ditMFM.jar '.$refID.' '.$hypID.' '.$localdir.' 1>mfm.txt 2>err.txt';
+	
 
-	$referenceFile = $localdir.'/'.array_pop(explode("/",$inputReference));
-	if (!copy($inputReference,$referenceFile)) {
-            error_log('Cannot copy file '.$inputReference);
-	    return new soap_fault('SERVER', '', 'Execution Error', 'Cannot copy file');
-	}	
- 
-    //Getting hypothesis file
-
-	$hypothesisFile = $localdir.'/'.array_pop(explode("/",$inputHypothesis));
-	if (!copy($inputHypothesis,$hypothesisFile)) {
-            error_log('Cannot copy file '.$inputHypothesis);
-	    return new soap_fault('SERVER', '', 'Execution Error', 'Cannot copy file');
-	}	
-
-    //Running tercom
-
-	$execString = 'java -jar /home/dae/WebServices/tercom.7.25.jar -s -N -r '.$referenceFile.' -h '.$hypothesisFile.' -n '.$localdir.'/output -o sum 1>/dev/null';
 	//== STOP EDITABLE ZONE
 	
 	$returnValue = system($execString,$returnCode);
@@ -195,8 +173,14 @@ function callback($input) {
    	'ocr_result_file' => $localOCR, 
        	'layout_result_file' => $localLayout
     );*/
-    $result=array('tercom_output' => 'http://localhost/'.substr($localdir,9).'/output.sum');
-    //== STOP EDITABLE ZONE
+    $result=array('ditmfm_hyp_sgml' => 'http://localhost/'.substr($localdir,9).'/hyp.sgml',
+    'ditmfm_ref_sgml' => 'http://localhost/'.substr($localdir,9).'/ref.sgml',
+    'ditmfm_hyp_trn' => 'http://localhost/'.substr($localdir,9).'/hyp.trn',
+    'ditmfm_ref_trn' => 'http://localhost/'.substr($localdir,9).'/ref.trn',
+    'ditmfm_ref_src' => 'http://localhost/'.substr($localdir,9).'/hyp.src');
+	file_put_contents('exec.txt',print_r($result,true));
+    
+//== STOP EDITABLE ZONE
     
     return $result;
 }

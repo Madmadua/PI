@@ -68,6 +68,7 @@
  */
 $algoname = 'mteval';
 $algoversion = 'v13a';
+$algoOracleID = '145';
 
 /**
  * Edit the contents of setup.php to fit your needs.
