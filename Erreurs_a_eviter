@@ -1,0 +1,8 @@
+-passer en java 7
+-passer Taverna en 2.4
+-inserver les nouveaux datatype property dans la base (on peut trouvé les nouveaux datatype property dans le projet java)
+-copier les images (pour affichage sur interface web) dans /dae/database/openhart
+-arrêter le serveur couchbase avant de lancer taverna
+-Pour utiliser un métrique : le titre du document de référence doit être le même que le titre du document d'hypothèses
+-Ajouter plus de mémoire à Taverna à l'aide du fichier taverna.sh
+-Recompiler sctk quand on recréé une machine
