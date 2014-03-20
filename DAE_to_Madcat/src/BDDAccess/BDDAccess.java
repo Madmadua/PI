@@ -564,11 +564,9 @@ public class BDDAccess {
 	}
 
 	public ResultSet executeQuery(String query) throws SQLException{
-		
 		state = conn.createStatement();
 		ResultSet result = state.executeQuery(query);
 		
-
 		return result;
 	}
 
@@ -614,6 +612,10 @@ public class BDDAccess {
 		return id;
 	}
 
+	/* Insertion d'un objet dans une base de données
+	 * Query : Requête à exécuter sous la forme "INSERT INTO NOM_TABLE (Param 1,...,Param n) VALUES (?,...,?)"
+	 * collumns : ArrayList comprenant les valeurs à insérer, dans le même ordre que dans la requête
+	 */
 	public void insert(String query,ArrayList<Object> collumns) throws SQLException{
 		CallableStatement state;
 		state = conn.prepareCall(query);

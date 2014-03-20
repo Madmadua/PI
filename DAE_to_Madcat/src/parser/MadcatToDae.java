@@ -29,6 +29,8 @@ public class MadcatToDae {
 	private String boundary = "";
 	private static String path = "/dae/database/openhart/image/";
 	private String zoneName;
+	private String src;
+	private String ref;
 	
 	private HashMap zones;
 	private HashMap tokensImages;
@@ -38,9 +40,6 @@ public class MadcatToDae {
 	private ArrayList<Point> segmentPoints;
 	
 	
-	
-	private String src;
-	private String ref;
 	
 	public MadcatToDae(){
 		bdd = new BDDAccess();
@@ -106,7 +105,7 @@ public class MadcatToDae {
 		image.setHeight(height);
 		image.setPath(src);
 		
-		/* Ne peut pas être mis dans DAE pour le moment
+		/* Pas de correspondance trouvé avec DAE
 		image.setColordepth(colordepth); 
 		*/
 		
@@ -276,7 +275,6 @@ public class MadcatToDae {
 		sourcePV.setValueTypeId(DataTypeProperty.SOURCE);
 		
 		try {
-			zone.insert(bdd, segment,image);
 			token.insert(bdd, zone,image);
 			sourcePV.insertWithPageElement(bdd, token.getId());
 		} catch (SQLException e) {
@@ -291,6 +289,7 @@ public class MadcatToDae {
 		bdd.close();
 	}
 	
+	// Pour construire les rectangles encadrant les segments, zones et tokens
 	public Rectangle buildRectangle(ArrayList<Point> points){
 		Rectangle rect = new Rectangle();
 		
